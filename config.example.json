@@ -1,0 +1,13 @@
+{
+    "drowsy": {
+        "url": "http://drowsy.badger.encorelab.org",
+        "db": "skeletor",
+        "uic_url": "http://ltg.evl.uic.edu:9292"
+    },
+    "wakeful": {
+        "url": "http://wakeful.badger.encorelab.org:7777/faye"
+    },
+    "rollcall": {"db": "rollcall"},
+    "login_picker": true,
+    "runs":["5ag","5at","5bj"]
+}

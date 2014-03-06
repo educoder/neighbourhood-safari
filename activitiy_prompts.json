@@ -1,0 +1,32 @@
+[
+    {
+        "_id": 1,
+        "title": "Squirrel Observations",
+        "prompt1": "Something I noticed about squirrel behavior in my neighborhood is...",
+        "prompt2": "A question I have about squirrel behavior is..."
+    },
+    {
+        "_id": 2,
+        "title": "Squirrel Research",
+        "prompt1": "",
+        "prompt2": ""
+    },
+    {
+	   "_id": 3,
+	   "title": "My Bout 1 Moves",
+	   "prompt1": "The strategy I tended to use was...",
+	   "prompt2": "In order to do better next time I will..."
+    },
+    {
+       "_id": 4,
+       "title": "Reflecting on Bout 2",
+       "prompt1": "Compared to an ideal distribution, our results were...",
+       "prompt2": "This was because..."
+    },
+    {
+       "_id": 5,
+       "title": "Planning Bout 4",
+       "prompt1": "In the last bout the predator affected my strategy by...",
+       "prompt2": "In response my strategy this time will be..."
+    }    
+]

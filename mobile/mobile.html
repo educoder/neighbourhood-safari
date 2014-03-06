@@ -1,0 +1,154 @@
+Steve MacDougall<!DOCTYPE html> 
+<html> 
+<head>
+    <title>Hunger Games Mobile</title> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+    <link href="../libs/bootstrap-2.3.2.min.css" rel="stylesheet">
+    <link href="../libs/bootstrap-responsive-2.3.2.min.css" rel="stylesheet">
+    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"> -->
+    <link href="css/mobile.css" rel="stylesheet">
+    <link href="../libs/jquery.toastmessage.css" rel="stylesheet">
+
+    <script type="text/javascript" src="../libs/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap-2.3.2.min.js"></script>
+    <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone/backbone.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone.drowsy/backbone.drowsy.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone.drowsy/wakeful.js"></script>
+    
+    <script type="text/javascript" src="../libs/jquery.toastmessage.js"></script>
+    <script type="text/javascript" src="../libs/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../libs/purl.js"></script>
+
+    <script type="text/javascript" src="js/hunger-games.js"></script>
+    <script type="text/javascript" src="js/model.js"></script>
+    <script type="text/javascript" src="js/rollcall.js"></script>
+
+    
+    <script type="text/javascript" src="js/mobile.js"></script>
+    <script type="text/javascript" src="js/mobile.view.js"></script>
+
+    <script id="list-view-template" type="text/template">
+        <li class="list-item">
+            <a id="note-id-<%= _id %>" class="note">
+                <div class="author-container" style="background-color: <%= color %> ;"><div class="author"><%= author %></div></div>
+                <div class="part part-1"><%= part_1 %></div>
+                <div class="part part-2"><%= part_2 %></div>
+                <div class="create-reply-btn">Reply</div>
+            </a>
+            <a class="reply-entry hidden">
+                <textarea class="field reply-text-entry" name="reply" type="text"></textarea>
+                <button class="submit-reply-btn btn-success">Submit</button>
+            </a>
+        </li>
+    </script>
+    <script id="reply-view-template" type="text/template">
+        <a class="reply">
+            <div class="author-container"><div class="author"><%= author %></div></div>
+            <div class="content"><%= content %></div>
+        </a>
+    </script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <!-- .btn-navbar is used as the toggle for collapsed navbar content 
+                TODO: what does this until brand do? Took it out and didn't see change-->
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">Hunger Games</a>
+                <div class="nav-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav nav-pills">
+                        <!-- <li class=" refresh-button"><a href="#">Refresh</a></li> -->
+                        <li class=" notes-button"><a href="#">Notes</a></li>
+                    </ul>
+                    <form class="navbar-form pull-right">
+                        <!-- Default behaviour of a input field in a form is to submit the form and reload
+                            the page. We don't want that at all. To circumvent this we add an onkeypress handler
+                            that calls the interceptKeypress function. This function calls loginUser if
+                            the 'return' key is pressed and then returns false to avoid bubbling of the event
+                            see also:
+                            http://stackoverflow.com/questions/905222/enter-key-press-event-in-javascript
+                        -->
+                        <input class="hidden" id="username" type="text" name="username" autocomplete="on" placeholder="Please enter name" title="error" pattern="^[a-zA-Z0-9]+$" maxlength="25" onkeypress="return HG.Mobile.interceptKeypress(event)" />
+                        <div class="alert alert-error input-alert">
+                            <strong>Error!</strong> Name can only be alphanumerical without whitespace!
+                        </div>
+                        <button id="login-button" type="submit" class="btn btn-primary">Get me in!</button>
+                        <!-- <a id="login-button" class="btn btn-primary">Get me in!</a> -->
+                    </form>
+                    <ul class="nav pull-right">   
+                        <li class="active username-display"><a></a></li>
+                        <li class="active logout-user"><a>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notes-screen" class="row-fluid">
+        <div class="span12 view-container bs-docs-sidebar">
+            <div class="input-box-wrapper">
+                <select id="activity-dropdown">
+                     <!--<option value="activity-1">In-Class Activity: My Bout Moves</option>
+                     <option value="activity-2">Day 2, Activity 6: Reflecting on Bout 2</option>
+                      <option value="activity-3">Activity 3</option>
+                     <option value="activity-4">Activity 4</option>
+                     <option value="activity-5">Activity 5</option> -->
+                 </select>
+                <a id="share-note-btn" class="btn btn-large btn-success">
+                    Submit
+                </a>
+            </div>
+            <div id="input-screen" class="input-box-wrapper">
+                <textarea class="field note-entry-field part-1-text-entry" id="note-part-1-entry" name="part_1" ></textarea>
+                <textarea class="field note-entry-field part-2-text-entry" id="note-part-2-entry" name="part_2" ></textarea>
+            </div>
+
+            <div id="list-screen" class="bs-docs-sidebar">
+                <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
+                    <!-- filled by some ListView -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="login-picker" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="login-picker" aria-hidden="true">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+        <h3>Please log in</h3>
+      </div>
+      <div class="modal-body login-buttons">
+        <!-- filled by java script with buttons for user login -->
+      </div>
+      <!-- <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+
+    <div class="orientation-warning">
+        <p>If you hold me like that I am of no use :(<p>
+        <img src="img/fighting_squirrels.png" alt="Two fighting squirrels" />
+        <p>Please hold the device in landscape orientation!</p>
+    </div>
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+          // extending jQuery http://stackoverflow.com/questions/31044/is-there-an-exists-function-for-jquery
+          jQuery.fn.exists = function(){return this.length>0;} 
+          HG.Mobile.init();
+        }); 
+    </script>
+</body>
+</html>

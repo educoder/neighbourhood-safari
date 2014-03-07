@@ -46,8 +46,12 @@
 
     shareNote: function() {
       console.log('want me to do stuff, teach me');
+
       var note = {};
       note.text = this.$el.find('.note-text').val();
+      note.author = app.username;
+      note.created_at = new Date();
+
       app.addNote(note);
     },
 
@@ -96,7 +100,12 @@
 
         if (existingNote.length === 0) {
           // var existingNote = jQuery(list).find("[data-id='" + 111 + "']");
-          var listItem = _.template(jQuery(view.template).text(), {id: note.id, text: note.get('text')});
+          var me_or_others = 'others';
+          if (note.get('author') === app.username) {
+            me_or_others = 'me';
+          }
+          
+          var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': note.get('text'), 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
           list.append(listItem);
         }
       });

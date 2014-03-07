@@ -32,7 +32,7 @@ Steve MacDougall<!DOCTYPE html>
     <script type="text/javascript" src="js/mobile.view.js"></script>
 
     <script id="notes-list-template" type="text/template">
-        <li class="list-item" data-id=<%= id %>>
+        <li class="list-item <%= me_or_others %>" data-id=<%= id %> >
             <a class="note">
                 <div class="note-text"><%= text %></div>
             </a>

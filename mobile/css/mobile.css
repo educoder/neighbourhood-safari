@@ -188,12 +188,14 @@
 	}
 
 	#list-screen .list-item {
-		margin-left: -16px;
+		margin-left: 15px;
 	}
 
 	#list-screen .note {
 		position: relative;
 		padding: 10px;
+		margin: 10px 0;
+		width: 50%;
 	}
 
 	#list-screen .author-container {
@@ -270,6 +272,62 @@
 		padding: 7px;
 		border: 1px solid black;
 		color: black;
+	}
+
+	/* chat bubble css */
+
+	.others, .me {
+		color: white;
+	}
+
+	.others {
+		float: right;
+		position: relative;
+		padding: 15px;
+		margin: 1em 0 3em;
+		background: #f3961c;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+	}
+
+	.others:after {
+		content: "";
+		position: absolute;
+		bottom: -15px;
+		right: 50px;
+		border-width: 15px 15px 0;
+		border-style: solid;
+		border-color: #f3961c transparent;
+		display: block;
+		width: 0;
+}
+
+	.me {
+		float: left;
+		position: relative;
+		padding: 15px;
+		margin: 1em 0 3em;
+		background: #075698;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;	
+	}
+
+	.me:after {
+		content: "";
+		position: absolute;
+		bottom: -15px;
+		left: 50px;
+		border-width: 15px 15px 0;
+		border-style: solid;
+		border-color: #075698 transparent;
+		display: block;
+		width: 0;
+}
+
+	.note-text p {
+		margin: 0;
 	}
 
 
@@ -501,6 +559,9 @@
 
 	.move-button {
 		margin: 7px;
+	}
+	.small {
+		font-size: 10px;
 	}
 }
 

@@ -32,15 +32,21 @@ Steve MacDougall<!DOCTYPE html>
     <script type="text/javascript" src="js/mobile.view.js"></script>
 
     <script id="notes-list-template" type="text/template">
-        <li class="list-item <%= me_or_others %>" data-id=<%= id %> >
-            <a class="note">
-                <div class="note-text"><%= text %></div>
+        <li class="list-item span12" data-id=<%= id %>>
+            <div class="note <%= me_or_others %>">
+                <div class="note-text">
+                    <p><%= text %></p>
+                    <p class="small">Sent by <%= author %>&nbsp; on <%= created_at %></p>
+                </div>
             </a>
         </li>
     </script>
+
     <script id="reply-view-template" type="text/template">
         <a class="reply">
-            <div class="author-container"><div class="author"><%= author %></div></div>
+            <div class="author-container">
+                <div class="author"><%= author %></div>
+            </div>
             <div class="content"><%= content %></div>
         </a>
     </script>

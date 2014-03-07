@@ -239,7 +239,7 @@
 
   var tryPullAll = function() {
     // return jQuery.when(tryPullStateData(), tryPullStatisticsData(), tryPullConfigurationData(), tryPullRecentBoutData(), tryPullActivityData());
-    return jQuery.when(tryPullActivityData());
+    // return jQuery.when(tryPullActivityData());
   };
 
   var tryPullActivityData = function() {

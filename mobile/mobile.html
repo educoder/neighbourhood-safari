@@ -32,8 +32,8 @@ Steve MacDougall<!DOCTYPE html>
     <script type="text/javascript" src="js/mobile.view.js"></script>
 
     <script id="notes-list-template" type="text/template">
-        <li class="list-item">
-            <a id="note-id-" + <%= id %> class="note">
+        <li class="list-item" data-id=<%= id %>>
+            <a class="note">
                 <div class="note-text"><%= text %></div>
             </a>
         </li>

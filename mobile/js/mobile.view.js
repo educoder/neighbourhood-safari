@@ -92,8 +92,13 @@
       var list = this.$el.find('ul');
 
       view.collection.each(function(note){
-        var listItem = _.template(jQuery(view.template).text(), {id: note.get('id'), text: note.get('text')});
-        list.append(listItem);
+        var existingNote = list.find("[data-id='" + note.id + "']");
+
+        if (existingNote.length === 0) {
+          // var existingNote = jQuery(list).find("[data-id='" + 111 + "']");
+          var listItem = _.template(jQuery(view.template).text(), {id: note.id, text: note.get('text')});
+          list.append(listItem);
+        }
       });
 
     }

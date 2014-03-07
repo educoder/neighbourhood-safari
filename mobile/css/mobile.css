@@ -172,6 +172,10 @@
 		background-color: white;
 	}
 
+	.margin {
+		margin: 0 0 0 20px;
+	}
+
 	#list-screen ul {
 		min-height: 200px;
 		/*max-height: 485px;*/
@@ -189,9 +193,7 @@
 
 	#list-screen .note {
 		position: relative;
-		border: 1px solid black;
-		padding-top: 5px !important;
-		color: black;
+		padding: 10px;
 	}
 
 	#list-screen .author-container {

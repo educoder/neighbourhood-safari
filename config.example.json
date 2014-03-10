@@ -9,5 +9,6 @@
     },
     "rollcall": {"db": "rollcall"},
     "login_picker": true,
-    "runs":["5ag","5at","5bj"]
+    "runs":["5ag","5at","5bj"],
+    "project_name": "Skeletor"
 }

@@ -191,6 +191,8 @@
         });
       }
 
+      setProjectName(app.config.project_name);
+
       /* ======================================================
        * Function to enable click listeners in the UI
        * Beware: some click listeners might belong into Views
@@ -310,6 +312,10 @@
     });
 
 
+  };
+
+  var setProjectName = function (name) {
+    jQuery('.brand').text(name);
   };
 
 

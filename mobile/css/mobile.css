@@ -184,7 +184,7 @@
 	}
 
 	#list-screen li {
-		margin-bottom: -1px;
+		margin-bottom: 5px;
 	}
 
 	#list-screen .list-item {
@@ -274,10 +274,14 @@
 		color: black;
 	}
 
-	/* chat bubble css */
+	/* chat bubble styles */
 
-	.others, .me {
+	.others {
 		color: white;
+	}
+
+	.me {
+		color: black;
 	}
 
 	.others {
@@ -285,7 +289,7 @@
 		position: relative;
 		padding: 15px;
 		margin: 1em 0 3em;
-		background: #f3961c;
+		background: #2980b9;
 		-webkit-border-radius: 10px;
 		-moz-border-radius: 10px;
 		border-radius: 10px;
@@ -298,7 +302,7 @@
 		right: 50px;
 		border-width: 15px 15px 0;
 		border-style: solid;
-		border-color: #f3961c transparent;
+		border-color: #2980b9 transparent;
 		display: block;
 		width: 0;
 }
@@ -308,10 +312,10 @@
 		position: relative;
 		padding: 15px;
 		margin: 1em 0 3em;
-		background: #075698;
+		background: #95a5a6;
 		-webkit-border-radius: 10px;
 		-moz-border-radius: 10px;
-		border-radius: 10px;	
+		border-radius: 10px;
 	}
 
 	.me:after {
@@ -321,7 +325,7 @@
 		left: 50px;
 		border-width: 15px 15px 0;
 		border-style: solid;
-		border-color: #075698 transparent;
+		border-color: #95a5a6 transparent;
 		display: block;
 		width: 0;
 }

@@ -22,7 +22,7 @@
 
     events: {
       'click #share-note-btn': 'shareNote',
-      'click .note-entry-field': 'createNewNote'
+      'click .note-entry-field': 'createNewNote',
     },
 
     createNewNote: function(ev) {
@@ -66,7 +66,7 @@
   **/
   app.View.ListView = Backbone.View.extend({
     template: "#notes-list-template",
-    
+
     initialize: function () {
       var view = this;
       console.log('Initializing ListView...', view.el);
@@ -104,7 +104,7 @@
           if (note.get('author') === app.username) {
             me_or_others = 'me';
           }
-          
+
           var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': note.get('text'), 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
           list.append(listItem);
         }

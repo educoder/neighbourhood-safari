@@ -33,6 +33,15 @@ rollcall.users({'tags':{'$size': 0}})
   });
 });
 
+## Get all users with user_role teacher
+
+rollcall.usersWithUserRole('teacher')
+.done(function (users) {
+  users.each(function (user) {
+    console.log(user.toJSON());
+  });
+});
+
 ## Set some metadata to a user
 
 rollcall.user('akrauss')
@@ -63,6 +72,13 @@ rollcall.user('akrauss')
 .done(function (user) {
   user.removeTag('mytag');
   user.save();
+});
+
+## Is the user a teacher (convenience function) - returns true/false
+
+rollcall.user('akrauss')
+.done(function (user) {
+  console.log(user.isTeacher());
 });
 
 ## Replace all of a user's tags
@@ -114,6 +130,14 @@ rollcall.userExists('akrauss')
       removeTag: function (tag) {
         var tags = this.get('tags');
         this.set('tags', _.without(tags, tag));
+      },
+
+      isTeacher: function() {
+        if (this.get('user_role') === 'teacher') {
+          return true;
+        } else {
+          return false;
+        }
       }
     });
 
@@ -177,6 +201,13 @@ rollcall.userExists('akrauss')
         else
           return false;
       });
+  };
+
+  Rollcall.prototype.usersWithUserRole = function (userRole) {
+    userRole = userRole || '';
+    var selector = {"user_role":userRole};
+
+    return this.users(selector);
   };
 
   this.Rollcall = Rollcall;

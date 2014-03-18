@@ -1,13 +1,13 @@
 /*jshint debug:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, undef:true, curly:true, browser: true, devel: true, jquery:true, strict:true */
-/*global  Backbone, _, jQuery, Rollcall */
+/*global  Backbone, Skeletor, _, jQuery, Rollcall */
 
 (function() {
   "use strict";
-  var HG = this.HG || {};
-  this.HG.Mobile = this.HG.Mobile || new HG.App();
+  var Skeletor = this.Skeletor || {};
+  this.Skeletor.Mobile = this.Skeletor.Mobile || new Skeletor.App();
   var Model = this.Skeletor.Model;
-  HG.Model = Model;
-  var app = this.HG.Mobile;
+  Skeletor.Model = Model;
+  var app = this.Skeletor.Mobile;
 
   app.config = null;
   app.requiredConfig = {
@@ -152,10 +152,10 @@
 
   app.setup = function() {
     /* pull users, then initialize the model and wake it up, then pull everything else */
-    HG.Model.init(app.config.drowsy.url, DATABASE+'-'+app.runId)
+    Skeletor.Model.init(app.config.drowsy.url, DATABASE+'-'+app.runId)
     .then(function () {
       console.log('model initialized - now waking up');
-      return HG.Model.wake(app.config.wakeful.url);
+      return Skeletor.Model.wake(app.config.wakeful.url);
     })
     .done(function () {
       console.log('model awake - now calling ready');
@@ -188,7 +188,7 @@
       if (app.listView === null) {
         app.listView = new app.View.ListView({
           el: '#list-screen',
-          collection: HG.Model.awake.notes
+          collection: Skeletor.Model.awake.notes
         });
       }
 
@@ -230,7 +230,7 @@
   };
 
   app.saveCurrentReply = function(replyText) {
-    var note = HG.Model.awake.notes.get(app.currentReply.related_note_id);
+    var note = Skeletor.Model.awake.notes.get(app.currentReply.related_note_id);
     note.addBuildOn(app.username, replyText);
     note.wake(app.config.wakeful.url);
     note.save();
@@ -307,7 +307,7 @@
       });
 
       console.log('Refresh the harvest planning graph on user request');
-      HG.Patchgraph.refresh().done(function(){
+      Skeletor.Patchgraph.refresh().done(function(){
         console.log('Patchgraph data refreshed');
       });
     });
@@ -483,6 +483,6 @@
   };
 
 
-  this.HG = HG;
+  this.Skeletor = Skeletor;
 
 }).call(this);

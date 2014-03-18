@@ -4,8 +4,8 @@
 (function() {
   "use strict";
   var HG = this.HG || {};
-  this.HG.Mobile = this.HG.Mobile || {};
-  var app = this.HG.Mobile;
+  this.Skeletor.Mobile = this.Skeletor.Mobile || {};
+  var app = this.Skeletor.Mobile;
   app.View = {};
 
 

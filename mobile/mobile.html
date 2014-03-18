@@ -14,8 +14,10 @@
 
     <script type="text/javascript" src="../libs/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../libs/bootstrap-2.3.2.min.js"></script>
+
     <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
     <script type="text/javascript" src="../node_modules/backbone/backbone.js"></script>
+
     <script type="text/javascript" src="../node_modules/backbone.drowsy/backbone.drowsy.js"></script>
     <script type="text/javascript" src="../node_modules/backbone.drowsy/wakeful.js"></script>
 
@@ -23,9 +25,9 @@
     <script type="text/javascript" src="../libs/jquery.cookie.js"></script>
     <script type="text/javascript" src="../libs/purl.js"></script>
 
-    <script type="text/javascript" src="js/hunger-games.js"></script>
+    <script type="text/javascript" src="../shared/js/skeletor.js"></script>
     <script type="text/javascript" src="../shared/js/model.js"></script>
-    <script type="text/javascript" src="js/rollcall.js"></script>
+    <script type="text/javascript" src="../shared/js/rollcall.js"></script>
 
 
     <script type="text/javascript" src="js/mobile.js"></script>
@@ -134,7 +136,7 @@
         jQuery(document).ready(function() {
           // extending jQuery http://stackoverflow.com/questions/31044/is-there-an-exists-function-for-jquery
           jQuery.fn.exists = function(){return this.length>0;}
-          HG.Mobile.init();
+          Skeletor.Mobile.init();
         });
     </script>
 </body>

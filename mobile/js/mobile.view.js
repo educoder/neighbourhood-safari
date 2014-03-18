@@ -22,7 +22,7 @@
 
     events: {
       'click #share-note-btn': 'shareNote',
-      'click .note-entry-field': 'createNewNote',
+      'click .note-entry-field': 'createNewNote'
     },
 
     createNewNote: function(ev) {

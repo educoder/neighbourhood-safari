@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  var Backbone, HG, Drowsy, jQuery, _,
+  var Backbone, Skeletor, Drowsy, jQuery, _,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty;
@@ -12,17 +12,17 @@
     Backbone = require("backbone");
     Backbone.$ = jQuery;
     Drowsy = require("backbone.drowsy").Drowsy;
-    HG = {};
-    exports.HG = HG;
+    Skeletor = {};
+    exports.Skeletor = Skeletor;
   } else {
-    window.HG = window.HG || {};
-    HG = window.HG;
+    window.Skeletor = window.Skeletor || {};
+    Skeletor = window.Skeletor;
     jQuery = window.$;
     _ = window._;
     Drowsy = window.Drowsy;
   }
 
-  HG.Model = (function() {
+  Skeletor.Model = (function() {
     function Model() {}
 
     Model.requiredCollections = ['notes', 'tags', 'states'];
@@ -49,7 +49,7 @@
       .then(function() {
           _this.defineModelClasses();
           dfrInit.resolve();
-      });      
+      });
 
       return dfrInit.promise();
     };
@@ -80,7 +80,7 @@
         existingCollections = _.pluck(colls, 'name');
         _.each(requiredCollections, function (coll) {
           if (existingCollections.indexOf(coll) < 0) {
-            console.log("Creating collection '" + coll + "' under " + HG.Model.dbURL);
+            console.log("Creating collection '" + coll + "' under " + Skeletor.Model.dbURL);
             dfs.push(_this.db.createCollection(coll));
           }
         });
@@ -93,7 +93,7 @@
     };
 
     Model.defineModelClasses = function() {
-      
+
       var VotableTrait = {
         addVote: function(username) {
           var votes;
@@ -135,8 +135,8 @@
         addTag: function(tag, tagger) {
           var existingTagRelationships, tagRel,
             _this = this;
-          if (!(tag instanceof HG.Model.Tag)) {
-            console.error("Cannot addTag ", tag, " because it is not a HG.Model.Tag instance!");
+          if (!(tag instanceof Skeletor.Model.Tag)) {
+            console.error("Cannot addTag ", tag, " because it is not a Skeletor.Model.Tag instance!");
             throw "Invalid tag (doesn't exist)";
           }
           if (!tag.id) {
@@ -185,7 +185,7 @@
           return _.clone(positions[ctx]);
         },
         setPos: function(pos, context) {
-          if (_.isNull(pos.left) || _.isUndefined(pos.left) || 
+          if (_.isNull(pos.left) || _.isUndefined(pos.left) ||
               _.isNull(pos.top)  || _.isUndefined(pos.top)) {
             console.error("Invalid position for setPos:", pos, context, this);
             throw new Error("Cannot setPos() because the given position is invalid.");
@@ -198,7 +198,7 @@
         },
         hasPos: function(context) {
           var ctx = context || "_";
-          return this.has('pos') && 
+          return this.has('pos') &&
             !_.isUndefined(this.get('pos')[ctx]);
         }
       };
@@ -221,7 +221,7 @@
       .extend(BuildOnableTrait);
 
       this.Notes = this.db.Collection('notes').extend({
-        model: HG.Model.Note
+        model: Skeletor.Model.Note
       });
 
       /** Tag **/
@@ -232,7 +232,7 @@
       .extend(MultiposTrait);
 
       this.Tags = this.db.Collection('tags').extend({
-        model: HG.Model.Tag
+        model: Skeletor.Model.Tag
       });
 
       /** State **/
@@ -240,9 +240,9 @@
       this.State = this.db.Document('states').extend({
 
       });
-      
+
       this.States = this.db.Collection('states').extend({
-        model: HG.Model.State
+        model: Skeletor.Model.State
       });
     };
 
@@ -267,9 +267,9 @@
       };
       this.awake = {};
       _.each(this.requiredCollections, function (collName) {
-        coll = new HG.Model[camelCase(collName)]();
+        coll = new Skeletor.Model[camelCase(collName)]();
         coll.wake(wakefulUrl);
-        HG.Model.awake[collName] = coll;
+        Skeletor.Model.awake[collName] = coll;
         deferreds.push(coll.fetch());
       });
       return jQuery.when.apply(jQuery, deferreds);

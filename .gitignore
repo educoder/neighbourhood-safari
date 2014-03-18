@@ -13,6 +13,7 @@ results
 
 npm-debug.log
 node_modules
+test-data
 
 .DS_Store
 config.json

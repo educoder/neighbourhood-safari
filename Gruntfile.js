@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     //   }
     // }
     jshint: {
-      all: ['Gruntfile.js', 'js/*.js', 'mobile/js/*.js']
+      all: ['Gruntfile.js', 'js/*.js', 'mobile/js/*.js', 'shared/js/*.js', 'smartboard/js/*.js']
     },
     csslint: {
       dev: {
@@ -31,81 +31,16 @@ module.exports = function(grunt) {
         src: ['mobile/css/mobile.css']
       }
     },
-    jsonlint: {
-      dev: {
-        src: ['./*.json' ]
-      }
-    },
-    coffeelint: {
-      dev: {
-        files: {
-          src: ['shared/coffee/*.coffee', 'smartboard/coffee/*.coffee']
-        },
-        options: {
-          'no_trailing_whitespace': {
-            'level': 'warn'
-          },
-          'max_line_length': {
-            'value': 120,
-            'level': 'ignore'
-          },
-          'indentation': {
-            'value': 4,
-            'level': 'ignore'
-          },
-          'no_throwing_strings': {
-            'level': 'ignore'
-          },
-          'no_unnecessary_fat_arrows': {
-            'level': 'ignore'
-          }
-        }
-      },
-      linting: {
-        files: {
-          src: ['shared/coffee/*.coffee', 'smartboard/coffee/*.coffee']
-        },
-        options: {
-          'no_trailing_whitespace': {
-            'level': 'warn'
-          },
-          'max_line_length': {
-            'value': 120,
-            'level': 'warn'
-          },
-          'indentation': {
-            'value': 4,
-            'level': 'warn'
-          },
-          'no_throwing_strings': {
-            'level': 'warn'
-          }
-        }
-      }
-    },
-    coffee: {
-      compile: {
-        options: {
-          sourceMap: true
-        },
-        files: {
-          'shared/js/ck.model.js': 'shared/coffee/ck.model.coffee',
-          'shared/js/ck.js': 'shared/coffee/ck.coffee',
-          'smartboard/js/ck.smartboard.js': 'smartboard/coffee/ck.smartboard.coffee',
-          'smartboard/js/ck.smartboard.view.js': [
-            'smartboard/coffee/ck.smartboard.view.coffee',
-            'smartboard/coffee/ck.smartboard.view.wall.coffee',
-            'smartboard/coffee/ck.smartboard.view.wordcloud.coffee',
-            'smartboard/coffee/ck.smartboard.view.balloons.coffee'
-          ]
-        }
-      }
-    },
     sass: {
       compile: {
         files: {
-          'smartboard/css/ck.smartboard.css': 'smartboard/css/scss/ck.smartboard.scss'
+          'smartboard/css/smartboard.css': 'smartboard/css/scss/wall.scss'
         }
+      }
+    },
+    jsonlint: {
+      dev: {
+        src: ['./*.json' ]
       }
     },
     watch: {
@@ -122,16 +57,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-jsonlint');
-  grunt.loadNpmTasks('grunt-coffeelint');
-  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
   // grunt.registerTask('default', ['uglify']);
-  grunt.registerTask('default', ['jshint',  'jsonlint', 'coffeelint:dev', 'coffee', 'sass']);
-  grunt.registerTask('lint', ['jshint', 'csslint', 'jsonlint', 'coffeelint:linting']);
-  grunt.registerTask('compile', ['coffee', 'sass']);
+  grunt.registerTask('default', ['jshint',  'jsonlint', 'sass']);
+  grunt.registerTask('lint', ['jshint', 'csslint', 'jsonlint']);
+  grunt.registerTask('compile', ['sass']);
 
   grunt.registerTask('test', 'run mocha-phantomjs', function () {
     var done = this.async();

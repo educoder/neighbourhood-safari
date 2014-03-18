@@ -5,7 +5,8 @@
   "use strict";
   var HG = this.HG || {};
   this.HG.Mobile = this.HG.Mobile || new HG.App();
-  var Model = this.HG.Model;
+  var Model = this.Skeletor.Model;
+  HG.Model = Model;
   var app = this.HG.Mobile;
 
   app.config = null;
@@ -271,7 +272,7 @@
       .fail(function() { console.error("Error pulling users data..."); });
     }
   };
-  
+
 
   var idToTimestamp = function(id) {
     var timestamp = id.substring(0,8);
@@ -449,7 +450,7 @@
 
       // show modal dialog
       // jQuery('#login-picker').modal({backdrop: 'static'});
-    }); 
+    });
   };
 
   app.hideAllRows = function () {

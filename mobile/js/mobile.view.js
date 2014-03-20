@@ -22,38 +22,71 @@
 
     events: {
       'click #share-note-btn': 'shareNote',
-      'click .note-entry-field': 'createNewNote'
+      'click .note-body': 'createOrRestoreNote',
+      'keyup :input': function(ev) {
+        var view = this,
+          field = ev.target.name,
+          input = ev.target.value;
+        // clear timer on keyup so that a save doesn't happen while typing
+        window.clearTimeout(app.autoSaveTimer);
+
+        // save after 10 keystrokes
+        app.autoSave(app.currentNote, field, input, false);
+
+        // setting up a timer so that if we stop typing we save stuff after 5 seconds
+        app.autoSaveTimer = setTimeout(function(){
+          app.autoSave(app.currentNote, field, input, true);
+        }, 5000);
+      }
     },
 
-    createNewNote: function(ev) {
-      alert('createNewNote: want me to do stuff, teach me');
-      // var view = this;
-      // view.updateEllipses(ev);
+    createOrRestoreNote: function(ev) {
+      // alert('createNewNote: want me to do stuff, teach me');
+      var view = this;
 
-      // if (app.currentNote === null) {
-      //   var note = {};
-      //   note.author = app.username;
-      //   note.part_1 = this.$el.find('#note-part-1-entry').val();
-      //   note.part_2 = this.$el.find('#note-part-2-entry').val();
-      //   note.related_activity = this.$el.find('#activity-dropdown').val();
-      //   note.created_at = new Date();
-      //   note.published = false;
-      //   note.worth_remembering = false;
+      var noteToRestore = view.collection.findWhere({author: app.username, published: false});
+      if (noteToRestore) {
+        app.currentNote = noteToRestore;
+        this.$el.find('.note-body').val(app.currentNote.get('body'));
+      } else {
+        // no unpublished note, so we create a new note
+        var note = {};
+        note.author = app.username;
+        note.created_at = new Date();
+        note.body = '';
+        note.published = false;
 
-      //   app.addNote(note);
-      // }
+        app.addNote(note);
+      }
     },
 
     shareNote: function() {
       console.log('want me to do stuff, teach me');
 
-      var note = {};
-      note.text = this.$el.find('.note-text').val();
-      note.author = app.username;
-      note.created_at = new Date();
+      app.currentNote.set('body', this.$el.find('.note-body').val());
+      app.currentNote.set('published', true);
 
-      app.addNote(note);
+      app.currentNote.save();
+
+      // clearing up
+      this.$el.find('.note-body').val('');
+      app.currentNote = null;
     },
+
+    // autosaveNote: function(ev) {
+    //   var field = ev.target.name,
+    //       input = jQuery('#'+ev.target.id).val();
+    //   // clear timer on keyup so that a save doesn't happen while typing
+    //   window.clearTimeout(app.autoSaveTimer);
+
+    //   // save after 10 keystrokes
+    //   app.autoSave(view.model, field, input, false);
+
+    //   // setting up a timer so that if we stop typing we save stuff after 5 seconds
+    //   app.autoSaveTimer = setTimeout(function(){
+    //     app.autoSave(view.model, field, input, true);
+    //   }, 5000);
+    // },
 
     render: function () {
       console.log('Rendering InputView...');
@@ -95,18 +128,22 @@
       // find the list where items are rendered into
       var list = this.$el.find('ul');
 
-      view.collection.each(function(note){
+      // Only want to show published notes at some point
+      var publishedNotes = view.collection.where({published: true});
+
+      _.each(publishedNotes, function(note){
+        var me_or_others = 'others';
+        if (note.get('author') === app.username) {
+          me_or_others = 'me';
+        }
+        var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': note.get('body'), 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
+
         var existingNote = list.find("[data-id='" + note.id + "']");
 
         if (existingNote.length === 0) {
-          // var existingNote = jQuery(list).find("[data-id='" + 111 + "']");
-          var me_or_others = 'others';
-          if (note.get('author') === app.username) {
-            me_or_others = 'me';
-          }
-
-          var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': note.get('text'), 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
           list.append(listItem);
+        } else {
+          existingNote.replaceWith(listItem);
         }
       });
 

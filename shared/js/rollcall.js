@@ -124,7 +124,10 @@ rollcall.groups({'users':{'$size': 0}})
   });
 });
 
-
+rollcall.group('leprechaun')
+.done(function (group) {
+  console.log(group.toJSON());
+});
 
 **/
 
@@ -165,7 +168,11 @@ rollcall.groups({'users':{'$size': 0}})
 
     // Group model
     this.Group = this.db.Document('groups').extend({
-
+      addUser: function (user) {
+        var users = _.clone(this.get('users'));
+        users.push(user);
+        this.set('users', _.uniq(users));
+      }
     });
 
     this.Groups = this.db.Collection('groups').extend({
@@ -238,6 +245,13 @@ rollcall.groups({'users':{'$size': 0}})
     return this.users(selector);
   };
 
+  Rollcall.prototype.group = function(groupname) {
+    return this.groups({"groupname": groupname})
+    .then(function (groups) {
+      return groups.at(0);
+    });
+  };
+
   Rollcall.prototype.groups = function(selector) {
     selector = selector || {};
 
@@ -252,6 +266,13 @@ rollcall.groups({'users':{'$size': 0}})
     return groupsPromise.then(function () {
       return groups;
     });
+  };
+
+  Rollcall.prototype.groupsWithTags = function(tags) {
+    tags = tags || [];
+    var selector = {"tags":{"$all": tags}};
+
+    return this.groups(selector);
   };
 
   this.Rollcall = Rollcall;

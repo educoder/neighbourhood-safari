@@ -50,12 +50,12 @@
     },
 
     showNewNote: function() {
-      console.log('Starting new note.')
+      console.log('Starting new note.');
       jQuery('.note-taking-toggle').slideDown();
     },
 
     cancelNote: function() {
-      console.log("Cancelling note and hiding textarea.")
+      console.log("Cancelling note and hiding textarea.");
       // Hide textarea
       jQuery('.note-taking-toggle').slideUp();
     },

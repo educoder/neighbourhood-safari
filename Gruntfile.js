@@ -34,7 +34,8 @@ module.exports = function(grunt) {
     sass: {
       compile: {
         files: {
-          'smartboard/css/smartboard.css': 'smartboard/css/scss/wall.scss'
+          'smartboard/css/smartboard.css': 'smartboard/css/scss/wall.scss',
+          'mobile/css/mobile.css' : 'mobile/css/scss/mobile.scss'
         }
       }
     },

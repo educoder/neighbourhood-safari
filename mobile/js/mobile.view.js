@@ -23,10 +23,10 @@
     events: {
       'click .resume-note-btn'   : "resumeNote",
       'click .new-note-btn'      : 'showNewNote',
-      'click .modal-select-note' : 'selectNote',
+      'click .modal-select-note' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
       'click .share-note-btn'    : 'shareNote',
-      'click .note-body'         : 'createOrRestoreNote',
+      //'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
         var view = this,
           field = ev.target.name,
@@ -53,7 +53,7 @@
       // fill the modal
       jQuery('#select-note-modal').html('');
       _.each(notesToRestore, function(note){
-        var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body')});
+        var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
         jQuery('#select-note-modal').append(option);
       });
 
@@ -87,31 +87,43 @@
       jQuery('.note-taking-toggle').slideUp();
     },
 
-    selectNote: function(){
+    selectNoteToResume: function(ev){
+      var view = this;
       console.log('Select a note.');
+
+      var selectedOption = jQuery('#select-note-modal').children()[jQuery('#select-note-modal').index()];
+      // retrieve id of selectd note
+      var selectedNoteId = jQuery(selectedOption).data('id');
+      app.currentNote = view.collection.findWhere({_id: selectedNoteId});
+
+      // Clear text input field
+      this.$el.find('.note-body').val('');
+
+      this.$el.find('.note-body').val(app.currentNote.get('body'));
+
       jQuery('.unpublished-note-picker').modal('hide');
       jQuery('.note-taking-toggle').slideDown();
     },
 
-    createOrRestoreNote: function(ev) {
-      // alert('createNewNote: want me to do stuff, teach me');
-      var view = this;
+    // createOrRestoreNote: function(ev) {
+    //   // alert('createNewNote: want me to do stuff, teach me');
+    //   var view = this;
 
-      var noteToRestore = view.collection.findWhere({author: app.username, published: false});
-      if (noteToRestore) {
-        app.currentNote = noteToRestore;
-        this.$el.find('.note-body').val(app.currentNote.get('body'));
-      } else {
-        // no unpublished note, so we create a new note
-        var note = {};
-        note.author = app.username;
-        note.created_at = new Date();
-        note.body = '';
-        note.published = false;
+    //   var noteToRestore = view.collection.findWhere({author: app.username, published: false});
+    //   if (noteToRestore) {
+    //     app.currentNote = noteToRestore;
+    //     this.$el.find('.note-body').val(app.currentNote.get('body'));
+    //   } else {
+    //     // no unpublished note, so we create a new note
+    //     var note = {};
+    //     note.author = app.username;
+    //     note.created_at = new Date();
+    //     note.body = '';
+    //     note.published = false;
 
-        app.addNote(note);
-      }
-    },
+    //     app.addNote(note);
+    //   }
+    // },
 
     shareNote: function() {
       console.log('want me to do stuff, teach me');

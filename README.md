@@ -1,7 +1,7 @@
-skeletor
-========
+Neighbourhood Safari
+====================
 
-A app skeleton that uses Drowsy, WakefulWeasel to create a simple note writing app
+A colaborative run done by UIC in Chicago and OISE in Toronto. This part is developed by the team in Toronto and will center around note taking tools.
 
 
 This software is available under the MIT licence (http://www.opensource.org/licenses/mit-license.php)

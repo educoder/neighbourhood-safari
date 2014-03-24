@@ -1,4 +1,4 @@
-/** 
+/**
 
 # Usage Examples
 
@@ -107,6 +107,28 @@ rollcall.userExists('akrauss')
     console.log('user DOES NOT exist!');
 });
 
+
+
+############ GROUPS ###################
+
+# Creating a group
+
+var newGroup = new rollcall.Group({...});
+
+## Get all groups based on an arbitrary selector (all groups with zero users)
+
+rollcall.groups({'users':{'$size': 0}})
+.done(function (groups) {
+  groups.each(function (group) {
+    console.log(group.toJSON());
+  });
+});
+
+rollcall.group('leprechaun')
+.done(function (group) {
+  console.log(group.toJSON());
+});
+
 **/
 
 
@@ -119,7 +141,6 @@ rollcall.userExists('akrauss')
     this.db = this.server.database(db);
 
     // User model
-
     this.User = this.db.Document('users').extend({
       addTag: function (tag) {
         var tags = _.clone(this.get('tags'));
@@ -144,6 +165,20 @@ rollcall.userExists('akrauss')
     this.Users = this.db.Collection('users').extend({
       model: this.User
     });
+
+    // Group model
+    this.Group = this.db.Document('groups').extend({
+      addUser: function (user) {
+        var users = _.clone(this.get('users'));
+        users.push(user);
+        this.set('users', _.uniq(users));
+      }
+    });
+
+    this.Groups = this.db.Collection('groups').extend({
+      model: this.Group
+    });
+
   };
 
   Rollcall.prototype.users = function(selector) {
@@ -157,7 +192,7 @@ rollcall.userExists('akrauss')
       }
     });
 
-    return usersPromise.then(function () { 
+    return usersPromise.then(function () {
       return users;
     });
   };
@@ -208,6 +243,36 @@ rollcall.userExists('akrauss')
     var selector = {"user_role":userRole};
 
     return this.users(selector);
+  };
+
+  Rollcall.prototype.group = function(groupname) {
+    return this.groups({"groupname": groupname})
+    .then(function (groups) {
+      return groups.at(0);
+    });
+  };
+
+  Rollcall.prototype.groups = function(selector) {
+    selector = selector || {};
+
+    var groups = new this.Groups();
+    var groupsPromise = groups.fetch({
+      data: {
+        selector: JSON.stringify(selector),
+        strict: false
+      }
+    });
+
+    return groupsPromise.then(function () {
+      return groups;
+    });
+  };
+
+  Rollcall.prototype.groupsWithTags = function(tags) {
+    tags = tags || [];
+    var selector = {"tags":{"$all": tags}};
+
+    return this.groups(selector);
   };
 
   this.Rollcall = Rollcall;

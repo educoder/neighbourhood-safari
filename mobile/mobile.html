@@ -121,6 +121,7 @@
                     </div>
                 </div>
 
+                <!--  Unpublished Notes Modal-->
                 <div class="modal hide fade unpublished-note-picker" tabindex="-1" role="dialog" aria-labelledby="unpublished-note-picker" aria-hidden="true">
                     <div class="modal-header">
                         <h3>Unpublished Notes</h3>
@@ -128,15 +129,18 @@
 
                     <div class="modal-body">
                         <form role="form">
-                            <label for="selec-note-modal">Select an unpublished note to edit:</label>
-                            <select id="select-note-modal" class="form-control span4">
-                              <!-- Filled by template from view -->
-                            </select>
-                            <br>
-                            <a class="modal-select-note btn btn-success">Edit</a>
+                            <div class="form-group">
+                                <label for="selec-note-modal">Select an unpublished note to edit:</label>
+                                <select id="select-note-modal" class="form-control span10">
+                                  <!-- Filled by template from view -->
+                                </select>
+                                <br>
+                                <a class="modal-select-note btn btn-success">Edit</a>
+                            </div>
                         </form>
                     </div>
                 </div> <!-- end modal -->
+
             </div> <!-- end #note-screen-input -->
 
             <div id="list-screen" class="bs-docs-sidebar">

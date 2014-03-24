@@ -8,7 +8,6 @@
   var app = this.Skeletor.Mobile;
   app.View = {};
 
-
   /**
     InputView
   **/
@@ -21,8 +20,12 @@
     },
 
     events: {
-      'click #share-note-btn': 'shareNote',
-      'click .note-body': 'createOrRestoreNote',
+      'click .resume-note-btn'   : "resumeNote",
+      'click .new-note-btn'      : 'showNewNote',
+      'click .modal-select-note' : 'selectNote',
+      'click .cancel-note-btn'   : 'cancelNote',
+      'click .share-note-btn'    : 'shareNote',
+      'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
         var view = this,
           field = ev.target.name,
@@ -38,6 +41,29 @@
           app.autoSave(app.currentNote, field, input, true);
         }, 5000);
       }
+    },
+
+    resumeNote: function(){
+      //show modal
+      console.log('Show modal to pick previous note.');
+      jQuery('.unpublished-note-picker').modal('show');
+    },
+
+    showNewNote: function() {
+      console.log('Starting new note.')
+      jQuery('.note-taking-toggle').slideDown();
+    },
+
+    cancelNote: function() {
+      console.log("Cancelling note and hiding textarea.")
+      // Hide textarea
+      jQuery('.note-taking-toggle').slideUp();
+    },
+
+    selectNote: function(){
+      console.log('Select a note.');
+      jQuery('.unpublished-note-picker').modal('hide');
+      jQuery('.note-taking-toggle').slideDown();
     },
 
     createOrRestoreNote: function(ev) {
@@ -133,9 +159,12 @@
 
       _.each(publishedNotes, function(note){
         var me_or_others = 'others';
+        // add class 'me' or 'other' to note
         if (note.get('author') === app.username) {
           me_or_others = 'me';
         }
+
+        //
         var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': note.get('body'), 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
 
         var existingNote = list.find("[data-id='" + note.id + "']");

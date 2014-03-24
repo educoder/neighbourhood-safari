@@ -8,7 +8,6 @@
 
     <link href="../libs/bootstrap-2.3.2.min.css" rel="stylesheet">
     <link href="../libs/bootstrap-responsive-2.3.2.min.css" rel="stylesheet">
-    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"> -->
     <link href="css/mobile.css" rel="stylesheet">
     <link href="../libs/jquery.toastmessage.css" rel="stylesheet">
 
@@ -33,6 +32,7 @@
     <script type="text/javascript" src="js/mobile.js"></script>
     <script type="text/javascript" src="js/mobile.view.js"></script>
 
+    <!-- Note Template  -->
     <script id="notes-list-template" type="text/template">
         <li class="list-item span12" data-id=<%= id %>>
             <div class="note <%= me_or_others %>">
@@ -44,6 +44,7 @@
         </li>
     </script>
 
+    <!-- reply template -->
     <script id="reply-view-template" type="text/template">
         <a class="reply">
             <div class="author-container">
@@ -84,7 +85,6 @@
                             <strong>Error!</strong> Name can only be alphanumerical without whitespace!
                         </div>
                         <button id="login-button" type="submit" class="btn btn-primary">Get me in!</button>
-                        <!-- <a id="login-button" class="btn btn-primary">Get me in!</a> -->
                     </form>
                     <ul class="nav pull-right">
                         <li class="active username-display"><a></a></li>
@@ -98,27 +98,57 @@
     <div id="notes-screen" class="row-fluid">
         <div class="span12 view-container bs-docs-sidebar">
 
-            <div class="notes-screen-input input-box-wrapper">
+            <div id="notes-screen-input" class="span12 input-box-wrapper">
 
-                <textarea class="span12 note-body" rows="10" name="body" placeholder="Enter observastions..."></textarea>
-
-                <div class="span12">
-                <a id="share-note-btn" class="btn btn-large btn-warning span6">Cancel</a>
-                <a id="share-note-btn" class="btn btn-large btn-success span6">Submit</a>
+                <div class="row-fliud">
+                    <a class="resume-note-btn btn btn-large btn-primary span6">Resume Note</a>
+                    <a class="new-note-btn btn btn-large btn-primary span6">New Note</a>
                 </div>
-            </div>
+
+                <div class="note-taking-toggle">
+                    <div class="row-fuild">
+                        <textarea class="note-text row-fuild" rows="10" placeholder="Enter observastions..."></textarea>
+                    </div>
+
+                    <div class="row-fliud">
+                        <a class="cancel-note-btn btn btn-large btn-danger span6">Cancel</a>
+                        <a class="share-note-btn btn btn-large btn-success span6">Submit</a>
+                    </div>
+                </div>
+
+                <div class="modal hide fade unpublished-note-picker" tabindex="-1" role="dialog" aria-labelledby="unpublished-note-picker" aria-hidden="true">
+                  <div class="modal-header">
+                    <h3>Unpublished Notes</h3>
+                  </div>
 
 
+                <div class="modal-body">
+                    <form role="form">
+                        <label for="selec-note-modal">Select an unpublished note to edit:</label>
+                        <select id="select-note-modal" class="form-control span4">
+                          <option>Note 1</option>
+                          <option>Note 2</option>
+                          <option>Note 3</option>
+                          <option>Note 4</option>
+                        </select>
+                        <br>
+                        <a class="modal-select-note btn btn-success">Edit</a>
+                    </form>
+                </div>
+            </div> <!-- end modal -->
+        </div> <!-- end #note-screen-input -->
 
-            <div id="list-screen" class="bs-docs-sidebar row">
+            <div id="list-screen" class="bs-docs-sidebar">
                 <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
-                    <!-- filled by some ListView -->
                 </ul>
             </div>
+
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modals -->
+
+    <!-- Login Modal -->
     <div id="login-picker" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="login-picker" aria-hidden="true">
       <div class="modal-header">
         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
@@ -133,9 +163,14 @@
       </div> -->
     </div>
 
+    <!-- Note Picker Modal -->
+
+
+
+
     <div class="orientation-warning">
-        <p>If you hold me like that I am of no use :(<p>
-        <img src="img/fighting_squirrels.png" alt="Two fighting squirrels" />
+        <p>If you hold Skeletor like that I am of no use :(<p>
+        <img src="img/skeletor-unicorn.jpg" alt="Skeletor Battle a Unicorn" />
         <p>Please hold the device in landscape orientation!</p>
     </div>
 
@@ -145,6 +180,7 @@
           // extending jQuery http://stackoverflow.com/questions/31044/is-there-an-exists-function-for-jquery
           jQuery.fn.exists = function(){return this.length>0;}
           Skeletor.Mobile.init();
+          jQuery('.note-taking-toggle').hide();
         });
     </script>
 </body>

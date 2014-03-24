@@ -180,7 +180,7 @@
        */
       if (app.inputView === null) {
         app.inputView = new app.View.InputView({
-          el: '.notes-screen-input',
+          el: '#notes-screen-input',
           collection: Skeletor.Model.awake.notes
         });
       }

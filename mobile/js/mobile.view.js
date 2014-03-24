@@ -93,7 +93,8 @@
       var view = this;
       console.log('Select a note.');
 
-      var selectedOption = jQuery('#select-note-modal').children()[jQuery('#select-note-modal').index()];
+      var selectedOption = jQuery('#select-note-modal').find(":selected");
+      // children()[jQuery('#select-note-modal').index()];
       // retrieve id of selectd note
       var selectedNoteId = jQuery(selectedOption).data('id');
       app.currentNote = view.collection.findWhere({_id: selectedNoteId});

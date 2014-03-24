@@ -79,12 +79,14 @@
       this.$el.find('.note-body').val('');
 
       jQuery('.note-taking-toggle').slideDown();
+      jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
     },
 
     cancelNote: function() {
       console.log("Cancelling note and hiding textarea.");
       // Hide textarea
       jQuery('.note-taking-toggle').slideUp();
+      jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
     },
 
     selectNoteToResume: function(ev){
@@ -103,6 +105,7 @@
 
       jQuery('.unpublished-note-picker').modal('hide');
       jQuery('.note-taking-toggle').slideDown();
+      jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
     },
 
     // createOrRestoreNote: function(ev) {

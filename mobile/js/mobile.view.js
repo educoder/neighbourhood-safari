@@ -142,6 +142,7 @@
       window.clearTimeout(app.autoSaveTimer);
       app.currentNote = null;
       jQuery('.note-taking-toggle').slideUp();
+      jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
     },
 
     // autosaveNote: function(ev) {

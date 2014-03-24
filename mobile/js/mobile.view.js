@@ -13,6 +13,7 @@
   **/
   app.View.InputView = Backbone.View.extend({
     view: this,
+    template: "#resume-unpublished-notes",
 
     initialize: function() {
       var view = this;
@@ -44,6 +45,18 @@
     },
 
     resumeNote: function(){
+      var view = this;
+
+      // retrieve unpublished notes of user
+      var notesToRestore = view.collection.where({author: app.username, published: false});
+
+      // fill the modal
+      jQuery('#select-note-modal').html('');
+      _.each(notesToRestore, function(note){
+        var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body')});
+        jQuery('#select-note-modal').append(option);
+      });
+
       //show modal
       console.log('Show modal to pick previous note.');
       jQuery('.unpublished-note-picker').modal('show');
@@ -51,6 +64,20 @@
 
     showNewNote: function() {
       console.log('Starting new note.');
+
+      // create an note object
+      var note = {};
+      note.author = app.username;
+      note.created_at = new Date();
+      note.body = '';
+      note.published = false;
+
+      // make note wakeful and add it to notes collection
+      app.addNote(note);
+
+      // Clear text input field
+      this.$el.find('.note-body').val('');
+
       jQuery('.note-taking-toggle').slideDown();
     },
 
@@ -96,7 +123,10 @@
 
       // clearing up
       this.$el.find('.note-body').val('');
+      // turn off auto save
+      window.clearTimeout(app.autoSaveTimer);
       app.currentNote = null;
+      jQuery('.note-taking-toggle').slideUp();
     },
 
     // autosaveNote: function(ev) {

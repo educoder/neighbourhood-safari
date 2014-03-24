@@ -44,6 +44,11 @@
         </li>
     </script>
 
+    <!-- Resume unpublished notes template -->
+    <script id="resume-unpublished-notes" type="text/template">
+        <option><%= option_text %></option>
+    </script>
+
     <!-- reply template -->
     <script id="reply-view-template" type="text/template">
         <a class="reply">
@@ -107,7 +112,7 @@
 
                 <div class="note-taking-toggle">
                     <div class="row-fuild">
-                        <textarea class="note-text row-fuild" rows="10" placeholder="Enter observastions..."></textarea>
+                        <textarea class="note-body row-fuild" name="body" rows="10" placeholder="Enter observastions..."></textarea>
                     </div>
 
                     <div class="row-fliud">
@@ -117,26 +122,25 @@
                 </div>
 
                 <div class="modal hide fade unpublished-note-picker" tabindex="-1" role="dialog" aria-labelledby="unpublished-note-picker" aria-hidden="true">
-                  <div class="modal-header">
-                    <h3>Unpublished Notes</h3>
-                  </div>
+                    <div class="modal-header">
+                        <h3>Unpublished Notes</h3>
+                    </div>
 
-
-                <div class="modal-body">
-                    <form role="form">
-                        <label for="selec-note-modal">Select an unpublished note to edit:</label>
-                        <select id="select-note-modal" class="form-control span4">
-                          <option>Note 1</option>
-                          <option>Note 2</option>
-                          <option>Note 3</option>
-                          <option>Note 4</option>
-                        </select>
-                        <br>
-                        <a class="modal-select-note btn btn-success">Edit</a>
-                    </form>
-                </div>
-            </div> <!-- end modal -->
-        </div> <!-- end #note-screen-input -->
+                    <div class="modal-body">
+                        <form role="form">
+                            <label for="selec-note-modal">Select an unpublished note to edit:</label>
+                            <select id="select-note-modal" class="form-control span4">
+                              <option>Note 1</option>
+                              <option>Note 2</option>
+                              <option>Note 3</option>
+                              <option>Note 4</option>
+                            </select>
+                            <br>
+                            <a class="modal-select-note btn btn-success">Edit</a>
+                        </form>
+                    </div>
+                </div> <!-- end modal -->
+            </div> <!-- end #note-screen-input -->
 
             <div id="list-screen" class="bs-docs-sidebar">
                 <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">

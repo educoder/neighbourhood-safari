@@ -8,7 +8,7 @@
         "url": "http://wakeful.badger.encorelab.org:7777/faye"
     },
     "rollcall": {"db": "rollcall"},
-    "login_picker": true,
+    "login_picker": "group",
     "runs":["5ag","5at","5bj"],
     "project_name": "Neighbourhood Safari"
 }

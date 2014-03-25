@@ -553,15 +553,15 @@
 
   var showGroupCreateDialog = function(runId) {
     // change header
-    jQuery('#create_group .modal-header h3').text('Please pick team members and provide a group name');
+    jQuery('#create-group .modal-header h3').text('Please pick team members and provide a group name');
 
     // click listener for create new group button
-    jQuery('#create_group .modal-footer button').click(function (ev){
-      jQuery('#create-group').modal({backdrop: 'static'});
-    });
+    // jQuery('#create_group .modal-footer button').click(function (ev){
+    //   jQuery('#create-group').modal({backdrop: 'static'});
+    // });
 
     // display create group button
-    jQuery('#login-picker .modal-footer').css("display", '');
+    // jQuery('#login-picker .modal-footer').css("display", '');
 
     // retrieve all users that have runId
     app.rollcall.usersWithTags([runId])
@@ -592,8 +592,32 @@
 
           // show modal dialog
           jQuery('#create-group').modal({backdrop: 'static'});
+
+          //submit
+          jQuery('.create-new-group').on('click', function(){
+            // debugger;
+
+            var groups = [];
+
+            //add value to groups array
+            var groups = jQuery.map(jQuery('.btn-warning'), function(item, index){
+              return jQuery(item).val();
+            });
+
+            // Get value of new group name, to lowercase and strip whitespace
+            var groupName = jQuery('.create-new-group-name').val().replace(/\s/g, '').toLowerCase();
+
+            groups.push(groupName);
+
+          })
         });
   };
+
+
+  app.createGroup = function () {
+    console.log('create group function');
+  };
+
 
   app.hideAllRows = function () {
     jQuery('.row-fluid').each(function (){

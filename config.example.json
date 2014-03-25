@@ -1,7 +1,7 @@
 {
     "drowsy": {
         "url": "http://drowsy.badger.encorelab.org",
-        "db": "skeletor",
+        "db": "safari",
         "uic_url": "http://ltg.evl.uic.edu:9292"
     },
     "wakeful": {

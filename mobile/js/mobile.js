@@ -20,13 +20,14 @@
       url: 'string'
     },
     rollcall: {db: 'string'},
-    login_picker:'boolean',
+    login_picker:'string',
     runs:'object'
   };
 
   app.rollcall = null;
   app.runId= null;
   app.users = null; // users collection
+  app.groups = null; // groups collection
   app.username = null;
   app.runState = null;
   app.userState = null;
@@ -88,53 +89,72 @@
 
     if (app.username && app.runId) {
       // We have a user in cookies so we show stuff
-      console.log('We found user: '+app.username);
+      console.log('We found username: '+app.username);
 
-      // make sure the app.users collection is always filled
-      app.rollcall.usersWithTags([app.runId])
-      .done(function (usersInRun) {
-        console.log(usersInRun);
+      if (app.config.login_picker === "user") {
+        // make sure the app.users collection is always filled
+        app.rollcall.usersWithTags([app.runId])
+        .done(function (usersInRun) {
+          console.log(usersInRun);
 
-        if (usersInRun && usersInRun.length > 0) {
-          app.users = usersInRun;
+          if (usersInRun && usersInRun.length > 0) {
+            app.users = usersInRun;
 
-          // sort the collection by username
-          app.users.comparator = function(model) {
-            return model.get('username');
-          };
-          app.users.sort();
+            // sort the collection by username
+            app.users.comparator = function(model) {
+              return model.get('username');
+            };
+            app.users.sort();
 
-          var currentUser = app.users.findWhere({username: app.username});
+            var currentUser = app.users.findWhere({username: app.username});
 
-          if (currentUser) {
-            jQuery('.username-display a').text(app.runId+' - '+currentUser.get('display_name'));
+            if (currentUser) {
+              jQuery('.username-display a').text(app.runId+' - '+currentUser.get('display_name'));
 
-            hideLogin();
-            showUsername();
+              // hideLogin();
+              showUsername();
 
-            app.setup();
+              app.setup();
+            } else {
+              console.log('User '+usersInRun+' not found in run '+app.runId+'. Show login picker!');
+              logoutUser();
+            }
           } else {
-            console.log('User '+usersInRun+' not found in run '+app.runId+'. Show login picker!');
+            console.log("Either run is wrong or run has not users. Wrong URL or Cookie? Show login");
+            // fill modal dialog with user login buttons
             logoutUser();
           }
-        } else {
-          console.log("Either run is wrong or run has not users. Wrong URL or Cookie? Show login");
-          // fill modal dialog with user login buttons
-          logoutUser();
-        }
-      });
+        });
+      } else if (app.config.login_picker === "group") {
+        // make sure the app.users collection is always filled
+        app.rollcall.groups({"tags":{"$all": [app.runId]}, "groupname": app.username})
+        .done(function (groupRunMatch) {
+          console.log(groupRunMatch);
+
+          var group = _.first(groupRunMatch.models);
+          if (group) {
+
+              jQuery('.username-display a').text(app.runId+' - '+group.get('display_name'));
+
+              // hideLogin();
+              showUsername();
+
+              app.setup();
+          } else {
+            console.log("Either run is wrong or run has no groups. Wrong URL or Cookie? Show login");
+            // fill modal dialog with user login buttons
+            logoutUser();
+          }
+        });
+      } else {
+        console.error("wrong login_picker in config file. Either user or group!");
+      }
     } else {
-      console.log('No user and run found so prompt for username and runId');
+      console.log('No user and run found so prompt for runId');
       hideUsername();
       // fill modal dialog with user login buttons
-      if (app.config.login_picker) {
-        hideLogin();
-        showRunPicker();
-        // showUserLoginPicker(app.runId);
-      } else {
-        showLogin();
-        hideUserLoginPicker();
-      }
+      // hideLogin();
+      showRunPicker();
     }
 
     // click listener that sets username
@@ -338,7 +358,7 @@
         // show notes-screen
         jQuery('#notes-screen').removeClass('hidden');
 
-        hideLogin();
+        // hideLogin();
         hideUserLoginPicker();
         showUsername();
 
@@ -346,6 +366,39 @@
       } else {
         console.log('User '+username+' not found!');
         if (confirm('User '+username+' not found! Do you want to create the user to continue?')) {
+            // Create user and continue!
+            console.log('Create user and continue!');
+        } else {
+            // Do nothing!
+            console.log('No user logged in!');
+        }
+      }
+    });
+  };
+
+  app.loginGroup = function (groupname) {
+    // retrieve group with given username
+    app.rollcall.group(groupname)
+    .done(function (group) {
+      if (group) {
+        console.log(group.toJSON());
+
+        app.username = group.get('groupname');
+
+        jQuery.cookie('hunger-games_mobile_username', app.username, { expires: 1, path: '/' });
+        jQuery('.username-display a').text(app.runId+' - '+group.get('display_name'));
+
+        // show notes-screen
+        jQuery('#notes-screen').removeClass('hidden');
+
+        // hideLogin();
+        hideUserLoginPicker();
+        showUsername();
+
+        app.setup();
+      } else {
+        console.log('User '+groupname+' not found!');
+        if (confirm('User '+groupname+' not found! Do you want to create the user to continue?')) {
             // Create user and continue!
             console.log('Create user and continue!');
         } else {
@@ -412,7 +465,8 @@
       app.runId = jQuery(this).val();
       jQuery.cookie('hunger-games_mobile_runId', app.runId, { expires: 1, path: '/' });
       // jQuery('#login-picker').modal("hide");
-      showUserLoginPicker(app.runId);
+      // showUserLoginPicker(app.runId);
+      showGroupLoginPicker(app.runId);
     });
 
     // show modal dialog
@@ -452,6 +506,93 @@
       // show modal dialog
       // jQuery('#login-picker').modal({backdrop: 'static'});
     });
+  };
+
+  var showGroupLoginPicker = function(runId) {
+    // change header
+    jQuery('#login-picker .modal-header h3').text('Please login with your group name');
+
+    // click listener for create new group button
+    jQuery('#login-picker .modal-footer button').click(function (ev){
+      showGroupCreateDialog(runId);
+    });
+
+    // display create group button
+    jQuery('#login-picker .modal-footer').css("display", '');
+
+    // retrieve all users that have runId
+    app.rollcall.groupsWithTags([runId])
+    .done(function (availableGroups) {
+      jQuery('.login-buttons').html(''); //clear the house
+      console.log(availableGroups);
+      app.groups = availableGroups;
+
+      // sort the collection by username
+      app.groups.comparator = function(model) {
+        return model.get('groupname');
+      };
+      app.groups.sort();
+
+      app.groups.each(function(group) {
+        var button = jQuery('<button class="btn btn-large btn-primary login-button">');
+        button.val(group.get('groupname'));
+        button.text(group.get('display_name'));
+        jQuery('.login-buttons').append(button);
+      });
+
+      // register click listeners
+      jQuery('.login-button').click(function() {
+        var clickedGroupName = jQuery(this).val();
+        app.loginGroup(clickedGroupName);
+      });
+
+      // show modal dialog
+      // jQuery('#login-picker').modal({backdrop: 'static'});
+    });
+  };
+
+  var showGroupCreateDialog = function(runId) {
+    // change header
+    jQuery('#create_group .modal-header h3').text('Please pick team members and provide a group name');
+
+    // click listener for create new group button
+    jQuery('#create_group .modal-footer button').click(function (ev){
+      jQuery('#create-group').modal({backdrop: 'static'});
+    });
+
+    // display create group button
+    jQuery('#login-picker .modal-footer').css("display", '');
+
+    // retrieve all users that have runId
+    app.rollcall.usersWithTags([runId])
+        .done(function (availableUsers) {
+          jQuery('.login-buttons').html(''); //clear the house
+          console.log(availableUsers);
+          app.users = availableUsers;
+
+          // sort the collection by username
+          app.users.comparator = function(model) {
+            return model.get('display_name');
+          };
+          app.users.sort();
+
+          app.users.each(function(user) {
+            var button = jQuery('<button class="btn btn-large btn-primary login-button">');
+            button.val(user.get('username'));
+            button.text(user.get('display_name'));
+            jQuery('.login-buttons').append(button);
+          });
+
+          // register click listeners
+          jQuery('.login-button').click(function() {
+            jQuery(this).toggleClass('btn-primary btn-warning');
+            // var clickedUserName = jQuery(this).val();
+            // app.loginUser(clickedUserName);
+          });
+
+          // show modal dialog
+          jQuery('#create-group').modal({backdrop: 'static'});
+        });
   };
 
   app.hideAllRows = function () {

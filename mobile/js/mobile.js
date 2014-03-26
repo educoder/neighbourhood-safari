@@ -393,6 +393,7 @@
 
         // hideLogin();
         hideUserLoginPicker();
+        jQuery('#create-group').modal('hide');
         showUsername();
 
         app.setup();
@@ -565,57 +566,84 @@
 
     // retrieve all users that have runId
     app.rollcall.usersWithTags([runId])
-        .done(function (availableUsers) {
-          jQuery('.login-buttons').html(''); //clear the house
-          console.log(availableUsers);
-          app.users = availableUsers;
+    .done(function (availableUsers) {
+      jQuery('.login-buttons').html(''); //clear the house
+      console.log(availableUsers);
+      app.users = availableUsers;
 
-          // sort the collection by username
-          app.users.comparator = function(model) {
-            return model.get('display_name');
-          };
-          app.users.sort();
+      // sort the collection by username
+      app.users.comparator = function(model) {
+        return model.get('display_name');
+      };
+      app.users.sort();
 
-          app.users.each(function(user) {
-            var button = jQuery('<button class="btn btn-large btn-primary login-button">');
-            button.val(user.get('username'));
-            button.text(user.get('display_name'));
-            jQuery('.login-buttons').append(button);
-          });
+      app.users.each(function(user) {
+        var button = jQuery('<button class="btn btn-large btn-primary login-button">');
+        button.val(user.get('username'));
+        button.text(user.get('display_name'));
+        jQuery('.login-buttons').append(button);
+      });
 
-          // register click listeners
-          jQuery('.login-button').click(function() {
-            jQuery(this).toggleClass('btn-primary btn-warning');
-            // var clickedUserName = jQuery(this).val();
-            // app.loginUser(clickedUserName);
-          });
+      // register click listeners
+      jQuery('.login-button').click(function() {
+        jQuery(this).toggleClass('btn-primary btn-warning');
+        // var clickedUserName = jQuery(this).val();
+        // app.loginUser(clickedUserName);
+      });
 
-          // show modal dialog
-          jQuery('#create-group').modal({backdrop: 'static'});
+      // show modal dialog
+      jQuery('#create-group').modal({backdrop: 'static'});
 
-          //submit
-          jQuery('.create-new-group').on('click', function(){
-            // debugger;
+      //submit
+      jQuery('.create-new-group').on('click', function(){
+        // var newGroup = new app.rollcall.Group();
+        var newGroup = {};
 
-            var groups = [];
-
-            //add value to groups array
-            var groups = jQuery.map(jQuery('.btn-warning'), function(item, index){
-              return jQuery(item).val();
-            });
-
-            // Get value of new group name, to lowercase and strip whitespace
-            var groupName = jQuery('.create-new-group-name').val().replace(/\s/g, '').toLowerCase();
-
-            groups.push(groupName);
-
-          })
+        //add value to groups array
+        newGroup.users = jQuery.map(jQuery('.btn-warning'), function(item, index){
+          return jQuery(item).val();
         });
+
+        newGroup.display_name = jQuery('.create-new-group-name').val();
+        // Get value of new group name, to lowercase and strip whitespace
+        newGroup.groupname = jQuery('.create-new-group-name').val().replace(/\s/g, '').toLowerCase();
+        newGroup.tags = [runId];
+        // newGroup.set('created_at', new Date());
+
+        // newGroup.save().done(function(){
+        //   console.log('groups saved');
+        // });
+        createOrUpdateGroup(newGroup);
+      });
+    });
   };
 
 
-  app.createGroup = function () {
+  var createOrUpdateGroup = function (groupObject) {
     console.log('create group function');
+    // does group for users already exist?
+    app.rollcall.groupExists(groupObject.groupname)
+    .done(function(exists){
+      if (exists) {
+        // update group
+        app.rollcall.group(groupObject.groupname)
+        .done(function (group) {
+          console.log('Update group: '+group);
+          _.map(groupObject, function(val, key) {
+            group.set(key, val);
+          });
+          group.save().done(function(g){
+            app.loginGroup(g.groupname);
+          });
+        });
+      } else {
+        groupObject.created_at = new Date();
+        var newGroup = new app.rollcall.Group(groupObject);
+        newGroup.save().done(function(g){
+          app.loginGroup(g.groupname);
+        });
+      }
+    });
   };
 
 

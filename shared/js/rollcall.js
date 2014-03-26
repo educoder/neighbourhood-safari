@@ -129,6 +129,28 @@ rollcall.group('leprechaun')
   console.log(group.toJSON());
 });
 
+rollcall.groupsWithTags(['foo', 'bar'])
+.done(function (groups) {
+  groups.each(function (group) {
+    console.log(group.toJSON());
+  });
+});
+
+rollcall.groupsWithUsers(['baf', 'arg'])
+.done(function (groups) {
+  groups.each(function (group) {
+    console.log(group.toJSON());
+  });
+});
+
+rollcall.groupExists('leprachaun')
+.done(function (exists) {
+  if (exists)
+    console.log('group exists!');
+  else
+    console.log('group DOES NOT exist!');
+});
+
 **/
 
 
@@ -273,6 +295,23 @@ rollcall.group('leprechaun')
     var selector = {"tags":{"$all": tags}};
 
     return this.groups(selector);
+  };
+
+  Rollcall.prototype.groupsWithUsers = function(users) {
+    users = users || [];
+    var selector = {"users":{"$all": users}};
+
+    return this.groups(selector);
+  };
+
+  Rollcall.prototype.groupExists = function(groupname) {
+    return this.group(groupname)
+      .then(function (u) {
+        if (u)
+          return true;
+        else
+          return false;
+      });
   };
 
   this.Rollcall = Rollcall;

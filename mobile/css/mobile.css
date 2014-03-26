@@ -125,11 +125,10 @@
 
   #list-screen ul {
     min-height: 200px;
-    /*max-height: 485px;*/
     overflow: hidden;
     background-color: white; }
   #list-screen li {
-    margin-bottom: 5px; }
+    margin: 5px; }
   #list-screen .list-item {
     margin-left: 15px; }
   #list-screen .note {
@@ -194,56 +193,6 @@
     padding: 7px;
     border: 1px solid black;
     color: black; }
-
-  /* chat bubble styles */
-  .others {
-    color: white; }
-
-  .me {
-    color: black; }
-
-  .others {
-    float: right;
-    position: relative;
-    padding: 15px;
-    margin: 1em 0 3em;
-    background: #2980b9;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px; }
-    .others:after {
-      content: "";
-      position: absolute;
-      bottom: -15px;
-      right: 50px;
-      border-width: 15px 15px 0;
-      border-style: solid;
-      border-color: #2980b9 transparent;
-      display: block;
-      width: 0; }
-
-  .me {
-    float: left;
-    position: relative;
-    padding: 15px;
-    margin: 1em 0 3em;
-    background: #95a5a6;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px; }
-    .me:after {
-      content: "";
-      position: absolute;
-      bottom: -15px;
-      left: 50px;
-      border-width: 15px 15px 0;
-      border-style: solid;
-      border-color: #95a5a6 transparent;
-      display: block;
-      width: 0; }
-
-  .note-text p {
-    margin: 0; }
 
   /**** WR ****/
   #worth-remembering-list-screen {

@@ -40,14 +40,22 @@
     <!-- Note Template  -->
     <!--                -->
 
+
     <script id="notes-list-template" type="text/template">
-        <li class="list-item span12" data-id=<%= id %>>
-            <div class="note <%= me_or_others %>">
+        <li class="list-item span4" data-id=<%= id %>>
+            <div class="span4">
+                <a href="#" class="thumbnail">
+                    <img src="http://cdn.fansided.com/wp-content/blogs.dir/229/files/2013/09/tupac-590x406.jpg" alt="tupac">
+                </a>
+            </div>
+            <div class="span8">
+                <h5>Note Title</h5>
+                <h6><%= author %></h6>
                 <div class="note-text">
                     <p><%= text %></p>
-                    <p class="small">Sent by <%= author %>&nbsp; on <%= created_at %></p>
+                    <p class="small">Published at <%= created_at %></p>
                 </div>
-            </a>
+            </div>
         </li>
     </script>
 
@@ -101,15 +109,14 @@
     <!--             -->
 
     <div id="read-screen" class="row-fluid">
-        <div class="span12 view-container bs-docs-sidebar">
+        <div class="view-container bs-docs-sidebar">
             <!-- Read View looks at the list-screen element -->
             <div id="list-screen" class="bs-docs-sidebar">
-                <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
-                </ul>
+                <ul class="inline nav nav-list bs-docs-sidenav affix-top scrollable"></ul>
             </div>
-
         </div>
     </div>
+
     <!-- END Read Screen -->
 
     <!--              -->

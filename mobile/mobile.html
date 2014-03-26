@@ -32,7 +32,10 @@
     <script type="text/javascript" src="js/mobile.js"></script>
     <script type="text/javascript" src="js/mobile.view.js"></script>
 
+    <!--                -->
     <!-- Note Template  -->
+    <!--                -->
+
     <script id="notes-list-template" type="text/template">
         <li class="list-item span12" data-id=<%= id %>>
             <div class="note <%= me_or_others %>">
@@ -44,7 +47,13 @@
         </li>
     </script>
 
+    <!--           -->
+    <!-- TEMPLATES -->
+    <!--           -->
+
+    <!--                                   -->
     <!-- Resume unpublished notes template -->
+    <!--                                   -->
     <script id="resume-unpublished-notes" type="text/template">
         <option data-id="<%= id %>" ><%= option_text %></option>
     </script>
@@ -58,8 +67,8 @@
             <div class="content"><%= content %></div>
         </a>
     </script>
-</head>
 
+</head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -86,6 +95,10 @@
         </div>
     </div>
 
+    <!--             -->
+    <!-- Read Screen -->
+    <!--             -->
+
     <div id="read-screen" class="row-fluid">
         <div class="span12 view-container bs-docs-sidebar">
             <!-- Read View looks at the list-screen element -->
@@ -96,9 +109,12 @@
 
         </div>
     </div>
+    <!-- END Read Screen -->
 
+    <!--              -->
+    <!--  Write Screen-->
+    <!--              -->
 
-<!--  Edit Screen-->
     <div id="write-screen" class="row-fluid">
         <div class="span12 view-container bs-docs-sidebar">
             <!-- Write View looks at the notes-screen-input element -->
@@ -143,11 +159,16 @@
         </div>
     </div>
 
+<!-- END Write Screen -->
 
+    <!--         -->
+    <!--  MODALS -->
+    <!--         -->
 
-    <!-- Modals -->
-
+    <!--             -->
     <!-- Login Modal -->
+    <!--             -->
+
     <div id="login-picker" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="login-picker" aria-hidden="true">
       <div class="modal-header">
         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
@@ -175,7 +196,9 @@
       </div>
     </div>
 
+    <!--                   -->
     <!-- Note Picker Modal -->
+    <!--                   -->
 
     <div class="orientation-warning">
         <p>If you hold the device like that we can't go on a safari :(<p>

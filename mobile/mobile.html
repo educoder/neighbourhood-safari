@@ -39,8 +39,9 @@
     <!--                -->
     <!-- Note Template  -->
     <!--                -->
+
     <script id="notes-list-template" type="text/template">
-        <li class="list-item span4" data-id=<%= id %>>
+        <li class="list-item span4 blue-triangle" data-id=<%= id %>>
             <div class="span4">
                 <a href="#" class="thumbnail">
                     <img src="http://cdn.fansided.com/wp-content/blogs.dir/229/files/2013/09/tupac-590x406.jpg" alt="tupac">
@@ -110,12 +111,81 @@
         <div class="view-container bs-docs-sidebar">
             <!-- Read View looks at the list-screen element -->
             <div id="list-screen" class="bs-docs-sidebar">
+                <div class="row">
+                    <button class='btn btn-primary pull-right clear-notes'>Clear Filters</button>
+                    <button class='btn btn-primary pull-right filter-notes'>Filters Notes</button>
+                </div>
                 <ul class="inline nav nav-list bs-docs-sidenav affix-top scrollable"></ul>
             </div>
         </div>
-    </div>
 
-    <!-- END Read Screen -->
+
+        <div class="modal hide fade clear-notes-modal" tabindex="-1" role="dialog" aria-labelledby="clear-notes" aria-hidden="true">
+            <div class="modal-header">
+                <h3>Clear Notes</h3>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <button class="btn-primary">Apply Filters</button>
+                </form>
+            </div>
+        </div>
+
+
+    <!--                  -->
+    <!-- LIST VIEW MODALS -->
+    <!--                  -->
+
+
+    <!--                    -->
+    <!-- Filter Notes Modal -->
+    <!--                    -->
+        <div class="modal hide fade filter-notes-modal" tabindex="-1" role="dialog" aria-labelledby="filter-notes" aria-hidden="true">
+            <div class="modal-header">
+                <h3>Filter Notes</h3>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row-fuild">
+                            <button class="btn btn-primary">Planning Note</button>
+                            <button class="btn btn-primary">Photo Set Note</button>
+                            <button class="btn btn-primary">Cross-cutting Note</button>
+                            <button class="btn btn-primary">Open Note</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Related Safari</label>
+                        <select class="span8" name="" id="">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Map Region</label>
+                        <select class="span8" name="" id="">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tags</label>
+                        <select class="span8" name="" id="">
+                            <option value=""></option>
+                        </select>
+                        <select class="span8" name="" id="">
+                            <option value=""></option>
+                        </select>
+                        <select class="span8" name="" id="">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary">Apply Filters</button>
+                </form>
+            </div>
+        </div> <!-- end filter notes  modal -->
+
+    </div>
 
     <!--              -->
     <!--  Write Screen-->
@@ -132,8 +202,8 @@
                 </div>
 
                 <div class="note-taking-toggle">
-                    <div class="row-fuild">
-                        <textarea class="note-body row-fuild" name="body" rows="10" placeholder="Enter observastions..."></textarea>
+                    <div class="row-fluid">
+                        <textarea class="note-body row-fluid" name="body" rows="10" placeholder="Enter observastions..."></textarea>
                     </div>
 
                     <div class="row-fliud">

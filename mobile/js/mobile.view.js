@@ -191,7 +191,17 @@
     },
 
     events: {
-      // nothing here yet, but could be click events on list items to have actions (delete, response and so forth)
+      'click .filter-notes': 'filterNotes',
+      'click .clear-notes': 'clearNotes'
+    },
+
+    filterNotes: function(){
+      jQuery('.filter-notes-modal').modal('show');
+    },
+
+    clearNotes: function(){
+      // Trigger some sort of query
+      alert('Clearing Fitlers');
     },
 
     render: function () {

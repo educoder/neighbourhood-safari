@@ -75,7 +75,8 @@
                 <div class="nav-collapse collapse navbar-responsive-collapse">
                     <ul class="nav nav-pills">
                         <!-- <li class=" refresh-button"><a href="#">Refresh</a></li> -->
-                        <li class=" notes-button"><a href="#">Notes</a></li>
+                        <li class="write-button"><a href="#">Write</a></li>
+                        <li class="read-button"><a href="#">Read</a></li>
                     </ul>
                     <ul class="nav pull-right">
                         <li class="active username-display"><a></a></li>
@@ -86,7 +87,19 @@
         </div>
     </div>
 
-    <div id="notes-screen" class="row-fluid">
+    <div id="read-screen" class="row-fluid">
+        <div class="span12 view-container bs-docs-sidebar">
+            <div id="list-screen" class="bs-docs-sidebar">
+                <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+<!--  Edit Screen-->
+    <div id="write-screen" class="row-fluid">
         <div class="span12 view-container bs-docs-sidebar">
 
             <div id="notes-screen-input" class="span12 input-box-wrapper">
@@ -126,16 +139,11 @@
                         </form>
                     </div>
                 </div> <!-- end modal -->
-
             </div> <!-- end #note-screen-input -->
-
-            <div id="list-screen" class="bs-docs-sidebar">
-                <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
-                </ul>
-            </div>
-
         </div>
     </div>
+
+
 
     <!-- Modals -->
 

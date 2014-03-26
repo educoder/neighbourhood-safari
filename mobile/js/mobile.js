@@ -39,8 +39,8 @@
   app.currentNote = null;
   app.currentReply = {};
 
-  app.inputView = null;
-  app.listView = null;
+  app.writeView = null;
+  app.readView = null;
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -198,15 +198,15 @@
        * coming from Collections and Models
        * ======================================================
        */
-      if (app.inputView === null) {
-        app.inputView = new app.View.InputView({
+      if (app.writeView === null) {
+        app.writeView = new app.View.WriteView({
           el: '#notes-screen-input',
           collection: Skeletor.Model.awake.notes
         });
       }
 
-      if (app.listView === null) {
-        app.listView = new app.View.ListView({
+      if (app.readView === null) {
+        app.readView = new app.View.ReadView({
           el: '#list-screen',
           collection: Skeletor.Model.awake.notes
         });
@@ -222,8 +222,8 @@
       setUpClickListeners();
 
       // show notes-screen - is this the default? TODO: check with design team where the first pedagogical step should be
-      jQuery('#notes-screen').removeClass('hidden');
-      jQuery('.nav-pills .notes-button').addClass('active'); // highlight notes selection in nav bar
+      jQuery('#read-screen').removeClass('hidden');
+      jQuery('.nav-pills .read-button').addClass('active'); // highlight notes selection in nav bar
     });
   };
 

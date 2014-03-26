@@ -11,7 +11,7 @@
   /**
     InputView
   **/
-  app.View.InputView = Backbone.View.extend({
+  app.View.WriteView = Backbone.View.extend({
     view: this,
     template: "#resume-unpublished-notes",
 
@@ -170,7 +170,7 @@
   /**
     ListView
   **/
-  app.View.ListView = Backbone.View.extend({
+  app.View.ReadView = Backbone.View.extend({
     template: "#notes-list-template",
 
     initialize: function () {

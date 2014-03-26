@@ -74,9 +74,8 @@
                 <a class="brand" href="#">Should be overwritten by project_name in config.json</a>
                 <div class="nav-collapse collapse navbar-responsive-collapse">
                     <ul class="nav nav-pills">
-                        <!-- <li class=" refresh-button"><a href="#">Refresh</a></li> -->
-                        <li class="write-button"><a href="#">Write</a></li>
                         <li class="read-button"><a href="#">Read</a></li>
+                        <li class="write-button"><a href="#">Write</a></li>
                     </ul>
                     <ul class="nav pull-right">
                         <li class="active username-display"><a></a></li>
@@ -89,6 +88,7 @@
 
     <div id="read-screen" class="row-fluid">
         <div class="span12 view-container bs-docs-sidebar">
+            <!-- Read View looks at the list-screen element -->
             <div id="list-screen" class="bs-docs-sidebar">
                 <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
                 </ul>
@@ -101,7 +101,7 @@
 <!--  Edit Screen-->
     <div id="write-screen" class="row-fluid">
         <div class="span12 view-container bs-docs-sidebar">
-
+            <!-- Write View looks at the notes-screen-input element -->
             <div id="notes-screen-input" class="span12 input-box-wrapper">
 
                 <div class="row-fliud">

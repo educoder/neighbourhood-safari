@@ -84,6 +84,10 @@
 
     cancelNote: function() {
       console.log("Cancelling note and hiding textarea.");
+      // cancel auto save
+      window.clearTimeout(app.autoSaveTimer);
+      // unset note
+      app.currentNote = null;
       // Hide textarea
       jQuery('.note-taking-toggle').slideUp();
       jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');

@@ -22,7 +22,7 @@
 
     events: {
       'click .resume-note-btn'   : "resumeNote",
-      'click .new-note-btn'      : 'showNewNote',
+      // 'click .new-note-btn'      : 'showNewNote',
       'click .modal-select-note' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
       'click .share-note-btn'    : 'shareNote',

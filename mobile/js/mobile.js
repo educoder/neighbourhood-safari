@@ -330,6 +330,14 @@
       }
     });
 
+    // popover activation for buttons
+    var popoverOptions = {
+      'title': "A Title",
+      'content': "And here's some <b>amazing</b> content. It's very engaging. right?",
+      'html': true,
+      placement: 'bottom'
+    };
+    jQuery('.new-note-btn').popover(popoverOptions);
 
   };
 

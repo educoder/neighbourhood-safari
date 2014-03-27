@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     //   }
     // }
     jshint: {
-      all: ['Gruntfile.js', 'js/*.js', 'mobile/js/*.js', 'shared/js/*.js', 'smartboard/js/*.js']
+      all: ['./*.js', 'js/*.js', 'mobile/js/*.js', 'shared/js/*.js', 'smartboard/js/*.js']
     },
     csslint: {
       dev: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     },
     jsonlint: {
       dev: {
-        src: ['./*.json' ]
+        src: ['./*.json', 'test-data/*.json' ]
       }
     },
     watch: {

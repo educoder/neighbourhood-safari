@@ -29,7 +29,8 @@
     "http-server": "*",
     "grunt-contrib-coffee": "^0.10.1",
     "grunt-coffeelint": "0.0.8",
-    "grunt-contrib-sass": "^0.7.2"
+    "grunt-contrib-sass": "^0.7.2",
+    "optimist": "*"
   },
   "author": "ENCORE Lab",
   "license": "MIT"

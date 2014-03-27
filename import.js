@@ -5,7 +5,7 @@ var argv = require('optimist')
   .demand(1)
   .argv;
 
-var COLLECTION = argv._[0];
+var RUN = argv._[0];
 
 // Via http://isolasoftware.it/2012/05/28/call-rest-api-with-node-js/
 var https = require('http');
@@ -14,10 +14,12 @@ var jsonObject;
 
 
 // To add a new COLLECTION please put in an if else that reads the json into jsonObject
-if (COLLECTION === "users") {
+if (RUN === "ben") {
     jsonObject = fs.readFileSync('./test_data/ben.json', 'utf8');
+} else if (RUN === "amanda") {
+    jsonObject = fs.readFileSync('./test_data/amanda.json', 'utf8');
 } else {
-    console.warn("A unknown collection <"+COLLECTION+"> was choosen.");
+    console.warn("A unknown collection <"+RUN+"> was choosen.");
     console.error("Exit with error");
     process.exit(1);
 }
@@ -32,7 +34,7 @@ var postheaders = {
 var optionspost = {
     host : 'drowsy.badger.encorelab.org',
     port : 80,
-    path : '/rollcall/'+COLLECTION,
+    path : '/rollcall/users',
     method : 'POST',
     headers : postheaders
 };

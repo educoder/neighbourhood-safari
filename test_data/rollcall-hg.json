@@ -1,0 +1,317 @@
+[
+    {
+        "_id": {
+            "$oid": "52560eb6c26f230f5700000c"
+        },
+        "username": "pha",
+        "display_name": "PHA",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#cb5012",
+        "color_label": "orange3",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f230f8c00000d"
+        },
+        "username": "ren",
+        "display_name": "REN",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#89369e",
+        "color_label": "purple",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2311ef00000b"
+        },
+        "username": "pab",
+        "display_name": "PAB",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#000000",
+        "color_label": "black",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f23136400000e"
+        },
+        "username": "som",
+        "display_name": "SOM",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#f6e6d9",
+        "color_label": "cream",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2314cc000009"
+        },
+        "username": "mid",
+        "display_name": "MID",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#ffbeb4",
+        "color_label": "pink",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f232d73000004"
+        },
+        "username": "fot",
+        "display_name": "FOT",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#99896f",
+        "color_label": "gray-ish",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2330b6000000"
+        },
+        "username": "arg",
+        "display_name": "ARG",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#99896f",
+        "color_label": "gray-ish",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2339af000005"
+        },
+        "username": "gub",
+        "display_name": "GUB",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#edac52",
+        "color_label": "orangy",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f233ca400000f"
+        },
+        "username": "sug",
+        "display_name": "SUG",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#89369e",
+        "color_label": "purple",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2347c9000014"
+        },
+        "username": "tch",
+        "display_name": "*T*",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#ff0000",
+        "color_label": "red",
+        "user_role": "teacher"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f234bd9000010"
+        },
+        "username": "tuz",
+        "display_name": "TUZ",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#000000",
+        "color_label": "black",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f234fdd000001"
+        },
+        "username": "baf",
+        "display_name": "BAF",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#db773c",
+        "color_label": "orange2",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2350e8000003"
+        },
+        "username": "dob",
+        "display_name": "DOB",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#000000",
+        "color_label": "black",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2352f2000013"
+        },
+        "username": "yim",
+        "display_name": "YIM",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#146d71",
+        "color_label": "blue",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f23663000000a"
+        },
+        "username": "nar",
+        "display_name": "NAR",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#c33d2f",
+        "color_label": "brown",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f236684000007"
+        },
+        "username": "jur",
+        "display_name": "JUR",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#7b2e1a",
+        "color_label": "brown",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2366f2000006"
+        },
+        "username": "hap",
+        "display_name": "HAP",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#146d71",
+        "color_label": "blue",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f23730d000002"
+        },
+        "username": "boz",
+        "display_name": "BOZ",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#edac52",
+        "color_label": "orangy",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2374bb000008"
+        },
+        "username": "kep",
+        "display_name": "KEP",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#e38b31",
+        "color_label": "orange",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f2376d8000011"
+        },
+        "username": "wat",
+        "display_name": "WAT",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#ffbeb4",
+        "color_label": "pink",
+        "user_role": "student"
+    },
+    {
+        "_id": {
+            "$oid": "52560eb6c26f237837000012"
+        },
+        "username": "wir",
+        "display_name": "WIR",
+        "tags": [
+            "5ag",
+            "5at",
+            "5bj"
+        ],
+        "color": "#ffd1a7",
+        "color_label": "cream-ish",
+        "user_role": "student"
+    }
+]

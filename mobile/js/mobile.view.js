@@ -14,6 +14,8 @@
   app.View.WriteView = Backbone.View.extend({
     view: this,
     template: "#resume-unpublished-notes",
+    simpleNoteInputTemplate: "#simple-note-input",
+    planningNoteInputTemplate: "#planning-note-input",
 
     initialize: function() {
       var view = this;
@@ -22,7 +24,7 @@
 
     events: {
       'click .resume-note-btn'   : "resumeNote",
-      // 'click .new-note-btn'      : 'showNewNote',
+      'click .new-note-btn'      : 'showNewNote',
       'click .modal-select-note' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
       'click .share-note-btn'    : 'shareNote',
@@ -62,7 +64,8 @@
       jQuery('.unpublished-note-picker').modal('show');
     },
 
-    showNewNote: function() {
+    showNewNote: function(ev) {
+      var view = this;
       console.log('Starting new note.');
 
       // create an note object
@@ -75,8 +78,15 @@
       // make note wakeful and add it to notes collection
       app.addNote(note);
 
+      // render the note input fields depending on note type
+      // var noteInput = _.template(jQuery(view.simpleNoteInputTemplate).text(), {});
+      var noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
+
+      // Add note input field html into div
+      view.$el.find('.note-taking-toggle-input-form').html(noteInput);
+
       // Clear text input field
-      this.$el.find('.note-body').val('');
+      view.$el.find('.note-body').val('');
 
       jQuery('.note-taking-toggle').slideDown();
       jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');

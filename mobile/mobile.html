@@ -64,6 +64,32 @@
         <option data-id="<%= id %>" ><%= option_text %></option>
     </script>
 
+
+    <!--                                   -->
+    <!-- Choose new note type for WriteView -->
+    <!--                                   -->
+
+    <!--<script id="choose-new-note-type" type="text/template">
+        <button class="btn btn-primary new-note" onclick="alert('Hello world!')" value="planning_note">Planning note</button>
+        <button class="btn btn-primary new-note" value="photo_set_note">Photo set note</button>
+        <button class="btn btn-primary new-note" value="cross_cutting_note">Cross-cutting note</button>
+        <button class="btn btn-primary new-note" value="open_note">Open note</button>
+    </script>-->
+
+
+
+    <script id="simple-note-input" type="text/template">
+        <textarea class="note-body row-fuild" name="body" rows="10" placeholder="Enter observastions..."></textarea>
+    </script>
+
+    <script id="planning-note-input" type="text/template">
+        <label>First box</label>
+        <textarea class="note-question row-fuild" name="question" rows="10" placeholder="Enter question..."></textarea>
+        <label>Second box of Planning note</label>
+        <textarea class="note-hypothesis row-fuild" name="hypothesis" rows="10" placeholder="Enter hypothesis..."></textarea>
+    </script
+
+
     <!-- reply template -->
     <script id="reply-view-template" type="text/template">
         <a class="reply">
@@ -190,6 +216,7 @@
     <!--              -->
     <div id="write-screen" class="row-fluid">
         <div class="span12 view-container bs-docs-sidebar">
+
             <!-- Write View looks at the notes-screen-input element -->
             <div id="notes-screen-input" class="span12 input-box-wrapper">
 
@@ -199,8 +226,8 @@
                 </div>
 
                 <div class="note-taking-toggle">
-                    <div class="span12">
-                        <textarea class="note-body row-fuild" name="body" rows="10" placeholder="Enter observastions..."></textarea>
+                    <div class="span12 note-taking-toggle-input-form">
+                        <!-- filled by template via view -->
                     </div>
 
                     <div class="span12">
@@ -230,6 +257,7 @@
                 </div> <!-- end unpublished notes modal -->
 
             </div>
+
         </div>
     </div>
     <!-- END Write Screen -->

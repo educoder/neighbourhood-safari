@@ -3,6 +3,7 @@
   body {
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
   }
+
   .view-container {
     margin: 0 2%;
   }
@@ -53,6 +54,12 @@
   }
   #bout-picker-label .caret {
     margin-left: 5px;
+  }
+
+  // disable bootstrap default hover state
+  .disabled{
+    color: #333 !important;
+    text-decoration: none !important;
   }
 
 
@@ -425,7 +432,6 @@
     margin-top: 25%;
   }
 }
-
 
 // Remove padding from top
 @media (max-width: 1260px) {

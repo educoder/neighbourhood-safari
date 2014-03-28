@@ -54,6 +54,10 @@
   #bout-picker-label .caret {
     margin-left: 5px; }
 
+  .disabled {
+    color: #333 !important;
+    text-decoration: none !important; }
+
   /* NAVBAR */
   /* This hides any element with class alert directly after an input field with a pattern (regex) */
   input[pattern] + .alert {

@@ -41,21 +41,19 @@
     <!--                -->
 
     <script id="notes-list-template" type="text/template">
-        <li class="list-item span4 blue-triangle" data-id=<%= id %>>
-            <div class="span4">
-                <a href="#" class="thumbnail">
-                    <img src="http://cdn.fansided.com/wp-content/blogs.dir/229/files/2013/09/tupac-590x406.jpg" alt="tupac">
-                </a>
-            </div>
-            <div class="span8">
-                <h5>Note Title</h5>
-                <h6><%= author %></h6>
-                <div class="note-text">
-                    <p><%= text %></p>
-                    <p class="small">Published at <%= created_at %></p>
+        <a class="disabled" href="#">
+            <li class="list-item" data-id=<%= id %>>
+                <div>
+                    <h4>Note Title</h4>
+                    <i><span><%= author %></span></i>
+                    <div class="note-text">
+                        <p><%= text %></p>
+                        <p class="small">Published at <%= created_at %></p>
+                    </div>
                 </div>
-            </div>
-        </li>
+                <hr>
+            </li>
+        </a>
     </script>
 
     <!--                                   -->
@@ -115,7 +113,7 @@
                     <button class='btn btn-primary pull-right clear-notes'>Clear Filters</button>
                     <button class='btn btn-primary pull-right filter-notes'>Filters Notes</button>
                 </div>
-                <ul class="inline nav nav-list bs-docs-sidenav affix-top scrollable"></ul>
+                <ul class="nav nav-list bs-docs-sidenav affix-top scrollable span4"></ul>
             </div>
         </div>
 

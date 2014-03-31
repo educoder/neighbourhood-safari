@@ -57,7 +57,9 @@
       // fill the modal
       jQuery('#select-note-modal').html('');
       _.each(notesToRestore, function(note){
-        var option = _.template(jQuery(view.template).text(), {'option_text': note.get('body'), id: note.id});
+        var body = note.get('body');
+        var firstAttributeFound = _.keys(body)[0];
+        var option = _.template(jQuery(view.template).text(), {'option_text': body[firstAttributeFound], id: note.id});
         jQuery('#select-note-modal').append(option);
       });
 
@@ -145,10 +147,37 @@
       var selectedNoteId = jQuery(selectedOption).data('id');
       app.currentNote = view.collection.findWhere({_id: selectedNoteId});
 
-      // Clear text input field
-      this.$el.find('.note-body').val('');
+      var note_type = app.currentNote.get('type');
+      var noteInput = null;
+      // render the note input fields depending on note type
+      if (note_type === "open") {
+        noteInput = _.template(jQuery(view.simpleNoteInputTemplate).text(), {});
+      } else if (note_type === "planning") {
+        noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
+      } else if (note_type === "photo_set") {
+        noteInput = _.template(jQuery(view.photoSetNoteTemplate).text(), {});
+      } else if (note_type === "cross_cutting") {
+        noteInput = _.template(jQuery(view.crossCuttingNoteInputTemplate).text(), {});
+      } else {
+        noteInput = null;
+        throw "This should never happen";
+      }
 
-      this.$el.find('.note-body').val(app.currentNote.get('body'));
+      // Add note input field html into div
+      view.$el.find('.note-taking-toggle-input-form').html(noteInput);
+
+      // Clear text input field
+      this.$el.find('textarea').val('');
+
+      // bloody magic mess, but seems to work
+      var noteBody = app.currentNote.get('body');
+      view.$el.find('textarea').each(function(index) {
+        if (noteBody[view.$el.find('textarea')[index].name]) {
+          view.$el.find('textarea')[index].value = noteBody[view.$el.find('textarea')[index].name];
+        }
+      });
+
+      // this.$el.find('.note-body').val(app.currentNote.get('body'));
 
       jQuery('.unpublished-note-picker').modal('hide');
       jQuery('.note-taking-toggle').slideDown();

@@ -24,7 +24,7 @@
 
     events: {
       'click .resume-note-btn'   : "resumeNote",
-      'click .new-note-btn'      : 'showNewNote',
+      'click .new-note-btn'      : 'pickNewNoteType',
       'click .modal-select-note' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
       'click .share-note-btn'    : 'shareNote',
@@ -64,7 +64,21 @@
       jQuery('.unpublished-note-picker').modal('show');
     },
 
-    showNewNote: function(ev) {
+    pickNewNoteType: function(ev) {
+      var view = this;
+      console.log('Picking type of new note');
+
+      // register click listeners on all note picking buttons in modal
+      jQuery('.note-type-picker button').on('click', function(ev) {
+        console.log('New note of type: '+ev.target.value);
+        view.showNewNote(ev.target.value);
+      });
+
+      // show modal with note type picking buttons
+      jQuery('.note-type-picker').modal('show');
+    },
+
+    showNewNote: function(note_type) {
       var view = this;
       console.log('Starting new note.');
 
@@ -78,15 +92,29 @@
       // make note wakeful and add it to notes collection
       app.addNote(note);
 
+      var noteInput = null;
       // render the note input fields depending on note type
-      // var noteInput = _.template(jQuery(view.simpleNoteInputTemplate).text(), {});
-      var noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
+      if (note_type === "open_note") {
+        noteInput = _.template(jQuery(view.simpleNoteInputTemplate).text(), {});
+      } else if (note_type === "planning_note") {
+        noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
+      } else if (note_type === "open_note") {
+        noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
+      } else if (note_type === "open_note") {
+        noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
+      } else {
+        noteInput = null;
+        throw "This should never happen";
+      }
 
       // Add note input field html into div
       view.$el.find('.note-taking-toggle-input-form').html(noteInput);
 
       // Clear text input field
       view.$el.find('.note-body').val('');
+
+      // hide modal
+      jQuery('.note-type-picker').modal('hide');
 
       jQuery('.note-taking-toggle').slideDown();
       jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');

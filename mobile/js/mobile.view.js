@@ -16,6 +16,8 @@
     template: "#resume-unpublished-notes",
     simpleNoteInputTemplate: "#simple-note-input",
     planningNoteInputTemplate: "#planning-note-input",
+    photoSetNoteTemplate: "#photo-set-note-input",
+    crossCuttingNoteInputTemplate: "#cross-cutting-note-input",
 
     initialize: function() {
       var view = this;
@@ -83,25 +85,27 @@
       console.log('Starting new note.');
 
       // create an note object
-      var note = {};
-      note.author = app.username;
-      note.created_at = new Date();
-      note.body = '';
-      note.published = false;
+      var note = {
+        author: app.username,
+        created_at: new Date(),
+        type: note_type,
+        body: '',
+        published: false
+      };
 
       // make note wakeful and add it to notes collection
       app.addNote(note);
 
       var noteInput = null;
       // render the note input fields depending on note type
-      if (note_type === "open_note") {
+      if (note_type === "open") {
         noteInput = _.template(jQuery(view.simpleNoteInputTemplate).text(), {});
-      } else if (note_type === "planning_note") {
+      } else if (note_type === "planning") {
         noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
-      } else if (note_type === "open_note") {
-        noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
-      } else if (note_type === "open_note") {
-        noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
+      } else if (note_type === "photo_set") {
+        noteInput = _.template(jQuery(view.photoSetNoteTemplate).text(), {});
+      } else if (note_type === "cross_cutting") {
+        noteInput = _.template(jQuery(view.crossCuttingNoteInputTemplate).text(), {});
       } else {
         noteInput = null;
         throw "This should never happen";
@@ -110,8 +114,8 @@
       // Add note input field html into div
       view.$el.find('.note-taking-toggle-input-form').html(noteInput);
 
-      // Clear text input field
-      view.$el.find('.note-body').val('');
+      // Clear text input fields
+      view.$el.find('textarea').val('');
 
       // hide modal
       jQuery('.note-type-picker').modal('hide');
@@ -172,15 +176,23 @@
     // },
 
     shareNote: function() {
+      var view = this;
       console.log('want me to do stuff, teach me');
 
-      app.currentNote.set('body', this.$el.find('.note-body').val());
+      // go over all input fields, store information, and clear up
+      var inputFields = view.$el.find('textarea');
+      _.each(inputFields, function(inputField) {
+        app.currentNote.set(inputField.name, inputField.value);
+        inputField.value = '';
+      });
+
+      // app.currentNote.set('body', this.$el.find('.note-body').val());
       app.currentNote.set('published', true);
 
       app.currentNote.save();
 
       // clearing up
-      this.$el.find('.note-body').val('');
+      // this.$el.find('.note-body').val('');
       // turn off auto save
       window.clearTimeout(app.autoSaveTimer);
       app.currentNote = null;

@@ -1,5 +1,5 @@
 @media all and (orientation: landscape) {
-  /* MISC */
+
   body {
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
   }
@@ -24,6 +24,10 @@
     user-select: text;
     color: #333;
   }
+  /*              */
+  /*  MISC Stlyes */
+  /*              */
+
   .btn {
     margin-bottom: 15px;
   }
@@ -61,6 +65,20 @@
     color: #333 !important;
     text-decoration: none !important;
   }
+
+.photo-set-note-screen {
+  h5 {
+    color: #f39c12;
+  }
+  p, h5 {
+    display: inline;
+  }
+  .paragraph {
+    display: block;
+    margin: 0 0 5px 0;
+    padding: 5px;
+  }
+}
 
 
   /* NAVBAR */

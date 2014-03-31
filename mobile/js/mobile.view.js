@@ -313,8 +313,12 @@
         }
 
 
+        var body = note.get('body');
+        var bodyText = body[_.keys(body)[0]];
 
-        var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': note.get('body'), 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
+
+
+        var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': bodyText, 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
 
         var existingNote = list.find("[data-id='" + note.id + "']");
 

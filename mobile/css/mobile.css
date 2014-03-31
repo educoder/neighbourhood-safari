@@ -1,5 +1,4 @@
 @media all and (orientation: landscape) {
-  /* MISC */
   body {
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif; }
 
@@ -23,6 +22,9 @@
     user-select: text;
     color: #333; }
 
+  /*              */
+  /*  MISC Stlyes */
+  /*              */
   .btn {
     margin-bottom: 15px; }
 
@@ -57,6 +59,15 @@
   .disabled {
     color: #333 !important;
     text-decoration: none !important; }
+
+  .photo-set-note-screen h5 {
+    color: #f39c12; }
+  .photo-set-note-screen p, .photo-set-note-screen h5 {
+    display: inline; }
+  .photo-set-note-screen .paragraph {
+    display: block;
+    margin: 0 0 5px 0;
+    padding: 5px; }
 
   /* NAVBAR */
   /* This hides any element with class alert directly after an input field with a pattern (regex) */

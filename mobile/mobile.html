@@ -32,13 +32,30 @@
     <script type="text/javascript" src="js/mobile.js"></script>
     <script type="text/javascript" src="js/mobile.view.js"></script>
 
-    <!--            -->
-    <!-- TEMPLATES  -->
-    <!--            -->
 
-    <!--                -->
-    <!-- Note Template  -->
-    <!--                -->
+    <!--                        -->
+    <!-- WRITE SCREEN TEMPLATES -->
+    <!--                        -->
+
+    <script id="planning-photo-set-display">
+
+    </script>
+
+    <script id="open-note-display">
+
+    </script>
+
+    <script id="cross-cutting-display">
+
+    </script>
+
+    <script id="planning-note-display">
+
+    </script>
+
+    <!--                  -->
+    <!--   NOTE TEMPLATE  -->
+    <!--                  -->
 
     <script id="notes-list-template" type="text/template">
         <a class="disabled" href="#">
@@ -56,14 +73,18 @@
         </a>
     </script>
 
-    <!--                                   -->
-    <!-- Resume unpublished notes template -->
-    <!--                                   -->
+    <!--                                    -->
+    <!-- RESUME UNPUBLISHED NOTES TEMPLATE  -->
+    <!--                                    -->
 
     <script id="resume-unpublished-notes" type="text/template">
         <option data-id="<%= id %>" ><%= option_text %></option>
     </script>
 
+
+    <!--                       -->
+    <!-- READ SCREEN TEMPLATES -->
+    <!--                       -->
 
     <!--                                   -->
     <!-- Choose new note type for WriteView -->
@@ -77,6 +98,10 @@
     </script>-->
 
 
+
+    <!--                        -->
+    <!--  READ SCREEN TEMPLATE  -->
+    <!--                        -->
 
     <script id="simple-note-input" type="text/template">
         <textarea class="note-body note-text-input row-fuild" name="open" rows="10" placeholder="Enter observastions..."></textarea>
@@ -141,9 +166,9 @@
         </div>
     </div>
 
-    <!--             -->
-    <!-- Read Screen -->
-    <!--             -->
+    <!--               -->
+    <!--  READ SCREEN  -->
+    <!--               -->
 
     <div id="read-screen" class="row-fluid">
         <div class="view-container bs-docs-sidebar">
@@ -162,8 +187,9 @@
                         </ul>
                     </div>
 
-                    <div class="span7">
+                    <div class="span7 photo-set-note-screen">
                         <h3>Photo Set Note Title</h3>
+                        <!-- photo-set-note template inserted here  -->
                     </div>
             </div>
         </div>
@@ -236,9 +262,13 @@
 
     </div>
 
-    <!--              -->
-    <!--  Write Screen-->
-    <!--              -->
+
+
+
+    <!--                  -->
+    <!--   WRITE SCREEN   -->
+    <!--                  -->
+
     <div id="write-screen" class="row-fluid">
         <div class="span12 view-container bs-docs-sidebar">
 
@@ -300,15 +330,16 @@
 
         </div>
     </div>
+
     <!-- END Write Screen -->
 
-    <!--         -->
-    <!--  MODALS -->
-    <!--         -->
+    <!--                -->
+    <!--     MODALS     -->
+    <!--                -->
 
-    <!--             -->
-    <!-- Login Modal -->
-    <!--             -->
+    <!--                -->
+    <!--  LOGIN MODAL   -->
+    <!--                -->
 
     <div id="login-picker" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="login-picker" aria-hidden="true">
       <div class="modal-header">
@@ -338,7 +369,7 @@
     </div>
 
     <!--                   -->
-    <!-- Note Picker Modal -->
+    <!-- NOTE PICKER MODAL -->
     <!--                   -->
 
     <div class="orientation-warning">
@@ -349,7 +380,7 @@
     </div>
 
     <!--                  -->
-    <!--  Intitialize App -->
+    <!--  INITIALIZE  APP -->
     <!--                  -->
 
     <script type="text/javascript">

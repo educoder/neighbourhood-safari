@@ -135,11 +135,22 @@
         <div class="view-container bs-docs-sidebar">
             <!-- Read View looks at the list-screen element -->
             <div id="list-screen" class="bs-docs-sidebar">
-                <div class="row">
+                <div class="span12">
                     <button class='btn btn-primary pull-right clear-notes'>Clear Filters</button>
                     <button class='btn btn-primary pull-right filter-notes'>Filters Notes</button>
                 </div>
-                <ul class="nav nav-list bs-docs-sidenav affix-top scrollable span4"></ul>
+
+                    <div class="span4">
+                        <!--  -->
+                        <h3 class="note-number-total">Notes</h3>
+                        <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
+                            <!-- Notes populate this element -->
+                        </ul>
+                    </div>
+
+                    <div class="span7">
+                        <h3>Photo Set Note Title</h3>
+                    </div>
             </div>
         </div>
 

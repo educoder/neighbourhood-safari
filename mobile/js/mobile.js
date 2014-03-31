@@ -682,7 +682,9 @@
     // } else {
       if (instantSave || app.keyCount > 9) {
         console.log('Saved');
-        model.set(inputKey, inputValue);
+        var inputBody = model.get('body');
+        inputBody[inputKey] = inputValue;
+        model.set('body', inputBody);
         model.save(null, {silent:true});
         app.keyCount = 0;
       }

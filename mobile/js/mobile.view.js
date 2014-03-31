@@ -89,7 +89,7 @@
         author: app.username,
         created_at: new Date(),
         type: note_type,
-        body: '',
+        body: {},
         published: false
       };
 
@@ -182,7 +182,9 @@
       // go over all input fields, store information, and clear up
       var inputFields = view.$el.find('textarea');
       _.each(inputFields, function(inputField) {
-        app.currentNote.set(inputField.name, inputField.value);
+        var noteBody = app.currentNote.get('body');
+        noteBody[inputField.name] = inputField.value;
+        app.currentNote.set('body', noteBody);
         inputField.value = '';
       });
 

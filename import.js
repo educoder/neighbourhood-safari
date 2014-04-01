@@ -32,8 +32,8 @@ var postheaders = {
 
 // the post options
 var optionspost = {
-    host : 'drowsy.badger.encorelab.org',
-    port : 80,
+    host : 'localhost',
+    port : 9292,
     path : '/rollcall/users',
     method : 'POST',
     headers : postheaders

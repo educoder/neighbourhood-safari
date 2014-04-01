@@ -6,13 +6,13 @@
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <link href="../libs/bootstrap-2.3.2.min.css" rel="stylesheet">
-    <link href="../libs/bootstrap-responsive-2.3.2.min.css" rel="stylesheet">
+    <link href="../libs/bootstrap-3.1.1.min.css" rel="stylesheet">
+    <link href="../libs/bootstrap-theme-3.1.1.min.css" rel="stylesheet">
     <link href="css/mobile.css" rel="stylesheet">
     <link href="../libs/jquery.toastmessage.css" rel="stylesheet">
 
     <script type="text/javascript" src="../libs/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="../libs/bootstrap-2.3.2.min.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap-3.1.1.min.js"></script>
 
     <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
     <script type="text/javascript" src="../node_modules/backbone/backbone.js"></script>
@@ -115,10 +115,15 @@
     </script>
 
     <script id="photo-set-note-input" type="text/template">
-        <label>First box</label>
-        <textarea class="note-question note-text-input row-fuild" name="question" rows="10" placeholder="Enter question..."></textarea>
-        <label>Second box of Planning note</label>
-        <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="10" placeholder="Enter hypothesis..."></textarea>
+        <form>
+            <div class="form-group">
+                <label class="label-strong">What you found</label>
+                <textarea class="note-question note-text-input row-fuild" name="description" rows="2" placeholder="Describe what you found in your photo set..."></textarea>
+                <textarea class="note-hypothesis note-text-input row-fuild" name="explanation" rows="2" placeholder="Explain how what you found compares to what you expected to find..."></textarea>
+                <textarea class="note-hypothesis note-text-input row-fuild" name="question" rows="2" placeholder="State any questions your findings raise..."></textarea>
+            </div>
+        </form>
+
     </script>
 
     <script id="cross-cutting-note-input" type="text/template">
@@ -142,28 +147,38 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
+        <!-- <div class="navbar-inner"> -->
             <div class="container-fluid">
                 <!-- .btn-navbar is used as the toggle for collapsed navbar content
                 TODO: what does this until brand do? Took it out and didn't see change-->
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand brand" href="#">Brand</a>
+                </div>
+                <!-- <a class="btn navbar-btn" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </a>
-                <a class="brand" href="#">Should be overwritten by project_name in config.json</a>
-                <div class="nav-collapse collapse navbar-responsive-collapse">
-                    <ul class="nav nav-pills">
+                </a> -->
+
+
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
                         <li class="read-button"><a href="#">Read</a></li>
                         <li class="write-button"><a href="#">Write</a></li>
                     </ul>
-                    <ul class="nav pull-right">
+                    <!-- <ul class="nav pull-right">
                         <li class="active username-display"><a></a></li>
                         <li class="active logout-user"><a>Logout</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
-        </div>
+       <!--  </div> -->
     </div>
 
     <!--               -->

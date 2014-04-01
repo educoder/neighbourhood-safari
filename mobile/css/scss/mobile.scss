@@ -1,3 +1,5 @@
+$photo-color: #F87431;
+
 @media all and (orientation: landscape) {
 
   body {
@@ -24,9 +26,43 @@
     user-select: text;
     color: #333;
   }
+
+  /*              */
+  /*  Photo Inpub note */
+  /*              */
+
+  .photo-set-note-input {
+    .note-type-title {
+      background-color: $photo-color;
+      color: white;
+      padding: 0.7em 2em 0.7em;
+      margin-bottom: 1.5em;
+    }
+
+    .form-group {
+      padding-left: 3em;
+      padding-right: 3em;
+    }
+
+    textarea {
+      border-color: $photo-color;
+    }
+
+    hr {
+      background: $photo-color;
+      height: 7px;
+      border: 0;
+    }
+  }
+
   /*              */
   /*  MISC Stlyes */
   /*              */
+
+  .label-strong{
+    font-size: 1.2em;
+    font-weight: 700;
+  }
 
   .btn {
     margin-bottom: 15px;

@@ -23,8 +23,30 @@
     color: #333; }
 
   /*              */
+  /*  Photo Inpub note */
+  /*              */
+  .photo-set-note-input .note-type-title {
+    background-color: #f87431;
+    color: white;
+    padding: 0.7em 2em 0.7em;
+    margin-bottom: 1.5em; }
+  .photo-set-note-input .form-group {
+    padding-left: 3em;
+    padding-right: 3em; }
+  .photo-set-note-input textarea {
+    border-color: #f87431; }
+  .photo-set-note-input hr {
+    background: #f87431;
+    height: 7px;
+    border: 0; }
+
+  /*              */
   /*  MISC Stlyes */
   /*              */
+  .label-strong {
+    font-size: 1.2em;
+    font-weight: 700; }
+
   .btn {
     margin-bottom: 15px; }
 

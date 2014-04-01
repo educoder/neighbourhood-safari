@@ -115,10 +115,18 @@
     </script>
 
     <script id="photo-set-note-input" type="text/template">
-        <label>First box</label>
-        <textarea class="note-question note-text-input row-fuild" name="question" rows="10" placeholder="Enter question..."></textarea>
-        <label>Second box of Planning note</label>
-        <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="10" placeholder="Enter hypothesis..."></textarea>
+        <form class="photo-set-note-input">
+            <div class="note-type-title">Photo Set Note</div>
+            <div class="form-group">
+                <span>Identify your camera trap number </span>
+                <label class="label-strong">What you found</label>
+                <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what you found in your photo set..."></textarea>
+                <textarea class="note-explanation note-text-input row-fuild" name="explanation" rows="2" placeholder="Explain how what you found compares to what you expected to find..."></textarea>
+                <textarea class="note-question note-text-input row-fuild" name="question" rows="1" placeholder="State any questions your findings raise..."></textarea>
+                <hr/>
+                <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
+            </div>
+        </form>
     </script>
 
     <script id="cross-cutting-note-input" type="text/template">

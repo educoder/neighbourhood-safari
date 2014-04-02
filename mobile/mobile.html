@@ -34,23 +34,35 @@
 
 
     <!--                        -->
-    <!-- WRITE SCREEN TEMPLATES -->
+    <!-- READ SCREEN TEMPLATES  -->
     <!--                        -->
 
-    <script id="planning-photo-set-display">
-
+    <script id="open-note-detail-template">
+        <div class="note-details-container">
+            <h4>Open Note</h4>
+            <hr>
+            <p><%= desc %></p>
+            <p><%= author %></p>
+            <span class="small"><%= created_at %></span>
+        </div>
     </script>
 
-    <script id="open-note-display">
-
+    <script id="photo-note-detail-template">
+        <div class="note-details-container">
+            <h4>Photo Set Note</h4>
+        </div>
     </script>
 
-    <script id="cross-cutting-display">
-
+    <script id="cross-note-detail-template">
+        <div class="note-details-container">
+            <h4>Cross Cutting Note</h4>
+        </div>
     </script>
 
-    <script id="planning-note-display">
-
+    <script id="planning-note-detail-template">
+        <div class="note-details-container">
+            <h4>Planning Note</h4>
+        </div>
     </script>
 
     <!--                  -->
@@ -81,11 +93,6 @@
         <option data-id="<%= id %>" ><%= option_text %></option>
     </script>
 
-
-    <!--                       -->
-    <!-- READ SCREEN TEMPLATES -->
-    <!--                       -->
-
     <!--                                   -->
     <!-- Choose new note type for WriteView -->
     <!--                                   -->
@@ -99,9 +106,9 @@
 
 
 
-    <!--                        -->
-    <!--  READ SCREEN TEMPLATE  -->
-    <!--                        -->
+    <!--                         -->
+    <!--  WRITE SCREEN TEMPLATE  -->
+    <!--                         -->
 
     <script id="simple-note-input" type="text/template">
         <textarea class="note-body note-text-input row-fuild" name="open" rows="10" placeholder="Enter observastions..."></textarea>
@@ -190,13 +197,12 @@
                     <div class="span4">
                         <!--  -->
                         <h3 class="note-number-total">Notes</h3>
-                        <ul class="nav nav-list bs-docs-sidenav affix-top scrollable">
+                        <ul class="nav bs-docs-sidenav affix-top scrollable note-list">
                             <!-- Notes populate this element -->
                         </ul>
                     </div>
 
-                    <div class="span7 photo-set-note-screen">
-                        <h3>Photo Set Note Title</h3>
+                    <div class="span7 note-detail">
                         <!-- photo-set-note template inserted here  -->
                     </div>
             </div>

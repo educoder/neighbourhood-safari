@@ -27,6 +27,7 @@
     events: {
       'click .resume-note-btn'   : "resumeNote",
       'click .new-note-btn'      : 'pickNewNoteType',
+      'click .note-type-picker button': 'showNewNote',
       'click .modal-select-note' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
       'click .share-note-btn'    : 'shareNote',
@@ -72,19 +73,15 @@
       var view = this;
       console.log('Picking type of new note');
 
-      // register click listeners on all note picking buttons in modal
-      jQuery('.note-type-picker button').on('click', function(ev) {
-        console.log('New note of type: '+ev.target.value);
-        view.showNewNote(ev.target.value);
-      });
-
       // show modal with note type picking buttons
       jQuery('.note-type-picker').modal('show');
     },
 
-    showNewNote: function(note_type) {
+    showNewNote: function(ev) {
       var view = this;
       console.log('Starting new note.');
+
+      var note_type = ev.target.value;
 
       // create an note object
       var note = {

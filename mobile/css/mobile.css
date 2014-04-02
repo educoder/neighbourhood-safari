@@ -35,10 +35,10 @@
   /*              */
   /*  MISC Styles */
   /*              */
-  .label-strong {
-    font-size: 1.2em;
-    font-weight: 700; }
-
+  /*  .label-strong{
+      font-size: 1.2em;
+      font-weight: 700;
+    }*/
   .scrollable {
     overflow-y: auto; }
 
@@ -57,40 +57,23 @@
     -webkit-user-select: text;
     user-select: text;
     color: #333;
-    width: 98%;
-    padding: 1%; }
+    width: 98%; }
 
   .btn-large {
     width: 160px; }
 
-  /*                    */
-  /*  Photo Input note  */
-  /*                    */
-  .photo-set-note-screen h5 {
-    color: #f39c12; }
-  .photo-set-note-screen p, .photo-set-note-screen h5 {
-    display: inline; }
-  .photo-set-note-screen .paragraph {
-    display: block;
-    margin: 0 0 5px 0;
-    padding: 5px; }
+  .btn-small {
+    width: 12em;
+    height: 2em;
+    font-size: 1.2em;
+    margin: 1%; }
 
-  .photo-set-note-input .note-type-title {
-    background-color: #fca91e;
-    color: white;
-    padding: 0.7em 2em 0.7em;
-    margin-bottom: 1.5em; }
-  .photo-set-note-input .form-group {
-    padding-left: 3em;
-    padding-right: 3em; }
-  .photo-set-note-input textarea {
-    border-color: #fca91e; }
-  .photo-set-note-input hr {
-    background: #fca91e;
-    height: 7px;
-    border: 0; }
+  .modal-body {
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%; }
 
-  /* NAVBAR */
+  /*********************************** NAVBAR *********************************/
   /* This hides any element with class alert directly after an input field with a pattern (regex) */
   input[pattern] + .alert {
     display: none; }
@@ -113,9 +96,6 @@
   .username-display .hide {
     display: none; }
 
-  .input-alert {
-    margin-top: 2%; }
-
   /* BODY - ALL */
   .row-fluid {
     /*width: 98%;*/
@@ -125,6 +105,76 @@
       /* TODO: this is a crude way of hiding right now and should be improved */
       display: none; }
 
+  /******************************** WRITE *******************************/
+  .note-input .note-type-title {
+    background-color: #39b54a;
+    color: white;
+    padding: 0.7em 2em 0.7em;
+    margin-bottom: 1.5em; }
+  .note-input .form-group {
+    padding-left: 3em;
+    padding-right: 3em; }
+  .note-input label {
+    font-weight: bold; }
+  .note-input hr {
+    height: 7px;
+    border: 0; }
+
+  /*                    */
+  /*   planning note    */
+  /*                    */
+  .planning-note-input .note-type-title {
+    background-color: #39b54a; }
+  .planning-note-input textarea {
+    border-color: #39b54a; }
+  .planning-note-input hr {
+    background: #39b54a; }
+
+  /*                    */
+  /*   photo set note   */
+  /*                    */
+  .photo-set-note-input .note-type-title {
+    background-color: #fca91e; }
+  .photo-set-note-input textarea {
+    border-color: #fca91e; }
+  .photo-set-note-input hr {
+    background: #fca91e; }
+
+  /*                        */
+  /*   cross-cutting note   */
+  /*                        */
+  .cross-cutting-note-input .note-type-title {
+    background-color: #9282f3; }
+  .cross-cutting-note-input textarea {
+    border-color: #9282f3; }
+  .cross-cutting-note-input hr {
+    background: #9282f3; }
+
+  /*                        */
+  /*   cross-cutting note   */
+  /*                        */
+  .open-note-input .note-type-title {
+    background-color: #9282f3; }
+  .open-note-input textarea {
+    border-color: #9282f3; }
+  .open-note-input hr {
+    background: #9282f3; }
+
+  /******************************** READ *******************************/
+  /* MAYBE CHANGE TO note-details */
+  /*  .photo-set-note-screen {
+      h5 {
+        color: $photo-set-color;
+      }
+      p, h5 {
+        display: inline;
+      }
+      .paragraph {
+        display: block;
+        margin: 0 0 5px 0;
+        padding: 5px;
+      }
+    }*/
   /* hide a row */
   /* LIST SCREEN */
   #activity-dropdown {

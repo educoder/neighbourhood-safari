@@ -39,29 +39,37 @@
 
     <script id="open-note-detail-template">
         <div class="note-details-container">
-            <h4>Open Note</h4>
+            <h3>Open Note</h3>
             <hr>
-            <p><%= desc %></p>
-            <p><%= author %></p>
+            <p>Created by: <%= author %></p>
             <span class="small"><%= created_at %></span>
         </div>
     </script>
 
     <script id="photo-note-detail-template">
         <div class="note-details-container">
-            <h4>Photo Set Note</h4>
+            <h3>Photo Set Note</h3>
+            <hr>
+            <p>Created by: <%= author %></p>
+            <span class="small"><%= created_at %></span>
         </div>
     </script>
 
     <script id="cross-note-detail-template">
         <div class="note-details-container">
-            <h4>Cross Cutting Note</h4>
+            <h3>Cross Cutting Note</h3>
+            <hr>
+            <p>Created by: <%= author %></p>
+            <span class="small"><%= created_at %></span>
         </div>
     </script>
 
     <script id="planning-note-detail-template">
         <div class="note-details-container">
-            <h4>Planning Note</h4>
+            <h3>Planning Note</h3>
+            <hr>
+            <p>Created by: <%= author %></p>
+            <span class="small"><%= created_at %></span>
         </div>
     </script>
 
@@ -202,7 +210,7 @@
                         </ul>
                     </div>
 
-                    <div class="span7 note-detail">
+                    <div class="span7 note-details">
                         <!-- photo-set-note template inserted here  -->
                     </div>
             </div>

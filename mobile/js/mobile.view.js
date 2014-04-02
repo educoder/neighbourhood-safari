@@ -129,9 +129,30 @@
     },
 
     cancelNote: function() {
+      var view = this;
       console.log("Cancelling note and hiding textarea.");
       // cancel auto save
       window.clearTimeout(app.autoSaveTimer);
+
+      // if nothing was written we delete the object otherwise just leave
+      var changedElementsArray = _.filter(view.$el.find('textarea'), function(textarea){
+        return textarea.value !== '';
+      });
+
+      // nothing was input so nuke the note away
+      if (changedElementsArray.length <= 0) {
+        // view.collection.remove(app.currentNote);
+        app.currentNote.destroy();
+        // app.currentNote.sync();
+        // app.currentNote.destroy()
+        // .done(function (success){
+        //   console.log(success);
+        // })
+        // .fail(function (err) {
+        //   console.log(err);
+        // });
+      }
+
       // unset note
       app.currentNote = null;
       // Hide textarea

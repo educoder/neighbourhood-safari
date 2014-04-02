@@ -63,7 +63,8 @@
     width: 160px; }
 
   .btn-small {
-    width: 150px;
+    width: 12em;
+    height: 2em;
     font-size: 1.2em;
     margin: 1%; }
 

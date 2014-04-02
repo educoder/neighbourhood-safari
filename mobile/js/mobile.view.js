@@ -256,14 +256,19 @@
 
 
   /**
-    ListView
+    Read View
   **/
   app.View.ReadView = Backbone.View.extend({
+
     template: "#notes-list-template",
+    openNoteDetailTemplate: "#open-note-detail-template",
+    planningNoteDetailTemplate: "#planning-note-detail-template",
+    cuttingNoteDetailTemplate: "#cross-note-detail-template",
+    photoNoteDetailTemplate: '#photo-note-detail-template',
 
     initialize: function () {
       var view = this;
-      console.log('Initializing ListView...', view.el);
+      console.log('Initializing ReadView...', view.el);
 
       view.collection.on('change', function(n) {
         view.render();
@@ -280,16 +285,73 @@
 
     events: {
       'click .filter-notes': 'filterNotes',
-      'click .clear-notes': 'clearNotes'
+      'click .clear-notes': 'clearNotes',
+      'click .list-item': 'showNoteDetails',
     },
 
-    filterNotes: function(){
+    filterNotes: function() {
       jQuery('.filter-notes-modal').modal('show');
     },
 
-    clearNotes: function(){
+    clearNotes: function() {
       // Trigger some sort of query
       alert('Clearing Fitlers');
+    },
+
+    showNoteDetails: function() {
+      var view = this;
+      var templateType = null;
+      var htmlContents = null;
+
+      // Setup click listener
+      jQuery('.list-item').on('click', function (event) {
+
+        // fetch model ID from DOM
+        var modelId = jQuery(event.currentTarget).data('id');
+
+        // get model from collection
+        var clickedModel = view.collection.get(modelId);
+
+
+        // set templateType and htmlContents
+
+        if (clickedModel.get('type') === 'open') {
+          templateType = view.openNoteDetailTemplate;
+          htmlContents = {
+                           'author': clickedModel.get('author'),
+                           'type': clickedModel.get('type'),
+                           'desc': clickedModel.get('body').description,
+                           'created_at': clickedModel.get('created_at')
+                          };
+        } else if (clickedModel.get('type') === 'photo_set') {
+          templateType = view.photoNoteDetailTemplate;
+          htmlContents = {
+                           'author': clickedModel.get('author'),
+                           'type': clickedModel.get('type'),
+                           'desc': clickedModel.get('body').description,
+                           'created_at': clickedModel.get('created_at')
+                          };
+        } else if (clickedModel.get('type') === 'cross_cutting') {
+          templateType = view.cuttingNoteDetailTemplate;
+          htmlContents = {
+                           'author': clickedModel.get('author'),
+                           'type': clickedModel.get('type'),
+                           'desc': clickedModel.get('body').description,
+                           'created_at': clickedModel.get('created_at')
+                          };
+        } else if (clickedModel.get('type') === 'planning') {
+          templateType = view.planningNoteDetailTemplate;
+          htmlContents = {
+                           'author': clickedModel.get('author'),
+                           'type': clickedModel.get('type'),
+                           'desc': clickedModel.get('body').description,
+                           'created_at': clickedModel.get('created_at')
+                          };
+        }
+
+        var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
+        view.$el.find('.note-details').html(noteDetail);
+      });
     },
 
     render: function () {
@@ -297,7 +359,7 @@
       console.log("Rendering ListView");
 
       // find the list where items are rendered into
-      var list = this.$el.find('ul');
+      var list = this.$el.find('.note-list');
 
       // Only want to show published notes at some point
       var publishedNotes = view.collection.where({published: true});
@@ -305,7 +367,11 @@
       var totalNumPubNotes = publishedNotes.length;
 
       // adding total number of notes to H3
-      jQuery('.note-number-total').html(totalNumPubNotes + ' Notes');
+      if (totalNumPubNotes === 1) {
+         jQuery('.note-number-total').html(totalNumPubNotes + 'Note');
+      } else {
+         jQuery('.note-number-total').html(totalNumPubNotes + ' Notes');
+      }
 
 
       _.each(publishedNotes, function(note){
@@ -318,7 +384,6 @@
 
         var body = note.get('body');
         var bodyText = body[_.keys(body)[0]];
-
 
 
         var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': bodyText, 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});

@@ -14,7 +14,7 @@
   app.View.WriteView = Backbone.View.extend({
     view: this,
     template: "#resume-unpublished-notes",
-    simpleNoteInputTemplate: "#simple-note-input",
+    openNoteInputTemplate: "#open-note-input",
     planningNoteInputTemplate: "#planning-note-input",
     photoSetNoteTemplate: "#photo-set-note-input",
     crossCuttingNoteInputTemplate: "#cross-cutting-note-input",
@@ -30,7 +30,7 @@
       'click .note-type-picker button': 'showNewNote',
       'click .modal-select-note' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
-      'click .share-note-btn'    : 'shareNote',
+      'click .share-note-btn'    : 'publishNote',
       //'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
         var view = this,
@@ -98,7 +98,7 @@
       var noteInput = null;
       // render the note input fields depending on note type
       if (note_type === "open") {
-        noteInput = _.template(jQuery(view.simpleNoteInputTemplate).text(), {});
+        noteInput = _.template(jQuery(view.openNoteInputTemplate).text(), {});
       } else if (note_type === "planning") {
         noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
       } else if (note_type === "photo_set") {
@@ -120,7 +120,10 @@
       jQuery('.note-type-picker').modal('hide');
 
       jQuery('.note-taking-toggle').slideDown();
-      jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
+
+      // I think this is confusing at best. Can we try hiding them instead? Related: cancelNote and publishNote
+      // jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
+      jQuery('#show-note-container').addClass('hidden');
     },
 
     cancelNote: function() {
@@ -131,7 +134,8 @@
       app.currentNote = null;
       // Hide textarea
       jQuery('.note-taking-toggle').slideUp();
-      jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
+      //jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
+      jQuery('#show-note-container').removeClass('hidden');
     },
 
     selectNoteToResume: function(ev){
@@ -148,7 +152,7 @@
       var noteInput = null;
       // render the note input fields depending on note type
       if (note_type === "open") {
-        noteInput = _.template(jQuery(view.simpleNoteInputTemplate).text(), {});
+        noteInput = _.template(jQuery(view.openNoteInputTemplate).text(), {});
       } else if (note_type === "planning") {
         noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
       } else if (note_type === "photo_set") {
@@ -201,7 +205,7 @@
     //   }
     // },
 
-    shareNote: function() {
+    publishNote: function() {
       var view = this;
       console.log('want me to do stuff, teach me');
 
@@ -225,7 +229,9 @@
       window.clearTimeout(app.autoSaveTimer);
       app.currentNote = null;
       jQuery('.note-taking-toggle').slideUp();
-      jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
+
+      //jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
+      jQuery('#show-note-container').removeClass('hidden');
     },
 
     // autosaveNote: function(ev) {

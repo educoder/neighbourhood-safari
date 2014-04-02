@@ -100,26 +100,29 @@
 
 
     <!--                        -->
-    <!--  READ SCREEN TEMPLATE  -->
+    <!--  WRITE SCREEN TEMPLATE  -->
     <!--                        -->
-
-    <script id="simple-note-input" type="text/template">
-        <textarea class="note-body note-text-input row-fuild" name="open" rows="10" placeholder="Enter observastions..."></textarea>
-    </script>
-
     <script id="planning-note-input" type="text/template">
-        <label>First box</label>
-        <textarea class="note-question note-text-input row-fuild" name="question" rows="10" placeholder="Enter question..."></textarea>
-        <label>Second box of Planning note</label>
-        <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="10" placeholder="Enter hypothesis..."></textarea>
+        <form class="planning-note-input note-input">
+            <div class="note-type-title">Photo Set Note</div>
+            <div class="form-group">
+                <label>Your hypothesis or question</label>
+                <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="2" placeholder="Describe what you think you will see..."></textarea>
+                <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe how these photos influenced your plan..."></textarea>
+                <label>Other evidence that influenced your plan</label>
+                <textarea class="note-evidence note-text-input row-fuild" name="evidence" rows="2" placeholder="Describe other evidence (e.g., animal signs, readings) that influenced your plan..."></textarea>
+                <hr/>
+                <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
+            </div>
+        </form>
     </script>
 
     <script id="photo-set-note-input" type="text/template">
-        <form class="photo-set-note-input">
+        <form class="photo-set-note-input note-input">
             <div class="note-type-title">Photo Set Note</div>
             <div class="form-group">
                 <span>Identify your camera trap number </span>
-                <label class="label-strong">What you found</label>
+                <label>What you found</label>
                 <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what you found in your photo set..."></textarea>
                 <textarea class="note-explanation note-text-input row-fuild" name="explanation" rows="2" placeholder="Explain how what you found compares to what you expected to find..."></textarea>
                 <textarea class="note-question note-text-input row-fuild" name="question" rows="1" placeholder="State any questions your findings raise..."></textarea>
@@ -130,12 +133,27 @@
     </script>
 
     <script id="cross-cutting-note-input" type="text/template">
-        <label>First box</label>
-        <textarea class="note-question note-text-input row-fuild" name="question" rows="10" placeholder="Enter question..."></textarea>
-        <label>Second box of Planning note</label>
-        <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="10" placeholder="Enter hypothesis..."></textarea>
+        <form class="cross-cutting-note-input note-input">
+            <div class="note-type-title">Cross-cutting Note</div>
+            <div class="form-group">
+                <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what interests you about these photos..."></textarea>
+                <textarea class="note-explanation note-text-input row-fuild" name="explanation" rows="2" placeholder="Explain how your work compares to that of others..."></textarea>
+                <hr/>
+                <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
+            </div>
+        </form>
     </script>
 
+    <script id="open-note-input" type="text/template">
+        <form class="open-note-input note-input">
+            <div class="note-type-title">Open Note</div>
+            <div class="form-group">
+                <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what your note is about..."></textarea>
+                <hr/>
+                <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
+            </div>
+        </form>
+    </script>
 
     <!-- reply template -->
     <script id="reply-view-template" type="text/template">
@@ -283,8 +301,8 @@
             <!-- Write View looks at the notes-screen-input element -->
             <div id="notes-screen-input" class="span12 input-box-wrapper">
 
-                <div class="span12">
-                    <button class="resume-note-btn btn btn-large btn-primary ">Resume Note</button>
+                <div id="show-note-container" class="span12">
+                    <button class="resume-note-btn btn btn-large btn-primary">Resume Note</button>
                     <button class="new-note-btn btn btn-large btn-primary" data-toggle="popover">New Note</button>
                 </div>
 
@@ -327,10 +345,10 @@
                     </div>
 
                     <div class="modal-body">
-                        <button class="btn btn-primary planning" value="planning">Planning Note</button>
-                        <button class="btn btn-primary photo-set" value="photo_set">Photo Set Note</button>
-                        <button class="btn btn-primary cross-cutting" value="cross_cutting">Cross-cutting Note</button>
-                        <button class="btn btn-primary open" value="open">Open Note</button>
+                        <button class="btn btn-primary btn-small planning" value="planning">Planning Note</button>
+                        <button class="btn btn-primary btn-small photo-set" value="photo_set">Photo Set Note</button>
+                        <button class="btn btn-primary btn-small cross-cutting" value="cross_cutting">Cross-cutting Note</button>
+                        <button class="btn btn-primary btn-small open" value="open">Open Note</button>
                     </div>
                 </div> <!-- end Pick Notes Type Modal -->
 

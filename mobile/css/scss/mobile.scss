@@ -46,10 +46,10 @@ $open-color: rgb(205, 22, 172);
   /*  MISC Styles */
   /*              */
 
-  .label-strong{
+/*  .label-strong{
     font-size: 1.2em;
     font-weight: 700;
-  }
+  }*/
   .scrollable {
     overflow-y: auto;
   }
@@ -69,53 +69,24 @@ $open-color: rgb(205, 22, 172);
     user-select: text;
     color: #333;
     width: 98%;
-    padding: 1%;
   }
   .btn-large {
     width: 160px;
   }
-
-
-  /*                    */
-  /*  Photo Input note  */
-  /*                    */
-
-  .photo-set-note-screen {
-    h5 {
-      color: #f39c12;
-    }
-    p, h5 {
-      display: inline;
-    }
-    .paragraph {
-      display: block;
-      margin: 0 0 5px 0;
-      padding: 5px;
-    }
+  .btn-small {
+    width: 12em;
+    height: 2em;
+    font-size: 1.2em;
+    margin: 1%;
   }
-  .photo-set-note-input {
-    .note-type-title {
-      background-color: $photo-set-color;
-      color: white;
-      padding: 0.7em 2em 0.7em;
-      margin-bottom: 1.5em;
-    }
-    .form-group {
-      padding-left: 3em;
-      padding-right: 3em;
-    }
-    textarea {
-      border-color: $photo-set-color;
-    }
-
-    hr {
-      background: $photo-set-color;
-      height: 7px;
-      border: 0;
-    }
+  .modal-body {
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
   }
 
-  /* NAVBAR */
+  /*********************************** NAVBAR *********************************/
+
   /* This hides any element with class alert directly after an input field with a pattern (regex) */
   input {
     &[pattern] {
@@ -147,9 +118,6 @@ $open-color: rgb(205, 22, 172);
   .username-display .hide {
     display: none;
   }
-  .input-alert {
-    margin-top: 2%;
-  }
   /* BODY - ALL */
   .row-fluid {
     /*width: 98%;*/
@@ -160,6 +128,108 @@ $open-color: rgb(205, 22, 172);
       display: none;
     }
   }
+
+  /******************************** WRITE *******************************/
+
+  .note-input {
+    .note-type-title {
+      background-color: $planning-color;
+      color: white;
+      padding: 0.7em 2em 0.7em;
+      margin-bottom: 1.5em;
+    }
+    .form-group {
+      padding-left: 3em;
+      padding-right: 3em;
+    }
+    label {
+      font-weight: bold;
+    }
+    hr {
+      height: 7px;
+      border: 0;
+    }
+  }
+
+
+  /*                    */
+  /*   planning note    */
+  /*                    */
+  .planning-note-input {
+    .note-type-title {
+      background-color: $planning-color;
+    }
+    textarea {
+      border-color: $planning-color;
+    }
+    hr {
+      background: $planning-color;
+    }
+  }
+
+  /*                    */
+  /*   photo set note   */
+  /*                    */
+  .photo-set-note-input {
+    .note-type-title {
+      background-color: $photo-set-color;
+    }
+    textarea {
+      border-color: $photo-set-color;
+    }
+    hr {
+      background: $photo-set-color;
+    }
+  }
+
+  /*                        */
+  /*   cross-cutting note   */
+  /*                        */
+  .cross-cutting-note-input {
+    .note-type-title {
+      background-color: $cross-cutting-color;
+    }
+    textarea {
+      border-color: $cross-cutting-color;
+    }
+    hr {
+      background: $cross-cutting-color;
+    }
+  }
+
+  /*                        */
+  /*   cross-cutting note   */
+  /*                        */
+  .open-note-input {
+    .note-type-title {
+      background-color: $cross-cutting-color;
+    }
+    textarea {
+      border-color: $cross-cutting-color;
+    }
+    hr {
+      background: $cross-cutting-color;
+    }
+  }
+
+
+  /******************************** READ *******************************/
+
+/* MAYBE CHANGE TO note-details */
+/*  .photo-set-note-screen {
+    h5 {
+      color: $photo-set-color;
+    }
+    p, h5 {
+      display: inline;
+    }
+    .paragraph {
+      display: block;
+      margin: 0 0 5px 0;
+      padding: 5px;
+    }
+  }*/
+
   /* hide a row */
   /* LIST SCREEN */
   #activity-dropdown {
@@ -217,7 +287,7 @@ $open-color: rgb(205, 22, 172);
       color: white;
       background-color: red;
     }
-        .part {
+    .part {
       margin-left: 70px;
     }
     .create-reply-btn {

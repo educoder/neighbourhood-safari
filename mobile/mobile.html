@@ -123,6 +123,16 @@
             <div class="form-group">
                 <label>Your hypothesis or question</label>
                 <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="2" placeholder="Describe what you think you will see..."></textarea>
+                <label>Photographic evidence</label>
+                <div class="input-button-field">
+                    <span>Add a photo of your planning map</span><img class="camera-btn" src="img/camera1_small.png"/>
+                </div>
+                <div class="input-button-field">
+                    <span>Identify the camera trap number(s) you included on your map</span>
+                </div>
+                <div class="input-button-field">
+                    <span>Add additional photos from your backpack that support your reasoning</span><img class="camera-btn" src="img/camera1_small.png"/>
+                </div>
                 <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe how these photos influenced your plan..."></textarea>
                 <label>Other evidence that influenced your plan</label>
                 <textarea class="note-evidence note-text-input row-fuild" name="evidence" rows="2" placeholder="Describe other evidence (e.g., animal signs, readings) that influenced your plan..."></textarea>
@@ -366,6 +376,20 @@
                     </div>
                 </div> <!-- end Pick Notes Type Modal -->
 
+                <!--  Pick Photos Modal -->
+                <div class="modal hide fade photo-picker" tabindex="-1" role="dialog" aria-labelledby="photo-picker" aria-hidden="true">
+                    <div class="modal-header">
+                        <h3>Photos</h3>             <!-- TODO: this should be different depending on note (text and color) -->
+                    </div>
+
+                    <div class="modal-body">
+                        <!-- <form>
+                            <button class="btn-primary">Apply Filters</button>
+                        </form> -->
+                        <button class="add-photos-btn btn btn-large btn-success">Add</button>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -408,9 +432,6 @@
       </div>
     </div>
 
-    <!--                   -->
-    <!-- NOTE PICKER MODAL -->
-    <!--                   -->
 
     <div class="orientation-warning">
         <p>If you hold the device like that we can't go on a safari :(<p>

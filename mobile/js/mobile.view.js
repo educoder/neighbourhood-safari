@@ -31,6 +31,8 @@
       'click .modal-select-note' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
       'click .share-note-btn'    : 'publishNote',
+      'click .camera-btn'        : 'showPhotoPicker',
+      'click .photo-picker button': 'addPhotos',
       //'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
         var view = this,
@@ -232,6 +234,18 @@
 
       //jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
       jQuery('#show-note-container').removeClass('hidden');
+    },
+
+    showPhotoPicker: function() {
+      var view = this;
+      jQuery('.photo-picker').modal('show');
+    },
+
+    addPhotos: function() {
+      var view = this;
+      jQuery('.photo-picker').modal('hide');
+      //jQuery('.note-taking-toggle').slideUp();
+      alert('photos fake added to note');
     },
 
     // autosaveNote: function(ev) {

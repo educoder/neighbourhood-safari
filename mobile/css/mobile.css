@@ -119,6 +119,12 @@
   .note-input hr {
     height: 7px;
     border: 0; }
+  .note-input .input-button-field {
+    /*margin-bottom: 1em;*/ }
+  .note-input .camera-btn {
+    width: 3em;
+    margin-left: 1em;
+    /* fix this eventually - all the buttons and add related_camera_traps */ }
 
   /*                    */
   /*   planning note    */

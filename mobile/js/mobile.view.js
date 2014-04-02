@@ -344,7 +344,7 @@
         }
 
         var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
-        view.$el.find('.note-detail').html(noteDetail);
+        view.$el.find('.note-details').html(noteDetail);
       });
     },
 
@@ -361,7 +361,11 @@
       var totalNumPubNotes = publishedNotes.length;
 
       // adding total number of notes to H3
-      jQuery('.note-number-total').html(totalNumPubNotes + ' Notes');
+      if (totalNumPubNotes === 1) {
+         jQuery('.note-number-total').html(totalNumPubNotes + 'Note');
+      } else {
+         jQuery('.note-number-total').html(totalNumPubNotes + ' Notes');
+      }
 
 
       _.each(publishedNotes, function(note){

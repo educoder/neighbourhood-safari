@@ -146,7 +146,10 @@
                     <span>Add a photo of your planning map</span><img class="camera-btn" src="img/camera1_small.png"/>
                 </div>
                 <div class="input-field-group">
-                    <span>Identify the camera trap number(s) you included on your map</span><input type="number" class="related-camera-traps"></input><button class="add-related-camera-traps-btn">Add</button>
+                    <span>Identify the camera trap number(s) you included on your map</span><input type="number" class="related-camera-traps-input"></input><button class="add-related-camera-traps-btn">Add</button>
+                    <div>
+                        <span>Related camera traps: </span><span class="related-camera-traps"/>
+                    </div>
                 </div>
                 <div class="input-field-group">
                     <span>Add additional photos from your backpack that support your reasoning</span><img class="camera-btn" src="img/camera1_small.png"/>
@@ -168,7 +171,13 @@
             <div class="note-type-title">Photo Set Note</div>
             <div class="form-group">
                 <div class="input-field-group">
-                    <span>Identify your camera trap number</span>
+                    <%
+                    // TODO: check. Should you only be able to add one camera trap here?
+                    %>
+                    <span>Identify your camera trap number</span><input type="number" class="related-camera-traps-input"></input><button class="add-related-camera-traps-btn">Add</button>
+                    <div>
+                        <span>Your camera trap number: </span><span class="related-camera-traps"/>
+                    </div>
                 </div>
                 <div class="input-field-group">
                     <select>
@@ -242,6 +251,13 @@
         </a>
     </script>
 
+    <!-- photo template -->
+    <script id="photo-template" type="text/template">
+        <img class="photo" src="<%= url %>" />
+    </script>
+
+
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -272,20 +288,19 @@
     <!--               -->
     <!--  READ SCREEN  -->
     <!--               -->
-
     <div id="read-screen" class="row-fluid">
         <div class="view-container bs-docs-sidebar">
             <!-- Read View looks at the list-screen element -->
             <div id="list-screen" class="bs-docs-sidebar">
                 <div class="span12">
-                    <button class='btn btn-primary pull-right clear-notes'>Clear Filters</button>
-                    <button class='btn btn-primary pull-right filter-notes'>Filters Notes</button>
+                    <h3 class="note-number-total pull-left">Notes</h3>
+                    <div class="pull-right">
+                        <button class='btn-large btn-primary filter-notes'>Filters Notes</button>
+                        <button class='btn-large btn-warning clear-notes'>Clear Filters</button>
+                    </div>
                 </div>
-
-                    <div class="span4">
-                        <!--  -->
-                        <h3 class="note-number-total">Notes</h3>
-                        <ul class="nav bs-docs-sidenav scrollable-y note-list">
+                    <div class="span4 scrollable-y">
+                        <ul class="nav bs-docs-sidenav note-list">
                             <!-- Notes populate this element -->
                         </ul>
                     </div>
@@ -440,12 +455,22 @@
                         <h3>Photos</h3>             <!-- TODO: this should be different depending on note (text and color) -->
                     </div>
 
-                    <div class="modal-body">
+                    <!-- get this set up with its own collection and view -->
+                    <div class="photo-modal-body">
                         <!-- <form>
                             <button class="btn-primary">Apply Filters</button>
                         </form> -->
+                        <div class="photos-container">
+<!--                             <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
+                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
+                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
+                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
+                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
+                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" /> -->
+                        </div>
                         <button class="add-photos-btn btn btn-large btn-success">Add</button>
                     </div>
+
                 </div>
 
             </div>

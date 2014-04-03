@@ -28,6 +28,7 @@
   app.runId= null;
   app.users = null; // users collection
   app.groups = null; // groups collection
+  app.backpacks = null;
   app.username = null;
   app.runState = null;
   app.userState = null;
@@ -211,6 +212,9 @@
           collection: Skeletor.Model.awake.notes
         });
       }
+
+      // this collection is not attached to a view
+      app.backpacks = Skeletor.Model.awake.backpacks;
 
       setProjectName(app.config.project_name);
 

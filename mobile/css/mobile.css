@@ -23,7 +23,7 @@
 
   /*disable bootstrap default hover state*/
   .disabled {
-    color: #333 !important;
+    color: #333333 !important;
     text-decoration: none !important; }
 
   input {
@@ -62,6 +62,14 @@
     color: #333;
     width: 98%; }
 
+  .photo {
+    width: 12em;
+    height: 9em;
+    margin: 0.2em; }
+
+  .selected {
+    opacity: 0.4; }
+
   .btn-large {
     width: 160px; }
 
@@ -75,6 +83,13 @@
     text-align: center;
     padding-left: 10%;
     padding-right: 10%; }
+
+  .photo-modal-body {
+    text-align: center;
+    padding: 2%; }
+
+  .add-photos-btn {
+    margin-top: 2em; }
 
   /*********************************** NAVBAR *********************************/
   /* This hides any element with class alert directly after an input field with a pattern (regex) */
@@ -128,9 +143,16 @@
     width: 3em;
     margin-left: 1em;
     /* fix this eventually - all the buttons and add related_camera_traps */ }
-  .note-input .related-camera-traps {
+  .note-input .related-camera-traps-input {
     width: 2em;
-    margin-left: 0.2em; }
+    margin-left: 0.2em;
+    margin-bottom: -0.1em;
+    /* to get this to align with the text and button elements */ }
+  .note-input .add-related-camera-traps-btn {
+    color: white; }
+
+  .photos-container {
+    overflow-y: scroll; }
 
   /*                    */
   /*   planning note    */
@@ -141,6 +163,8 @@
     border-color: #39b54a; }
   .planning-note-input hr {
     background: #39b54a; }
+  .planning-note-input .add-related-camera-traps-btn {
+    background-color: #39b54a; }
 
   /*                    */
   /*   photo set note   */
@@ -151,6 +175,8 @@
     border-color: #fca91e; }
   .photo-set-note-input hr {
     background: #fca91e; }
+  .photo-set-note-input .add-related-camera-traps-btn {
+    background-color: #fca91e; }
 
   /*                        */
   /*   cross-cutting note   */
@@ -210,13 +236,12 @@
     padding: 5px; }
 
   /* LET THE GROSSNESS BEGIN */
-  #list-screen {
-    padding: 5px;
-    border-radius: 7px;
-    background-color: white; }
-
+  #list-screen .span12 {
+    border-bottom: 1px solid #eee; }
+  #list-screen .span4 {
+    max-height: 588px;
+    border-right: 1px solid #eee; }
   #list-screen ul {
-    max-height: 600px;
     background-color: white; }
   #list-screen li {
     margin: 5px; }

@@ -18,6 +18,7 @@
     planningNoteInputTemplate: "#planning-note-input",
     photoSetNoteTemplate: "#photo-set-note-input",
     crossCuttingNoteInputTemplate: "#cross-cutting-note-input",
+    photoTemplate: "#photo-template",
 
     initialize: function() {
       var view = this;
@@ -64,6 +65,7 @@
       'click .share-note-btn'    : 'publishNote',
       'click .add-related-camera-traps-btn': 'addCameraTrapNumbers',
       'click .camera-btn'        : 'showPhotoPicker',
+      'click .photo'             : 'selectPhoto',
       'click .photo-picker button': 'addPhotos',
       //'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
@@ -136,6 +138,7 @@
         created_at: new Date(),
         type: note_type,
         body: {},
+        photos: [],
         related_camera_traps: [],
         published: false
       };
@@ -161,34 +164,74 @@
       // Add note input field html into div
       view.$el.find('.note-taking-toggle-input-form').html(noteInput);
 
-      // Clear text input fields
+      // Clear input fields
       view.$el.find('textarea').val('');
+      jQuery('.photo').removeClass('selected');
 
       // hide modal
       jQuery('.note-type-picker').modal('hide');
 
       jQuery('.note-taking-toggle').slideDown();
 
-      // I think this is confusing at best. Can we try hiding them instead? Related: cancelNote and publishNote
-      // jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
       jQuery('#show-note-container').addClass('hidden');
     },
 
-    addCameraTrapNumbers: function() {
-      app.currentNote.attributes.related_camera_traps.push(Number(jQuery('.related-camera-traps').val()));
-      jQuery('.related-camera-traps').val("");
+    addCameraTrapNumbers: function(ev) {
+      ev.preventDefault();
+      var cameraTrap = Number(jQuery('.related-camera-traps-input').val());
+      jQuery('.related-camera-traps-input').val("");
+      // TODO: maybe check based on the safari counter in the collection that gugo makes instead of arbitrary 999
+      if (cameraTrap > 0 && cameraTrap < 999) {
+        app.currentNote.get('related_camera_traps').push(cameraTrap);
+        // clearing out any duplicates
+        app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
+        jQuery('.related-camera-traps').text(app.currentNote.get('related_camera_traps'));
+      } else {
+        jQuery().toastmessage('showErrorToast', "Invalid camera trap number");
+      }
     },
 
     showPhotoPicker: function() {
       var view = this;
-      jQuery('.photo-picker').modal('show');
+      debugger;
+      // iterate over this group's photo collection
+      var myBackpack = app.backpacks.findWhere({"owner":app.username});
+
+      // make sure they have a backpack
+      var photoHTML = "";
+      if (myBackpack) {
+        _.each(myBackpack.get('content'), function(o) {
+          photoHTML += _.template(jQuery(view.photoTemplate).text(), {'url':o.image_url});
+          //photoHTML = _.template(jQuery(view.crossCuttingNoteInputTemplate).text(), {});
+          //planningNoteInputTemplate: "#planning-note-input",
+          //o.image_url;
+
+        });
+        jQuery('.photos-container').html(photoHTML);
+
+        jQuery('.photo-picker').modal('show');
+      } else {
+        jQuery().toastmessage('showErrorToast', "Sorry, you do not have a backpack yet");
+      }
     },
 
+    selectPhoto: function(ev) {
+      jQuery(ev.target).addClass('selected');
+    },
+
+    // TODO: move me to mobile.js?
     addPhotos: function() {
-      var view = this;
+      // clear out all photos previous attached to the note
+      app.currentNote.set('photos',[]);
+      var photosAr = [];
+      // create an array or urls of all of the photos marked as selected
+      _.each(jQuery('.photo-picker .selected'), function(el) {
+        photosAr.push(jQuery(el).attr('src'));
+      });
+      // set that array into the currentNote
+      app.currentNote.set('photos', photosAr);
       jQuery('.photo-picker').modal('hide');
-      //jQuery('.note-taking-toggle').slideUp();
-      alert('photos fake added to note');
+      jQuery().toastmessage('showSuccessToast', "Photos attached to note");
     },
 
     cancelNote: function() {
@@ -211,7 +254,6 @@
       app.currentNote = null;
       // Hide textarea
       jQuery('.note-taking-toggle').slideUp();
-      //jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
       jQuery('#show-note-container').removeClass('hidden');
     },
 
@@ -309,7 +351,6 @@
       app.currentNote = null;
       jQuery('.note-taking-toggle').slideUp();
 
-      //jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
       jQuery('#show-note-container').removeClass('hidden');
     },
 

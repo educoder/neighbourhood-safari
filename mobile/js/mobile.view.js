@@ -313,11 +313,28 @@
       console.log('Initializing ReadView...', view.el);
 
       view.collection.on('change', function(n) {
-        view.render();
+        if (n.get('published')) {
+          view.render();
+        }
       });
 
       view.collection.on('add', function(n) {
-        view.render();
+        // check if event was triggered for a Document/ Model that is published
+        // only render if published is set. This should avoid gettting hammered
+        if (n.get('published')) {
+          view.render();
+        }
+      });
+
+      view.collection.on('destroy delete', function(n) {
+        // check if event was triggered for a Document/ Model that is published
+        // only render if published is set. This should avoid gettting hammered
+        if (n.get('published')) {
+          // this is a quick and easy solution to the rare case
+          // that documents in a collection are deleted
+          view.$el.find('.note-list').html('');
+          view.render();
+        }
       });
 
       view.render();
@@ -409,6 +426,7 @@
 
       // Only want to show published notes at some point
       var publishedNotes = view.collection.where({published: true});
+      // var publishedNotes = view.collection.where({type: 'open'});
 
       var totalNumPubNotes = publishedNotes.length;
 
@@ -428,7 +446,9 @@
 
         var body = note.get('body');
         var title = note.get('body').title;
-        if (title === '') {title = 'Untitled Note';}
+        if (title === '') {
+          title = 'Untitled Note';
+        }
         var bodyText = body[_.keys(body)[0]];
 
         var listItem = _.template(jQuery(view.template).text(), {

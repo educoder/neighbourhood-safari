@@ -112,6 +112,13 @@
         throw "This should never happen";
       }
 
+      // TEMP: fake data until we have something real from UIC
+      // var
+      // for (i = 0; i < 100; i++) {
+
+      // }
+      // camera-trap-number-dropdown
+
       // Add note input field html into div
       view.$el.find('.note-taking-toggle-input-form').html(noteInput);
 

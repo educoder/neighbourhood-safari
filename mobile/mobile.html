@@ -6,6 +6,7 @@
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
+    <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <link href="../libs/bootstrap-2.3.2.min.css" rel="stylesheet">
     <link href="../libs/bootstrap-responsive-2.3.2.min.css" rel="stylesheet">
     <link href="css/mobile.css" rel="stylesheet">
@@ -134,16 +135,26 @@
         <form class="planning-note-input note-input">
             <div class="note-type-title">Photo Set Note</div>
             <div class="form-group">
+                <div class="input-field-group">
+                    <select>
+                        <option value="0">Select the region for your camera trap</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
                 <label>Your hypothesis or question</label>
                 <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="2" placeholder="Describe what you think you will see..."></textarea>
                 <label>Photographic evidence</label>
-                <div class="input-button-field">
+                <div class="input-field-group">
                     <span>Add a photo of your planning map</span><img class="camera-btn" src="img/camera1_small.png"/>
                 </div>
-                <div class="input-button-field">
+                <div class="input-field-group">
                     <span>Identify the camera trap number(s) you included on your map</span>
+                    <select class="camera-trap-number-dropdown">
+                    </select>
                 </div>
-                <div class="input-button-field">
+                <div class="input-field-group">
                     <span>Add additional photos from your backpack that support your reasoning</span><img class="camera-btn" src="img/camera1_small.png"/>
                 </div>
                 <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe how these photos influenced your plan..."></textarea>
@@ -151,6 +162,9 @@
                 <textarea class="note-evidence note-text-input row-fuild" name="evidence" rows="2" placeholder="Describe other evidence (e.g., animal signs, readings) that influenced your plan..."></textarea>
                 <hr/>
                 <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
+                <div class="input-field-group">
+                    <span>Tag your note</span><span>+</span>
+                </div>
             </div>
         </form>
     </script>
@@ -159,13 +173,29 @@
         <form class="photo-set-note-input note-input">
             <div class="note-type-title">Photo Set Note</div>
             <div class="form-group">
-                <span>Identify your camera trap number </span>
+                <div class="input-field-group">
+                    <span>Identify your camera trap number</span>
+                </div>
+                <div class="input-field-group">
+                    <select>
+                        <option value="0">Select the region of your camera trap</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="input-field-group">
+                    <span>Add key photos from this camera trap place or analysis</span><img class="camera-btn" src="img/camera2_small.png"/>
+                </div>
                 <label>What you found</label>
                 <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what you found in your photo set..."></textarea>
                 <textarea class="note-explanation note-text-input row-fuild" name="explanation" rows="2" placeholder="Explain how what you found compares to what you expected to find..."></textarea>
-                <textarea class="note-question note-text-input row-fuild" name="question" rows="1" placeholder="State any questions your findings raise..."></textarea>
+                <textarea class="note-question note-text-input row-fuild" name="question" rows="2" placeholder="State any questions your findings raise..."></textarea>
                 <hr/>
                 <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
+                <div class="input-field-group">
+                    <span>Tag your note</span><span>+</span>
+                </div>
             </div>
         </form>
     </script>
@@ -174,10 +204,19 @@
         <form class="cross-cutting-note-input note-input">
             <div class="note-type-title">Cross-cutting Note</div>
             <div class="form-group">
+                <div class="input-field-group">
+                    <span>Add photos from other camera traps that interest you</span><img class="camera-btn" src="img/camera3_small.png"/>
+                </div>
                 <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what interests you about these photos..."></textarea>
+                <div class="input-field-group">
+                    <span>Add other images (e.g. map photo)</span><img class="camera-btn" src="img/camera3_small.png"/>
+                </div>
                 <textarea class="note-explanation note-text-input row-fuild" name="explanation" rows="2" placeholder="Explain how your work compares to that of others..."></textarea>
                 <hr/>
                 <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
+                <div class="input-field-group">
+                    <span>Tag your note</span><span>+</span>
+                </div>
             </div>
         </form>
     </script>
@@ -187,8 +226,14 @@
             <div class="note-type-title">Open Note</div>
             <div class="form-group">
                 <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what your note is about..."></textarea>
+                <div class="input-field-group">
+                    <span>Add images from your backpack</span><img class="camera-btn" src="img/camera4_small.png"/>
+                </div>
                 <hr/>
                 <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
+                <div class="input-field-group">
+                    <span>Tag your note</span><span>+</span>
+                </div>
             </div>
         </form>
     </script>

@@ -151,6 +151,9 @@
   .note-input .add-related-camera-traps-btn {
     color: white; }
 
+  .photos-container {
+    overflow-y: scroll; }
+
   /*                    */
   /*   planning note    */
   /*                    */

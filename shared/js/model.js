@@ -25,7 +25,7 @@
   Skeletor.Model = (function() {
     function Model() {}
 
-    Model.requiredCollections = ['notes', 'tags', 'states'];
+    Model.requiredCollections = ['notes', 'tags', 'states', 'backpacks'];
 
     Model.init = function(url, db) {
       var dfrInit,
@@ -222,6 +222,15 @@
 
       this.Notes = this.db.Collection('notes').extend({
         model: Skeletor.Model.Note
+      });
+
+      /** Backpack **/
+      this.Backpack = this.db.Document('backpacks').extend({
+
+      });
+
+      this.Backpacks = this.db.Collection('backpacks').extend({
+        model: Skeletor.Model.Backpack
       });
 
       /** Tag **/

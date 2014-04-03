@@ -18,6 +18,7 @@
     planningNoteInputTemplate: "#planning-note-input",
     photoSetNoteTemplate: "#photo-set-note-input",
     crossCuttingNoteInputTemplate: "#cross-cutting-note-input",
+    photoTemplate: "#photo-template",
 
     initialize: function() {
       var view = this;
@@ -160,13 +161,34 @@
     },
 
     showPhotoPicker: function() {
-      jQuery('.photo-picker').modal('show');
+      var view = this;
+      debugger;
+      // iterate over this group's photo collection
+      var myBackpack = app.backpacks.findWhere({"owner":app.username});
+
+      // make sure they have a backpack
+      var photoHTML = "";
+      if (myBackpack) {
+        _.each(myBackpack.get('content'), function(o) {
+          photoHTML += _.template(jQuery(view.photoTemplate).text(), {'url':o.image_url});
+          //photoHTML = _.template(jQuery(view.crossCuttingNoteInputTemplate).text(), {});
+          //planningNoteInputTemplate: "#planning-note-input",
+          //o.image_url;
+
+        });
+        jQuery('.photos-container').html(photoHTML);
+
+        jQuery('.photo-picker').modal('show');
+      } else {
+        jQuery().toastmessage('showErrorToast', "Sorry, you do not have a backpack yet");
+      }
     },
 
     selectPhoto: function(ev) {
       jQuery(ev.target).addClass('selected');
     },
 
+    // TODO: move me to mobile.js?
     addPhotos: function() {
       // clear out all photos previous attached to the note
       app.currentNote.set('photos',[]);

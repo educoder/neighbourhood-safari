@@ -187,7 +187,9 @@ $open-color: rgb(205, 22, 172);
     }
   }
 
-
+  .photos-container {
+    overflow-y: scroll;
+  }
 
   /*                    */
   /*   planning note    */

@@ -33,6 +33,7 @@
       'click .share-note-btn'    : 'publishNote',
       'click .add-related-camera-traps-btn': 'addCameraTrapNumbers',
       'click .camera-btn'        : 'showPhotoPicker',
+      'click .photo'             : 'selectPhoto',
       'click .photo-picker button': 'addPhotos',
       //'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
@@ -125,25 +126,30 @@
 
       jQuery('.note-taking-toggle').slideDown();
 
-      // I think this is confusing at best. Can we try hiding them instead? Related: cancelNote and publishNote
-      // jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
       jQuery('#show-note-container').addClass('hidden');
     },
 
     addCameraTrapNumbers: function() {
-      app.currentNote.attributes.related_camera_traps.push(Number(jQuery('.related-camera-traps').val()));
-      jQuery('.related-camera-traps').val("");
+      app.currentNote.get('related_camera_traps').push(Number(jQuery('.related-camera-traps-input').val()));
+      // clearing out any duplicates
+      app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
+      jQuery('.related-camera-traps-input').val("");
+      jQuery('.related-camera-traps').text(app.currentNote.get('related_camera_traps'));
     },
 
     showPhotoPicker: function() {
-      var view = this;
+      jQuery('.photo').removeClass('selected');
       jQuery('.photo-picker').modal('show');
+    },
+
+    selectPhoto: function(ev) {
+      console.log('got there');
+      jQuery(ev.target).addClass('selected');
     },
 
     addPhotos: function() {
       var view = this;
       jQuery('.photo-picker').modal('hide');
-      //jQuery('.note-taking-toggle').slideUp();
       alert('photos fake added to note');
     },
 
@@ -176,7 +182,6 @@
       app.currentNote = null;
       // Hide textarea
       jQuery('.note-taking-toggle').slideUp();
-      //jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
       jQuery('#show-note-container').removeClass('hidden');
     },
 
@@ -272,7 +277,6 @@
       app.currentNote = null;
       jQuery('.note-taking-toggle').slideUp();
 
-      //jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
       jQuery('#show-note-container').removeClass('hidden');
     },
 

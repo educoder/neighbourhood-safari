@@ -70,6 +70,14 @@ $open-color: rgb(205, 22, 172);
     color: #333;
     width: 98%;
   }
+  .photo {
+    width: 12em;
+    height: 9em;
+    margin: 0.2em;
+  }
+  .selected {
+    opacity: 0.4;
+  }
   .btn-large {
     width: 160px;
   }
@@ -83,6 +91,13 @@ $open-color: rgb(205, 22, 172);
     text-align: center;
     padding-left: 10%;
     padding-right: 10%;
+  }
+  .photo-modal-body {
+    text-align: center;
+    padding: 2%;
+  }
+  .add-photos-btn {
+    margin-top: 2em;
   }
 
   /*********************************** NAVBAR *********************************/
@@ -157,11 +172,16 @@ $open-color: rgb(205, 22, 172);
       margin-left: 1em;
       /* fix this eventually - all the buttons and add related_camera_traps */
     }
-    .related-camera-traps {
+    .related-camera-traps-input {
       width: 2em;
       margin-left: 0.2em;
+      margin-bottom: -0.1em;        /* to get this to align with the text and button elements */
+    }
+    .add-related-camera-traps-btn {
+      color: white;
     }
   }
+
 
 
   /*                    */
@@ -177,6 +197,9 @@ $open-color: rgb(205, 22, 172);
     hr {
       background: $planning-color;
     }
+    .add-related-camera-traps-btn {
+      background-color: $planning-color;
+    }
   }
 
   /*                    */
@@ -191,6 +214,9 @@ $open-color: rgb(205, 22, 172);
     }
     hr {
       background: $photo-set-color;
+    }
+    .add-related-camera-traps-btn {
+      background-color: $photo-set-color;
     }
   }
 
@@ -223,7 +249,6 @@ $open-color: rgb(205, 22, 172);
       background: $open-color;
     }
   }
-
 
   /******************************** READ *******************************/
 

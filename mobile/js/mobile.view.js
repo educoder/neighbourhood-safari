@@ -22,13 +22,44 @@
     initialize: function() {
       var view = this;
       console.log('Initializing InputView...', view.el);
+
+      view.collection.on('add', function(n) {
+        if (!n.get('published') && (n.get('author') === app.username)) {
+          view.render();
+        }
+      });
+
+      view.collection.on('change', function(n) {
+        if (!n.get('published') && (n.get('author') === app.username)) {
+          view.render();
+        }
+      });
+
+      view.collection.on('destroy delete', function(n) {
+        // check if event was triggered for a Document/ Model that is published
+        // only render if published is set. This should avoid gettting hammered
+        if (!n.get('published') && (n.get('author') === app.username)) {
+          // this is a quick and easy solution to the rare case
+          // that documents in a collection are deleted
+          view.$el.find('.note-list').html('');
+          view.render();
+        }
+      });
+
+      view.render();
+
+      // click listeners for dropdown items
+      // view.$el.find('.dropdown-menu a').click(function(){
+      //   view.selectNoteToResume(jQuery(this).data('id'));
+      // });
     },
 
     events: {
-      'click .resume-note-btn'   : "resumeNote",
+      // 'click .resume-note-btn'   : "resumeNote",
       'click .new-note-btn'      : 'pickNewNoteType',
       'click .note-type-picker button': 'showNewNote',
-      'click .modal-select-note' : 'selectNoteToResume',
+      // 'click .modal-select-note' : 'selectNoteToResume',
+      'click .dropdown-menu a' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
       'click .share-note-btn'    : 'publishNote',
       'click .add-related-camera-traps-btn': 'addCameraTrapNumbers',
@@ -52,38 +83,38 @@
       }
     },
 
-    resumeNote: function(){
-      var view = this;
+    // resumeNote: function(){
+    //   var view = this;
 
-      // retrieve unpublished notes of user
-      var notesToRestore = view.collection.where({author: app.username, published: false});
+    //   // retrieve unpublished notes of user
+    //   var notesToRestore = view.collection.where({author: app.username, published: false});
 
-      // fill the modal
-      jQuery('#select-note-modal').html('');
-      _.each(notesToRestore, function(note){
-        var body = note.get('body');
-        var option_text = '';
-        var option = null;
-        // if there is a header show it
-        if (body.title && body.title !== '') {
-          option_text = body.title;
-        } else {
-          var firstAttributeFound = _.keys(body)[0];
-          option_text = body[firstAttributeFound];
-        }
-        // truncate and change the attribute :)
-        if (option_text.length > 20) {
-          option_text = option_text.substring(0,19);
-          option_text += '[...]';
-        }
-        option = _.template(jQuery(view.template).text(), {'option_text': option_text, id: note.id});
-        jQuery('#select-note-modal').append(option);
-      });
+    //   // fill the modal
+    //   jQuery('#select-note-modal').html('');
+    //   _.each(notesToRestore, function(note){
+    //     var body = note.get('body');
+    //     var option_text = '';
+    //     var option = null;
+    //     // if there is a header show it
+    //     if (body.title && body.title !== '') {
+    //       option_text = body.title;
+    //     } else {
+    //       var firstAttributeFound = _.keys(body)[0];
+    //       option_text = body[firstAttributeFound];
+    //     }
+    //     // truncate and change the attribute :)
+    //     if (option_text.length > 20) {
+    //       option_text = option_text.substring(0,19);
+    //       option_text += '[...]';
+    //     }
+    //     option = _.template(jQuery(view.template).text(), {'option_text': option_text, id: note.id});
+    //     jQuery('#select-note-modal').append(option);
+    //   });
 
-      //show modal
-      console.log('Show modal to pick previous note.');
-      jQuery('.unpublished-note-picker').modal('show');
-    },
+    //   //show modal
+    //   console.log('Show modal to pick previous note.');
+    //   jQuery('.unpublished-note-picker').modal('show');
+    // },
 
     pickNewNoteType: function(ev) {
       var view = this;
@@ -188,10 +219,12 @@
       var view = this;
       console.log('Select a note.');
 
-      var selectedOption = jQuery('#select-note-modal').find(":selected");
+      var selectedNoteId = jQuery(ev.target).data('id');
+
+      // var selectedOption = jQuery('#select-note-modal').find(":selected");
       // children()[jQuery('#select-note-modal').index()];
       // retrieve id of selectd note
-      var selectedNoteId = jQuery(selectedOption).data('id');
+      // var selectedNoteId = jQuery(selectedOption).data('id');
       app.currentNote = view.collection.findWhere({_id: selectedNoteId});
 
       var note_type = app.currentNote.get('type');
@@ -226,7 +259,7 @@
 
       // this.$el.find('.note-body').val(app.currentNote.get('body'));
 
-      jQuery('.unpublished-note-picker').modal('hide');
+      // jQuery('.unpublished-note-picker').modal('hide');
       jQuery('.note-taking-toggle').slideDown();
       jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
     },
@@ -296,7 +329,33 @@
     // },
 
     render: function () {
-      console.log('Rendering InputView...');
+      console.log('Rendering WriteView...');
+      var view = this;
+
+      // retrieve unpublished notes of user
+      var notesToRestore = view.collection.where({author: app.username, published: false});
+
+      // clear dropdown button list
+      view.$el.find('.dropdown-menu').html('');
+      // fill dropdown button list
+      _.each(notesToRestore, function(note){
+        var body = note.get('body');
+        var title = '';
+        var option = null;
+        // if there is a header show it
+        if (body.title && body.title !== '') {
+          title = body.title;
+        } else {
+          title = "Untitled";
+        }
+        // truncate and change the attribute :)
+        if (title.length > 20) {
+          title = title.substring(0,19);
+          title += '[...]';
+        }
+        option = _.template(jQuery(view.template).text(), {'title': title, id: note.id});
+        view.$el.find('.dropdown-menu').append(option);
+      });
     }
   });
 

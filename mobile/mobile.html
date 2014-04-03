@@ -288,20 +288,19 @@
     <!--               -->
     <!--  READ SCREEN  -->
     <!--               -->
-
     <div id="read-screen" class="row-fluid">
         <div class="view-container bs-docs-sidebar">
             <!-- Read View looks at the list-screen element -->
             <div id="list-screen" class="bs-docs-sidebar">
                 <div class="span12">
-                    <button class='btn btn-primary pull-right clear-notes'>Clear Filters</button>
-                    <button class='btn btn-primary pull-right filter-notes'>Filters Notes</button>
+                    <h3 class="note-number-total pull-left">Notes</h3>
+                    <div class="pull-right">
+                        <button class='btn-large btn-primary filter-notes'>Filters Notes</button>
+                        <button class='btn-large btn-warning clear-notes'>Clear Filters</button>
+                    </div>
                 </div>
-
-                    <div class="span4">
-                        <!--  -->
-                        <h3 class="note-number-total">Notes</h3>
-                        <ul class="nav bs-docs-sidenav scrollable-y note-list">
+                    <div class="span4 scrollable-y">
+                        <ul class="nav bs-docs-sidenav note-list">
                             <!-- Notes populate this element -->
                         </ul>
                     </div>

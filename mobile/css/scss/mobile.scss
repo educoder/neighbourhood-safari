@@ -297,16 +297,21 @@ $open-color: rgb(205, 22, 172);
     padding: 5px;
   }
   /* LET THE GROSSNESS BEGIN */
+
   #list-screen {
-    padding: 5px;
-    border-radius: 7px;
-    background-color: white;
-  }
-  #list-screen {
+    .span12 {
+      border-bottom: 1px solid #eee;
+    }
+
+    .span4 {
+      max-height: 708px - 120px;
+      border-right: 1px solid #eee;
+      // padding: 0 10px 0 0;
+    }
+
     ul {
-      max-height: 600px;
-      // overflow-y: scroll;
       background-color: white;
+      // 708
     }
     li {
       margin: 5px;

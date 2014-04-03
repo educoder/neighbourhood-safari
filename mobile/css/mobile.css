@@ -236,13 +236,12 @@
     padding: 5px; }
 
   /* LET THE GROSSNESS BEGIN */
-  #list-screen {
-    padding: 5px;
-    border-radius: 7px;
-    background-color: white; }
-
+  #list-screen .span12 {
+    border-bottom: 1px solid #eee; }
+  #list-screen .span4 {
+    max-height: 588px;
+    border-right: 1px solid #eee; }
   #list-screen ul {
-    max-height: 600px;
     background-color: white; }
   #list-screen li {
     margin: 5px; }

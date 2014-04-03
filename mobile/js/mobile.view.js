@@ -31,6 +31,7 @@
       'click .modal-select-note' : 'selectNoteToResume',
       'click .cancel-note-btn'   : 'cancelNote',
       'click .share-note-btn'    : 'publishNote',
+      'click .add-related-camera-traps-btn': 'addCameraTrapNumbers',
       'click .camera-btn'        : 'showPhotoPicker',
       'click .photo-picker button': 'addPhotos',
       //'click .note-body'         : 'createOrRestoreNote',
@@ -91,6 +92,7 @@
         created_at: new Date(),
         type: note_type,
         body: {},
+        related_camera_traps: [],
         published: false
       };
 
@@ -99,25 +101,18 @@
 
       var noteInput = null;
       // render the note input fields depending on note type
-      if (note_type === "open") {
-        noteInput = _.template(jQuery(view.openNoteInputTemplate).text(), {});
-      } else if (note_type === "planning") {
+      if (note_type === "planning") {
         noteInput = _.template(jQuery(view.planningNoteInputTemplate).text(), {});
       } else if (note_type === "photo_set") {
         noteInput = _.template(jQuery(view.photoSetNoteTemplate).text(), {});
       } else if (note_type === "cross_cutting") {
         noteInput = _.template(jQuery(view.crossCuttingNoteInputTemplate).text(), {});
+      } else if (note_type === "open") {
+        noteInput = _.template(jQuery(view.openNoteInputTemplate).text(), {});
       } else {
         noteInput = null;
         throw "This should never happen";
       }
-
-      // TEMP: fake data until we have something real from UIC
-      // var
-      // for (i = 0; i < 100; i++) {
-
-      // }
-      // camera-trap-number-dropdown
 
       // Add note input field html into div
       view.$el.find('.note-taking-toggle-input-form').html(noteInput);
@@ -133,6 +128,23 @@
       // I think this is confusing at best. Can we try hiding them instead? Related: cancelNote and publishNote
       // jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
       jQuery('#show-note-container').addClass('hidden');
+    },
+
+    addCameraTrapNumbers: function() {
+      app.currentNote.attributes.related_camera_traps.push(Number(jQuery('.related-camera-traps').val()));
+      jQuery('.related-camera-traps').val("");
+    },
+
+    showPhotoPicker: function() {
+      var view = this;
+      jQuery('.photo-picker').modal('show');
+    },
+
+    addPhotos: function() {
+      var view = this;
+      jQuery('.photo-picker').modal('hide');
+      //jQuery('.note-taking-toggle').slideUp();
+      alert('photos fake added to note');
     },
 
     cancelNote: function() {
@@ -262,18 +274,6 @@
 
       //jQuery('.resume-note-btn, .new-note-btn').removeAttr('disabled', 'disabled');
       jQuery('#show-note-container').removeClass('hidden');
-    },
-
-    showPhotoPicker: function() {
-      var view = this;
-      jQuery('.photo-picker').modal('show');
-    },
-
-    addPhotos: function() {
-      var view = this;
-      jQuery('.photo-picker').modal('hide');
-      //jQuery('.note-taking-toggle').slideUp();
-      alert('photos fake added to note');
     },
 
     // autosaveNote: function(ev) {
@@ -428,7 +428,7 @@
 
         var body = note.get('body');
         var title = note.get('body').title;
-        if (title === '') {title = 'Untitled Note'};
+        if (title === '') {title = 'Untitled Note';}
         var bodyText = body[_.keys(body)[0]];
 
         var listItem = _.template(jQuery(view.template).text(), {

@@ -144,12 +144,19 @@
       jQuery('#show-note-container').addClass('hidden');
     },
 
-    addCameraTrapNumbers: function() {
-      app.currentNote.get('related_camera_traps').push(Number(jQuery('.related-camera-traps-input').val()));
-      // clearing out any duplicates
-      app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
+    addCameraTrapNumbers: function(ev) {
+      ev.preventDefault();
+      var cameraTrap = Number(jQuery('.related-camera-traps-input').val());
       jQuery('.related-camera-traps-input').val("");
-      jQuery('.related-camera-traps').text(app.currentNote.get('related_camera_traps'));
+      // TODO: maybe check based on the safari counter in the collection that gugo makes instead of arbitrary 999
+      if (cameraTrap > 0 && cameraTrap < 999) {
+        app.currentNote.get('related_camera_traps').push(cameraTrap);
+        // clearing out any duplicates
+        app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
+        jQuery('.related-camera-traps').text(app.currentNote.get('related_camera_traps'));
+      } else {
+        jQuery().toastmessage('showErrorToast', "Invalid camera trap number");
+      }
     },
 
     showPhotoPicker: function() {
@@ -171,7 +178,7 @@
       // set that array into the currentNote
       app.currentNote.set('photos', photosAr);
       jQuery('.photo-picker').modal('hide');
-      alert('Photos attached to note');
+      jQuery().toastmessage('showSuccessToast', "Photos attached to note");
     },
 
     cancelNote: function() {

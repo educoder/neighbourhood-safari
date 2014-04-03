@@ -50,9 +50,14 @@ $open-color: rgb(205, 22, 172);
     font-size: 1.2em;
     font-weight: 700;
   }*/
-  .scrollable {
-    overflow-y: auto;
+  .scrollable-y {
+    overflow-y: scroll;
   }
+
+  .scrollable-x {
+    overflow-x: scroll;
+  }
+
   .hidden {
     display: none;
   }
@@ -297,8 +302,8 @@ $open-color: rgb(205, 22, 172);
   }
   #list-screen {
     ul {
-      min-height: 200px;
-      overflow: hidden;
+      max-height: 600px;
+      // overflow-y: scroll;
       background-color: white;
     }
     li {

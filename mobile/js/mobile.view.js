@@ -63,8 +63,21 @@
       jQuery('#select-note-modal').html('');
       _.each(notesToRestore, function(note){
         var body = note.get('body');
-        var firstAttributeFound = _.keys(body)[0];
-        var option = _.template(jQuery(view.template).text(), {'option_text': body[firstAttributeFound], id: note.id});
+        var option_text = '';
+        var option = null;
+        // if there is a header show it
+        if (body.title && body.title !== '') {
+          option_text = body.title;
+        } else {
+          var firstAttributeFound = _.keys(body)[0];
+          option_text = body[firstAttributeFound];
+        }
+        // truncate and change the attribute :)
+        if (option_text.length > 20) {
+          option_text = option_text.substring(0,19);
+          option_text += '[...]';
+        }
+        option = _.template(jQuery(view.template).text(), {'option_text': option_text, id: note.id});
         jQuery('#select-note-modal').append(option);
       });
 
@@ -166,16 +179,7 @@
 
       // nothing was input so nuke the note away
       if (changedElementsArray.length <= 0) {
-        // view.collection.remove(app.currentNote);
         app.currentNote.destroy();
-        // app.currentNote.sync();
-        // app.currentNote.destroy()
-        // .done(function (success){
-        //   console.log(success);
-        // })
-        // .fail(function (err) {
-        //   console.log(err);
-        // });
       }
 
       // unset note
@@ -429,9 +433,9 @@
       var list = this.$el.find('.note-list');
 
       // Only want to show published notes at some point
-      var publishedNotes = view.collection.where({published: true});
+      var publishedNotes = view.collection.where({published: true}).reverse();
       // var publishedNotes = view.collection.where({type: 'open'});
-
+      // publishedNotes.reverse();
       var totalNumPubNotes = publishedNotes.length;
 
       // adding total number of notes to H3

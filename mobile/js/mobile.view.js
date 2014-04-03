@@ -425,9 +425,9 @@
       var list = this.$el.find('.note-list');
 
       // Only want to show published notes at some point
-      var publishedNotes = view.collection.where({published: true});
+      var publishedNotes = view.collection.where({published: true}).reverse();
       // var publishedNotes = view.collection.where({type: 'open'});
-
+      // publishedNotes.reverse();
       var totalNumPubNotes = publishedNotes.length;
 
       // adding total number of notes to H3

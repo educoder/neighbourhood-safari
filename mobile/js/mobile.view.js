@@ -344,45 +344,49 @@
         // fetch model ID from DOM
         var modelId = jQuery(event.currentTarget).data('id');
 
-        // get model from collection
+        // set model from collection
         var clickedModel = view.collection.get(modelId);
 
-
         // set templateType and htmlContents
-
         if (clickedModel.get('type') === 'open') {
           templateType = view.openNoteDetailTemplate;
           htmlContents = {
+                           'title': clickedModel.get('body').title,
+                           'description': clickedModel.get('body').description,
                            'author': clickedModel.get('author'),
-                           'type': clickedModel.get('type'),
-                           'desc': clickedModel.get('body').description,
+                           'body': clickedModel.get('body').open,
                            'created_at': clickedModel.get('created_at')
                           };
         } else if (clickedModel.get('type') === 'photo_set') {
           templateType = view.photoNoteDetailTemplate;
           htmlContents = {
                            'author': clickedModel.get('author'),
-                           'type': clickedModel.get('type'),
-                           'desc': clickedModel.get('body').description,
+                           'description': clickedModel.get('body').description,
+                           'explanation': clickedModel.get('body').explanation,
+                           'question': clickedModel.get('body').question,
+                           'title': clickedModel.get('body').title,
                            'created_at': clickedModel.get('created_at')
                           };
         } else if (clickedModel.get('type') === 'cross_cutting') {
           templateType = view.cuttingNoteDetailTemplate;
           htmlContents = {
                            'author': clickedModel.get('author'),
-                           'type': clickedModel.get('type'),
-                           'desc': clickedModel.get('body').description,
+                           'title': clickedModel.get('body').title,
+                           'description': clickedModel.get('body').description,
+                           'explanation': clickedModel.get('body').explanation,
                            'created_at': clickedModel.get('created_at')
                           };
         } else if (clickedModel.get('type') === 'planning') {
           templateType = view.planningNoteDetailTemplate;
           htmlContents = {
                            'author': clickedModel.get('author'),
-                           'type': clickedModel.get('type'),
-                           'desc': clickedModel.get('body').description,
+                           'hypothesis': clickedModel.get('body').hypothesis,
+                           'description': clickedModel.get('body').description,
+                           'evidence': clickedModel.get('body').evidence,
+                           'title': clickedModel.get('body').title,
                            'created_at': clickedModel.get('created_at')
                           };
-        }
+                        }
 
         var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
         view.$el.find('.note-details').html(noteDetail);
@@ -408,7 +412,6 @@
          jQuery('.note-number-total').html(totalNumPubNotes + ' Notes');
       }
 
-
       _.each(publishedNotes, function(note){
         var me_or_others = 'others';
         // add class 'me' or 'other' to note
@@ -416,15 +419,21 @@
           me_or_others = 'me';
         }
 
-
         var body = note.get('body');
+        var title = note.get('body').title;
+        if (title === '') {title = 'Untitled Note'};
         var bodyText = body[_.keys(body)[0]];
 
-
-        var listItem = _.template(jQuery(view.template).text(), {'id': note.id, 'text': bodyText, 'me_or_others': me_or_others, 'author': note.get('author'), 'created_at': note.get('created_at')});
+        var listItem = _.template(jQuery(view.template).text(), {
+          'id': note.id,
+          'text': bodyText,
+          'me_or_others': me_or_others,
+          'author': note.get('author'),
+          'created_at': note.get('created_at'),
+          'title': title
+        });
 
         var existingNote = list.find("[data-id='" + note.id + "']");
-
 
         if (existingNote.length === 0) {
           list.append(listItem);
@@ -432,9 +441,7 @@
           existingNote.replaceWith(listItem);
         }
       });
-
     }
-
   });
 
   this.HG = HG;

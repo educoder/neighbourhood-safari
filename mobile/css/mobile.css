@@ -23,7 +23,7 @@
 
   /*disable bootstrap default hover state*/
   .disabled {
-    color: #333333 !important;
+    color: #333 !important;
     text-decoration: none !important; }
 
   input {

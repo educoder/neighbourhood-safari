@@ -1,6 +1,6 @@
 @media all and (orientation: landscape) {
   body {
-    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif; }
+    font-family: "Roboto", sans-serif; }
 
   .planning {
     background-image: none;
@@ -23,7 +23,7 @@
 
   /*disable bootstrap default hover state*/
   .disabled {
-    color: #333 !important;
+    color: #333333 !important;
     text-decoration: none !important; }
 
   input {
@@ -119,8 +119,8 @@
   .note-input hr {
     height: 7px;
     border: 0; }
-  .note-input .input-button-field {
-    /*margin-bottom: 1em;*/ }
+  .note-input .input-field-group {
+    margin-bottom: 1em; }
   .note-input .camera-btn {
     width: 3em;
     margin-left: 1em;
@@ -160,11 +160,11 @@
   /*   cross-cutting note   */
   /*                        */
   .open-note-input .note-type-title {
-    background-color: #9282f3; }
+    background-color: #cd16ac; }
   .open-note-input textarea {
-    border-color: #9282f3; }
+    border-color: #cd16ac; }
   .open-note-input hr {
-    background: #9282f3; }
+    background: #cd16ac; }
 
   /******************************** READ *******************************/
   /* MAYBE CHANGE TO note-details */

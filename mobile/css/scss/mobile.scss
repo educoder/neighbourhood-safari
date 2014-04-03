@@ -6,7 +6,7 @@ $open-color: rgb(205, 22, 172);
 @media all and (orientation: landscape) {
 
   body {
-    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   .planning {
@@ -149,8 +149,8 @@ $open-color: rgb(205, 22, 172);
       height: 7px;
       border: 0;
     }
-    .input-button-field {
-      /*margin-bottom: 1em;*/
+    .input-field-group {
+      margin-bottom: 1em;
     }
     .camera-btn {
       width: 3em;
@@ -210,13 +210,13 @@ $open-color: rgb(205, 22, 172);
   /*                        */
   .open-note-input {
     .note-type-title {
-      background-color: $cross-cutting-color;
+      background-color: $open-color;
     }
     textarea {
-      border-color: $cross-cutting-color;
+      border-color: $open-color;
     }
     hr {
-      background: $cross-cutting-color;
+      background: $open-color;
     }
   }
 

@@ -106,6 +106,7 @@
         created_at: new Date(),
         type: note_type,
         body: {},
+        photos: [],
         related_camera_traps: [],
         published: false
       };
@@ -131,8 +132,9 @@
       // Add note input field html into div
       view.$el.find('.note-taking-toggle-input-form').html(noteInput);
 
-      // Clear text input fields
+      // Clear input fields
       view.$el.find('textarea').val('');
+      jQuery('.photo').removeClass('selected');
 
       // hide modal
       jQuery('.note-type-picker').modal('hide');
@@ -151,19 +153,25 @@
     },
 
     showPhotoPicker: function() {
-      jQuery('.photo').removeClass('selected');
       jQuery('.photo-picker').modal('show');
     },
 
     selectPhoto: function(ev) {
-      console.log('got there');
       jQuery(ev.target).addClass('selected');
     },
 
     addPhotos: function() {
-      var view = this;
+      // clear out all photos previous attached to the note
+      app.currentNote.set('photos',[]);
+      var photosAr = [];
+      // create an array or urls of all of the photos marked as selected
+      _.each(jQuery('.photo-picker .selected'), function(el) {
+        photosAr.push(jQuery(el).attr('src'));
+      });
+      // set that array into the currentNote
+      app.currentNote.set('photos', photosAr);
       jQuery('.photo-picker').modal('hide');
-      alert('photos fake added to note');
+      alert('Photos attached to note');
     },
 
     cancelNote: function() {

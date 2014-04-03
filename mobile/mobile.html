@@ -18,8 +18,8 @@
     <script type="text/javascript" src="../node_modules/underscore/underscore.js"></script>
     <script type="text/javascript" src="../node_modules/backbone/backbone.js"></script>
 
-    <script type="text/javascript" src="../node_modules/backbone.drowsy/backbone.drowsy.js"></script>
-    <script type="text/javascript" src="../node_modules/backbone.drowsy/wakeful.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone.drowsy.encorelab/backbone.drowsy.js"></script>
+    <script type="text/javascript" src="../node_modules/backbone.drowsy.encorelab/wakeful.js"></script>
 
     <script type="text/javascript" src="../libs/jquery.toastmessage.js"></script>
     <script type="text/javascript" src="../libs/jquery.cookie.js"></script>
@@ -40,36 +40,49 @@
 
     <script id="open-note-detail-template" type="text/template">
         <div class="note-details-container">
-            <h3>Open Note</h3>
+            <h3><%= title %></h3>
+            <h6>Open Note </h6>
             <hr>
+            <p><%= description %></p>
             <p>Created by: <%= author %></p>
-            <span class="small"><%= created_at %></span>
+            <span class="small">Created at: <%= created_at %></span>
         </div>
     </script>
 
     <script id="photo-note-detail-template" type="text/template">
         <div class="note-details-container">
-            <h3>Photo Set Note</h3>
+            <h3><%= title %></h3>
+            <h6>Photo-Set Note</h6>
             <hr>
-            <p>Created by: <%= author %></p>
+            <p>Description:&nbsp;<%= description %></p>
+            <p>Question:&nbsp;<%= question %></p>
+            <p>Explanation:&nbsp;<%= explanation %></p>
+            <p>Created by:&nbsp;<%= author %></p>
             <span class="small"><%= created_at %></span>
         </div>
     </script>
 
     <script id="cross-note-detail-template" type="text/template">
         <div class="note-details-container">
-            <h3>Cross Cutting Note</h3>
+            <h3><%= title %></h3>
+            <h6>Cross Cutting Note</h6>
             <hr>
-            <p>Created by: <%= author %></p>
+            <p>Description:&nbsp; <%= description %></p>
+            <p>Explanation:&nbsp; <%= explanation %></p>
+            <p>Created by:&nbsp;<%= author %></p>
             <span class="small"><%= created_at %></span>
         </div>
     </script>
 
     <script id="planning-note-detail-template" type="text/template">
         <div class="note-details-container">
-            <h3>Planning Note</h3>
+            <h3><%= title %></h3>
+            <h6>Planning Note</h6>
             <hr>
-            <p>Created by: <%= author %></p>
+            <p>Hypothesis:&nbsp;<%= hypothesis %></p>
+            <p>Description:&nbsp;<%= description %></p>
+            <p>Evidence:&nbsp;<%= evidence %></p>
+            <p>Created by:&nbsp;<%= author %></p>
             <span class="small"><%= created_at %></span>
         </div>
     </script>
@@ -82,7 +95,7 @@
         <a class="disabled" href="#">
             <li class="list-item" data-id=<%= id %>>
                 <div>
-                    <h4>Note Title</h4>
+                    <h4><%= title %></h4>
                     <i><span><%= author %></span></i>
                     <div class="note-text">
                         <p><%= text %></p>

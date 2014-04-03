@@ -39,8 +39,11 @@
       font-size: 1.2em;
       font-weight: 700;
     }*/
-  .scrollable {
-    overflow-y: auto; }
+  .scrollable-y {
+    overflow-y: scroll; }
+
+  .scrollable-x {
+    overflow-x: scroll; }
 
   .hidden {
     display: none; }
@@ -213,8 +216,7 @@
     background-color: white; }
 
   #list-screen ul {
-    min-height: 200px;
-    overflow: hidden;
+    max-height: 600px;
     background-color: white; }
   #list-screen li {
     margin: 5px; }

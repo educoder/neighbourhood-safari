@@ -30,7 +30,7 @@
         }
       });
 
-      view.collection.on('change', function(n) {
+      view.collection.on('change update', function(n) {
         if (!n.get('published') && (n.get('author') === app.username)) {
           view.render();
         }
@@ -56,7 +56,7 @@
     },
 
     events: {
-      // 'click .resume-note-btn'   : "resumeNote",
+      'click .resume-note-btn'   : "resumeNote",
       'click .new-note-btn'      : 'pickNewNoteType',
       'click .note-type-picker button': 'showNewNote',
       // 'click .modal-select-note' : 'selectNoteToResume',
@@ -83,6 +83,17 @@
           app.autoSave(app.currentNote, field, input, true);
         }, 5000);
       }
+    },
+
+    resumeNote: function(ev) {
+      var view = this;
+      console.log("updating resume note list...");
+
+      // this assumes that render does the resume notes list only
+      view.render();
+
+      // show the list of notes to resume
+      // view.$el.find('.resume-note-btn-group').toggleClass('open');
     },
 
     // resumeNote: function(){
@@ -303,7 +314,8 @@
 
       // jQuery('.unpublished-note-picker').modal('hide');
       jQuery('.note-taking-toggle').slideDown();
-      jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
+      // jQuery('.resume-note-btn, .new-note-btn').attr('disabled', 'disabled');
+      jQuery('#show-note-container').addClass('hidden');
     },
 
     // createOrRestoreNote: function(ev) {

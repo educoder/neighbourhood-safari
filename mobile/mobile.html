@@ -108,7 +108,7 @@
     <!--                                    -->
 
     <script id="resume-unpublished-notes" type="text/template">
-        <option data-id="<%= id %>" ><%= option_text %></option>
+        <li class="<%= type %>"><a href="#" data-id="<%= id %>"><%= title %></a></li>
     </script>
 
     <!--                                   -->
@@ -398,8 +398,16 @@
             <div id="notes-screen-input" class="span12 input-box-wrapper">
 
                 <div id="show-note-container" class="span12">
-                    <button class="resume-note-btn btn btn-large btn-primary">Resume Note</button>
-                    <button class="new-note-btn btn btn-large btn-primary" data-toggle="popover">New Note</button>
+                    <!-- <button class="resume-note-btn btn btn-large btn-primary">Resume Note</button> -->
+                    <div class="pull-right">
+                        <div class="btn-group resume-note-btn-group">
+                            <button class="resume-note-btn btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Resume Note</button>
+                            <ul class="dropdown-menu">
+                                <!-- dropdown menu links filled via template in view -->
+                            </ul>
+                        </div>
+                        <button class="new-note-btn btn btn-large btn-primary" data-toggle="popover">New Note</button>
+                    </div>
                 </div>
 
                 <div class="note-taking-toggle">

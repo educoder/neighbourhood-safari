@@ -14,7 +14,7 @@
 /*                           */
 /* 2.0 Landscape Orientation */
 /*                           */
-@media all and (orientation: landscape) {
+@media all {
   body {
     font-family: "Roboto", sans-serif; }
 
@@ -361,14 +361,16 @@
 /*                 */
 /*  3.0 Portrait   */
 /*                 */
-@media all and (orientation: portrait) {
+/*@media all and (orientation: portrait) {
   .row-fluid, .navbar {
-    display: none; }
-
+    display: none;
+  }
   .orientation-warning {
     text-align: center;
     font-size: 2em;
-    margin-top: 25%; } }
+    margin-top: 25%;
+  }
+}*/
 @media (max-width: 980px) {
   .row-fluid {
     padding-top: 0px; }

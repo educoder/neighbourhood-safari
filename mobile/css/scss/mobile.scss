@@ -24,7 +24,7 @@ $tag-color: rgb(187, 182, 181);
 /*                           */
 /* 2.0 Landscape Orientation */
 /*                           */
-@media all and (orientation: landscape) {
+@media all {
 
   body {
     font-family: "Roboto", sans-serif;
@@ -484,7 +484,7 @@ $tag-color: rgb(187, 182, 181);
 /*  3.0 Portrait   */
 /*                 */
 
-@media all and (orientation: portrait) {
+/*@media all and (orientation: portrait) {
   .row-fluid, .navbar {
     display: none;
   }
@@ -493,7 +493,7 @@ $tag-color: rgb(187, 182, 181);
     font-size: 2em;
     margin-top: 25%;
   }
-}
+}*/
 
 // Remove padding from top from below nav
 @media (max-width: 980px) {

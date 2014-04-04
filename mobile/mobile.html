@@ -89,19 +89,16 @@
     <!--                  -->
 
     <script id="notes-list-template" type="text/template">
-        <a class="disabled" href="#">
-            <li class="list-item <%= note_type %>" data-id=<%= id %>>
-                <div>
-                    <h4><%= title %></h4>
-                    <i><span><%= author %></span></i>
-                    <div class="note-text">
-                        <p><%= text %></p>
-                        <p class="small"><%= created_at %></p>
-                    </div>
+        <li class="list-item <%= note_type %>" data-id=<%= id %>>
+            <a class="disabled" href="#">
+                <h4><%= title %></h4>
+                <i><span><%= author %></span></i>
+                <div class="note-text">
+                    <p><%= text %></p>
+                    <p class="small"><%= created_at %></p>
                 </div>
-                <hr>
-            </li>
-        </a>
+            </a>
+        </li>
     </script>
 
     <!--                                    -->

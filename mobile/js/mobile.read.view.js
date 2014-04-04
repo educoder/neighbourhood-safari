@@ -127,6 +127,7 @@
                         }
 
         var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
+
         view.$el.find('.note-details').html(noteDetail);
       });
     },

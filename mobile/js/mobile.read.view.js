@@ -68,67 +68,63 @@
       alert('Clearing Fitlers');
     },
 
-    showNoteDetails: function() {
+    showNoteDetails: function(event) {
       var view = this;
       var templateType = null;
       var htmlContents = null;
 
-      // Setup click listener
-      jQuery('.list-item').on('click', function (event) {
+      // fetch model ID from DOM
+      var modelId = jQuery(event.currentTarget).data('id');
 
-        // fetch model ID from DOM
-        var modelId = jQuery(event.currentTarget).data('id');
+      // set model from collection
+      var clickedModel = view.collection.get(modelId);
+      if (clickedModel.get('body').title === '') {
+        clickedModel.get('body').title = 'Untitled Note';
+      }
 
-        // set model from collection
-        var clickedModel = view.collection.get(modelId);
-        if (clickedModel.get('body').title === '') {
-          clickedModel.get('body').title = 'Untitled Note';
-        }
+      // set templateType and htmlContents
+      if (clickedModel.get('type') === 'open') {
+        templateType = view.openNoteDetailTemplate;
+        htmlContents = {
+                         'title': clickedModel.get('body').title,
+                         'description': clickedModel.get('body').description,
+                         'author': clickedModel.get('author'),
+                         'body': clickedModel.get('body').open,
+                         'created_at': clickedModel.get('created_at')
+                        };
+      } else if (clickedModel.get('type') === 'photo_set') {
+        templateType = view.photoNoteDetailTemplate;
+        htmlContents = {
+                         'author': clickedModel.get('author'),
+                         'description': clickedModel.get('body').description,
+                         'explanation': clickedModel.get('body').explanation,
+                         'question': clickedModel.get('body').question,
+                         'title': clickedModel.get('body').title,
+                         'created_at': clickedModel.get('created_at')
+                        };
+      } else if (clickedModel.get('type') === 'cross_cutting') {
+        templateType = view.cuttingNoteDetailTemplate;
+        htmlContents = {
+                         'author': clickedModel.get('author'),
+                         'title': clickedModel.get('body').title,
+                         'description': clickedModel.get('body').description,
+                         'explanation': clickedModel.get('body').explanation,
+                         'created_at': clickedModel.get('created_at')
+                        };
+      } else if (clickedModel.get('type') === 'planning') {
+        templateType = view.planningNoteDetailTemplate;
+        htmlContents = {
+                         'author': clickedModel.get('author'),
+                         'hypothesis': clickedModel.get('body').hypothesis,
+                         'description': clickedModel.get('body').description,
+                         'evidence': clickedModel.get('body').evidence,
+                         'title': clickedModel.get('body').title,
+                         'created_at': clickedModel.get('created_at')
+                        };
+                      }
 
-        // set templateType and htmlContents
-        if (clickedModel.get('type') === 'open') {
-          templateType = view.openNoteDetailTemplate;
-          htmlContents = {
-                           'title': clickedModel.get('body').title,
-                           'description': clickedModel.get('body').description,
-                           'author': clickedModel.get('author'),
-                           'body': clickedModel.get('body').open,
-                           'created_at': clickedModel.get('created_at')
-                          };
-        } else if (clickedModel.get('type') === 'photo_set') {
-          templateType = view.photoNoteDetailTemplate;
-          htmlContents = {
-                           'author': clickedModel.get('author'),
-                           'description': clickedModel.get('body').description,
-                           'explanation': clickedModel.get('body').explanation,
-                           'question': clickedModel.get('body').question,
-                           'title': clickedModel.get('body').title,
-                           'created_at': clickedModel.get('created_at')
-                          };
-        } else if (clickedModel.get('type') === 'cross_cutting') {
-          templateType = view.cuttingNoteDetailTemplate;
-          htmlContents = {
-                           'author': clickedModel.get('author'),
-                           'title': clickedModel.get('body').title,
-                           'description': clickedModel.get('body').description,
-                           'explanation': clickedModel.get('body').explanation,
-                           'created_at': clickedModel.get('created_at')
-                          };
-        } else if (clickedModel.get('type') === 'planning') {
-          templateType = view.planningNoteDetailTemplate;
-          htmlContents = {
-                           'author': clickedModel.get('author'),
-                           'hypothesis': clickedModel.get('body').hypothesis,
-                           'description': clickedModel.get('body').description,
-                           'evidence': clickedModel.get('body').evidence,
-                           'title': clickedModel.get('body').title,
-                           'created_at': clickedModel.get('created_at')
-                          };
-                        }
-
-        var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
-        view.$el.find('.note-details').html(noteDetail);
-      });
+      var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
+      view.$el.find('.note-details').html(noteDetail);
     },
 
     render: function () {

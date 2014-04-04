@@ -318,26 +318,6 @@
       jQuery('#show-note-container').addClass('hidden');
     },
 
-    // createOrRestoreNote: function(ev) {
-    //   // alert('createNewNote: want me to do stuff, teach me');
-    //   var view = this;
-
-    //   var noteToRestore = view.collection.findWhere({author: app.username, published: false});
-    //   if (noteToRestore) {
-    //     app.currentNote = noteToRestore;
-    //     this.$el.find('.note-body').val(app.currentNote.get('body'));
-    //   } else {
-    //     // no unpublished note, so we create a new note
-    //     var note = {};
-    //     note.author = app.username;
-    //     note.created_at = new Date();
-    //     note.body = '';
-    //     note.published = false;
-
-    //     app.addNote(note);
-    //   }
-    // },
-
     publishNote: function() {
       var view = this;
       console.log('want me to do stuff, teach me');
@@ -366,24 +346,9 @@
       jQuery('#show-note-container').removeClass('hidden');
     },
 
-    // autosaveNote: function(ev) {
-    //   var field = ev.target.name,
-    //       input = jQuery('#'+ev.target.id).val();
-    //   // clear timer on keyup so that a save doesn't happen while typing
-    //   window.clearTimeout(app.autoSaveTimer);
-
-    //   // save after 10 keystrokes
-    //   app.autoSave(view.model, field, input, false);
-
-    //   // setting up a timer so that if we stop typing we save stuff after 5 seconds
-    //   app.autoSaveTimer = setTimeout(function(){
-    //     app.autoSave(view.model, field, input, true);
-    //   }, 5000);
-    // },
-
     render: function () {
-      console.log('Rendering WriteView...');
       var view = this;
+      // ATTENTION: render fills the dropdown to resume notes. Be careful when editing!
 
       // retrieve unpublished notes of user
       var notesToRestore = view.collection.where({author: app.username, published: false});

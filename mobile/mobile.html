@@ -259,7 +259,7 @@
 
     <!-- tag template -->
     <script id="tag-template" type="text/template">
-        <div class="tag"><%= tagName %></div>
+        <div class="tag <%= selectedClass %>"><%= tagName %></div>
     </script>
 
 
@@ -463,7 +463,7 @@
                     </div>
 
                     <div class="photo-modal-body">
-                        <div class="photos-container">
+                        <div class="photos-container scrollable-y">
                             <!-- filled by the backpack collection (photos) -->
                         </div>
                         <button class="add-photos-btn btn btn-large btn-success">Add</button>
@@ -476,7 +476,7 @@
                     </div>
 
                     <div class="tags-modal-body">
-                        <div class="tags-container">
+                        <div class="tags-container scrollable-y">
                             <!-- filled by the tags collection -->
                         </div>
                         <button class="add-tags-btn btn btn-large btn-success">Add</button>

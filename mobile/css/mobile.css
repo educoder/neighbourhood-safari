@@ -63,11 +63,16 @@
     margin: 0.2em; }
 
   .tag {
-    width: 10em;
-    height: 4em;
+    width: 12em;
+    height: 2.5em;
     background-color: #bbb6b5;
-    border-radius: 0.2em;
-    margin: 0.3em; }
+    text-align: center;
+    line-height: 2.5em;
+    /* to center vertically */
+    border: black solid 1px;
+    border-radius: 0.6em;
+    margin: 0.3em;
+    display: inline-block; }
 
   .selected {
     opacity: 0.4; }
@@ -86,6 +91,7 @@
     padding-left: 10%;
     padding-right: 10%; }
 
+  /* TODO: clean this up by combining classes here */
   .photo-modal-body {
     text-align: center;
     padding: 2%; }
@@ -94,6 +100,16 @@
     width: 60%; }
 
   .add-photos-btn {
+    margin-top: 2em; }
+
+  .tags-modal-body {
+    text-align: center;
+    padding: 2%; }
+
+  .tag-picker {
+    width: 60%; }
+
+  .add-tags-btn {
     margin-top: 2em; }
 
   .note-btn-container {
@@ -173,7 +189,6 @@
       font-weight: 900; }
     .note-input hr {
       height: 7px;
-      /*width: 110%;*/
       border: 0; }
     .note-input .input-field-group {
       margin-bottom: 1em; }
@@ -194,14 +209,11 @@
     .note-input .tag-btn {
       width: 1em;
       height: 1em;
-      margin-left: 0.5em;
+      margin-left: 0.3em;
       font-size: 2.5em;
       font-weight: 900;
       color: white;
       padding-bottom: 0.25em; }
-
-  .photos-container {
-    overflow-y: scroll; }
 
   /*                    */
   /*   planning note    */

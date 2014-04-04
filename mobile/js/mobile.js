@@ -230,6 +230,12 @@
       // show notes-screen - is this the default? TODO: check with design team where the first pedagogical step should be
       jQuery('#read-screen').removeClass('hidden');
       jQuery('.nav-pills .read-button').addClass('active'); // highlight notes selection in nav bar
+      jQuery('.navbar').addClass('hidden');
+
+      jQuery('#start-screen').click(function() {
+        jQuery('#start-screen').remove();
+        jQuery('.navbar').removeClass('hidden');
+      });
     });
   };
 

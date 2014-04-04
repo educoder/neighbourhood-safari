@@ -273,7 +273,6 @@ $tag-color: rgb(187, 182, 181);
 .cross-cutting-note-input .note-type-title,
 .open-note-input .note-type-title,
 .photo-set-note-input .note-type-title {
-  // display: inline-block;
   width: 25%;
   min-width: 350px;
   border-radius: 0 0 10px 0;
@@ -412,21 +411,25 @@ $tag-color: rgb(187, 182, 181);
       li.planning {
         h4 {
           color: $planning-color;
+          padding-top: 2px;
         }
       }
       li.cross_cutting {
         h4 {
           color: $cross-cutting-color;
+          padding-top: 2px;
         }
       }
       li.open {
         h4 {
           color: $open-color;
+          padding-top: 2px;
         }
       }
       li.photo_set {
         h4 {
           color: $photo-set-color;
+          padding-top: 2px;
         }
       }
     }

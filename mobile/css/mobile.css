@@ -22,7 +22,7 @@
 
   /*disable bootstrap default hover state*/
   .disabled {
-    color: #333333 !important;
+    color: #333 !important;
     text-decoration: none !important; }
 
   input {
@@ -287,7 +287,7 @@
     padding: 5px; }
 
   #list-screen .span12 {
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #eee;
     width: 97.5%; }
   #list-screen .span4 {
     margin-left: 0; }
@@ -311,7 +311,7 @@
       padding-right: 2%;
       margin-top: 0;
       border-radius: 0 5px 5px 0;
-      border-bottom: 2px solid #7e7e7e; }
+      border-bottom: 2px solid #7E7E7E; }
     #list-screen .span8 .open-note-details h3 {
       background-color: #cd16ac; }
     #list-screen .span8 .planning-note-details h3 {
@@ -322,7 +322,7 @@
       background-color: #fca91e; }
   #list-screen .span4 {
     max-height: 588px;
-    border-right: 1px solid #eeeeee; }
+    border-right: 1px solid #eee; }
   #list-screen .list-item {
     margin-left: 2%; }
 

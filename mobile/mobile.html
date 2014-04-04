@@ -39,7 +39,7 @@
     <!--                        -->
 
     <script id="open-note-detail-template" type="text/template">
-        <div class="note-details-container">
+        <div class="note-details-container open-note-details">
             <h3><%= title %></h3>
             <h6>Open Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -49,7 +49,7 @@
     </script>
 
     <script id="photo-note-detail-template" type="text/template">
-        <div class="note-details-container">
+        <div class="note-details-container photo-note-details">
             <h3><%= title %></h3>
             <h6>Photo-Set Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -61,7 +61,7 @@
     </script>
 
     <script id="cross-note-detail-template" type="text/template">
-        <div class="note-details-container">
+        <div class="note-details-container cross-cutting-note-details">
             <h3><%= title %></h3>
             <h6>Cross Cutting Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -72,9 +72,9 @@
     </script>
 
     <script id="planning-note-detail-template" type="text/template">
-        <div class="note-details-container">
+        <div class="note-details-container planning-note-details">
             <h3><%= title %></h3>
-            <h6>Planning Notem - published at <span class="small"><%= created_at %></span></h6>
+            <h6>Planning Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
             <hr>
             <p>Hypothesis:&nbsp;<%= hypothesis %></p>
@@ -89,7 +89,7 @@
 
     <script id="notes-list-template" type="text/template">
         <a class="disabled" href="#">
-            <li class="list-item" data-id=<%= id %>>
+            <li class="list-item <%= note_type %>" data-id=<%= id %>>
                 <div>
                     <h4><%= title %></h4>
                     <i><span><%= author %></span></i>
@@ -129,7 +129,7 @@
 
     <script id="planning-note-input" type="text/template">
         <form class="planning-note-input note-input">
-            <div class="note-type-title">Photo Set Note</div>
+            <div class="note-type-title"><h3>Photo Set Note</h3></div>
             <div class="form-group">
                 <div class="input-field-group">
                     <select class="camera-trap-region-dropdown">
@@ -168,7 +168,7 @@
 
     <script id="photo-set-note-input" type="text/template">
         <form class="photo-set-note-input note-input">
-            <div class="note-type-title">Photo Set Note</div>
+            <div class="note-type-title"><h3>Photo Set Note</h3></div>
             <div class="form-group">
                 <div class="input-field-group">
                     <%
@@ -206,7 +206,7 @@
 
     <script id="cross-cutting-note-input" type="text/template">
         <form class="cross-cutting-note-input note-input">
-            <div class="note-type-title">Cross-cutting Note</div>
+            <div class="note-type-title"><h3>Cross-cutting Note</h3></div>
             <div class="form-group">
                 <div class="input-field-group">
                     <span>Add photos from other camera traps that interest you</span><img class="camera-btn" src="img/camera3_small.png"/>
@@ -227,7 +227,7 @@
 
     <script id="open-note-input" type="text/template">
         <form class="open-note-input note-input">
-            <div class="note-type-title">Open Note</div>
+            <div class="note-type-title"><h3>Open Note</h3></div>
             <div class="form-group">
                 <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what your note is about..."></textarea>
                 <div class="input-field-group">
@@ -310,7 +310,7 @@
                         </ul>
                     </div>
 
-                    <div class="span7 note-details">
+                    <div class="span8 note-details">
                         <!-- photo-set-note template inserted here  -->
                     </div>
             </div>

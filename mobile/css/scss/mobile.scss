@@ -3,11 +3,11 @@
 /*                               */
 /*        1.0 Variables          */
 /*        2.0 Landscape          */
-/*        2.1 Helper             */
-/*        2.2 Write Screen       */
-/*        2.3 Read Screen        */
+/*         2.1 Helper            */
+/*         2.2 Write Screen      */
+/*         2.3 Read Screen       */
 /*        3.0 Portrait           */
-
+/*                               */
 
 
 /*               */
@@ -279,9 +279,27 @@ $tag-color: rgb(187, 182, 181);
     }
   }
 
-  /*                    */
-  /*   planning note    */
-  /*                    */
+  .planning-note-input .note-type-title,
+  .cross-cutting-note-input .note-type-title,
+  .open-note-input .note-type-title,
+  .photo-set-note-input .note-type-title {
+    // display: inline-block;
+    width: 25%;
+    min-width: 350px;
+    border-radius: 0 0 10px 0;
+    border-bottom: 2px solid #7E7E7E;
+    margin: -14px 0 25px -5px;
+    padding: 10px 0;
+    h3 {
+      display: inline-block;
+      margin: 0 10px 0 10px;
+      padding-left: 32px;
+    }
+  }
+
+/*                    */
+/*   planning note    */
+/*                    */
   .planning-note-input {
     .note-type-title {
       background-color: $planning-color;
@@ -384,18 +402,16 @@ $tag-color: rgb(187, 182, 181);
     width: 65%;
   }
 
-  /*              */
-  /* Input screen */
-  /*              */
-
   .input-box-wrapper {
     padding: 5px;
   }
+  /*             */
+  /* List Screen */
+  /*             */
 
   #list-screen {
     .span12 {
       border-bottom: 1px solid #eee;
-      width: 97.5%;
     }
 
     .span4 {
@@ -426,7 +442,7 @@ $tag-color: rgb(187, 182, 181);
     }
 
     .span8 {
-      margin-left: 0;
+        margin-left: 0;
       .note-details-container {
         h3, h6, p {
           padding-left: 20px;
@@ -437,7 +453,7 @@ $tag-color: rgb(187, 182, 181);
         display: inline-block;
         padding-right: 2%;
         margin-top:0;
-        border-radius: 0 5px 5px 0;
+        border-radius: 0 10px 10px 0;
         border-bottom: 2px solid #7E7E7E;
       }
       .open-note-details h3 {
@@ -460,7 +476,7 @@ $tag-color: rgb(187, 182, 181);
     .list-item {
       margin-left: 2%;
     }
-  } /* end .list-screen */
+  } /* end .span8 */
 }   /* end orientation landscape */
 
 
@@ -483,5 +499,11 @@ $tag-color: rgb(187, 182, 181);
 @media (max-width: 980px) {
   .row-fluid {
     padding-top: 0px;
+  }
+  .planning-note-input .note-type-title,
+  .cross-cutting-note-input .note-type-title,
+  .open-note-input .note-type-title,
+  .photo-set-note-input .note-type-title {
+  margin: -25px 0 10px -5px;
   }
 }

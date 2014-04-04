@@ -3,10 +3,11 @@
 /*                               */
 /*        1.0 Variables          */
 /*        2.0 Landscape          */
-/*        2.1 Helper             */
-/*        2.2 Write Screen       */
-/*        2.3 Read Screen        */
+/*         2.1 Helper            */
+/*         2.2 Write Screen      */
+/*         2.3 Read Screen       */
 /*        3.0 Portrait           */
+/*                               */
 /*               */
 /* 1.0 Variables */
 /*               */
@@ -22,7 +23,7 @@
 
   /*disable bootstrap default hover state*/
   .disabled {
-    color: #333333 !important;
+    color: #333 !important;
     text-decoration: none !important; }
 
   input {
@@ -215,6 +216,30 @@
       color: white;
       padding-bottom: 0.25em; }
 
+<<<<<<< HEAD
+=======
+  .photos-container {
+    overflow-y: scroll; }
+
+  .planning-note-input .note-type-title,
+  .cross-cutting-note-input .note-type-title,
+  .open-note-input .note-type-title,
+  .photo-set-note-input .note-type-title {
+    width: 25%;
+    min-width: 350px;
+    border-radius: 0 0 10px 0;
+    border-bottom: 2px solid #7E7E7E;
+    margin: -14px 0 25px -5px;
+    padding: 10px 0; }
+    .planning-note-input .note-type-title h3,
+    .cross-cutting-note-input .note-type-title h3,
+    .open-note-input .note-type-title h3,
+    .photo-set-note-input .note-type-title h3 {
+      display: inline-block;
+      margin: 0 10px 0 10px;
+      padding-left: 32px; }
+
+>>>>>>> 56818a3e4990a55e68f8223573226107f1504470
   /*                    */
   /*   planning note    */
   /*                    */
@@ -292,15 +317,14 @@
   .headline-text-entry {
     width: 65%; }
 
-  /*              */
-  /* Input screen */
-  /*              */
   .input-box-wrapper {
     padding: 5px; }
 
+  /*             */
+  /* List Screen */
+  /*             */
   #list-screen .span12 {
-    border-bottom: 1px solid #eeeeee;
-    width: 97.5%; }
+    border-bottom: 1px solid #eee; }
   #list-screen .span4 {
     margin-left: 0; }
     #list-screen .span4 li.planning, #list-screen .span4 li.cross_cutting, #list-screen .span4 li.open, #list-screen .span4 li.photo_set {
@@ -322,8 +346,8 @@
       display: inline-block;
       padding-right: 2%;
       margin-top: 0;
-      border-radius: 0 5px 5px 0;
-      border-bottom: 2px solid #7e7e7e; }
+      border-radius: 0 10px 10px 0;
+      border-bottom: 2px solid #7E7E7E; }
     #list-screen .span8 .open-note-details h3 {
       background-color: #cd16ac; }
     #list-screen .span8 .planning-note-details h3 {
@@ -334,11 +358,11 @@
       background-color: #fca91e; }
   #list-screen .span4 {
     max-height: 588px;
-    border-right: 1px solid #eeeeee; }
+    border-right: 1px solid #eee; }
   #list-screen .list-item {
     margin-left: 2%; }
 
-  /* end .list-screen */ }
+  /* end .span8 */ }
 /* end orientation landscape */
 /*                 */
 /*  3.0 Portrait   */
@@ -353,4 +377,10 @@
     margin-top: 25%; } }
 @media (max-width: 980px) {
   .row-fluid {
-    padding-top: 0px; } }
+    padding-top: 0px; }
+
+  .planning-note-input .note-type-title,
+  .cross-cutting-note-input .note-type-title,
+  .open-note-input .note-type-title,
+  .photo-set-note-input .note-type-title {
+    margin: -25px 0 10px -5px; } }

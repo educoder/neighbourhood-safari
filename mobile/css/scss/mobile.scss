@@ -81,11 +81,15 @@ $tag-color: rgb(187, 182, 181);
     margin: 0.2em;
   }
   .tag {
-    width: 10em;
-    height: 4em;
-    background-color: $tag-color;
-    border-radius: 0.2em;
+    width: 12em;
+    height: 2.5em;
+    background-color: #bbb6b5;
+    text-align: center;
+    line-height: 2.5em;           /* to center vertically */
+    border: black solid 1px;
+    border-radius: 0.6em;
     margin: 0.3em;
+    display: inline-block;
   }
   .selected {
     opacity: 0.4;
@@ -104,6 +108,7 @@ $tag-color: rgb(187, 182, 181);
     padding-left: 10%;
     padding-right: 10%;
   }
+  /* TODO: clean this up by combining classes here */
   .photo-modal-body {
     text-align: center;
     padding: 2%;
@@ -112,6 +117,16 @@ $tag-color: rgb(187, 182, 181);
     width: 60%;
   }
   .add-photos-btn {
+    margin-top: 2em;
+  }
+  .tags-modal-body {
+    text-align: center;
+    padding: 2%;
+  }
+  .tag-picker {
+    width: 60%;
+  }
+  .add-tags-btn {
     margin-top: 2em;
   }
   .note-btn-container {
@@ -230,7 +245,6 @@ $tag-color: rgb(187, 182, 181);
     }
     hr {
       height: 7px;
-      /*width: 110%;*/
       border: 0;
     }
     .input-field-group {
@@ -257,7 +271,7 @@ $tag-color: rgb(187, 182, 181);
     .tag-btn {
       width: 1em;
       height: 1em;
-      margin-left: 0.5em;
+      margin-left: 0.3em;
       font-size: 2.5em;
       font-weight: 900;
       color: white;
@@ -268,23 +282,22 @@ $tag-color: rgb(187, 182, 181);
   .photos-container {
     overflow-y: scroll;
   }
-
-.planning-note-input .note-type-title,
-.cross-cutting-note-input .note-type-title,
-.open-note-input .note-type-title,
-.photo-set-note-input .note-type-title {
-  width: 25%;
-  min-width: 350px;
-  border-radius: 0 0 10px 0;
-  border-bottom: 2px solid #7E7E7E;
-  margin: -14px 0 25px -5px;
-  padding: 10px 0;
-  h3 {
-    display: inline-block;
-    margin: 0 10px 0 10px;
-    padding-left: 32px;
+  .planning-note-input .note-type-title,
+  .cross-cutting-note-input .note-type-title,
+  .open-note-input .note-type-title,
+  .photo-set-note-input .note-type-title {
+    width: 25%;
+    min-width: 350px;
+    border-radius: 0 0 10px 0;
+    border-bottom: 2px solid #7E7E7E;
+    margin: -14px 0 25px -5px;
+    padding: 10px 0;
+    h3 {
+      display: inline-block;
+      margin: 0 10px 0 10px;
+      padding-left: 32px;
+    }
   }
-}
 
 /*                    */
 /*   planning note    */

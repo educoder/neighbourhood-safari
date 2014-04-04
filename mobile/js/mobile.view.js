@@ -247,14 +247,23 @@
     showTagPicker: function(ev) {
       ev.preventDefault();
       var view = this;
-      var tagHTML= "";
+      var tagsHTML= "";
 
       // make sure there is a tag collection
       if (app.tags) {
-        _.each(app.tags.models, function(t) {
-          tagHTML += _.template(jQuery(view.tagTemplate).text(), {'tagName':t.get('name')});
+        var tags = app.currentNote.get('tags');
+        app.tags.each(function(tag) {
+          // check if this note already has this tag
+          var matchTag = _.find(tags, function(t) { return t === tag.get('name'); });
+
+          var selectedFlag = "";
+          if (matchTag) {
+            selectedFlag = "selected";
+          }
+          // add the selector class if tag is already attached to note
+          tagsHTML += _.template(jQuery(view.tagTemplate).text(), {'tagName':tag.get('name'), 'selectedClass':selectedFlag});
         });
-        jQuery('.tags-container').html(tagHTML);
+        jQuery('.tags-container').html(tagsHTML);
         jQuery('.tag-picker').modal('show');
       } else {
         jQuery().toastmessage('showErrorToast', "There aren't any tags yet!");

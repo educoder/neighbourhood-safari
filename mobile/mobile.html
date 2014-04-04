@@ -39,7 +39,7 @@
     <!--                        -->
 
     <script id="open-note-detail-template" type="text/template">
-        <div class="note-details-container">
+        <div class="note-details-container open-note-details">
             <h3><%= title %></h3>
             <h6>Open Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -49,7 +49,7 @@
     </script>
 
     <script id="photo-note-detail-template" type="text/template">
-        <div class="note-details-container">
+        <div class="note-details-container photo-note-details">
             <h3><%= title %></h3>
             <h6>Photo-Set Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -61,7 +61,7 @@
     </script>
 
     <script id="cross-note-detail-template" type="text/template">
-        <div class="note-details-container">
+        <div class="note-details-container cross-cutting-note-details">
             <h3><%= title %></h3>
             <h6>Cross Cutting Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -72,9 +72,9 @@
     </script>
 
     <script id="planning-note-detail-template" type="text/template">
-        <div class="note-details-container">
+        <div class="note-details-container planning-note-details">
             <h3><%= title %></h3>
-            <h6>Planning Notem - published at <span class="small"><%= created_at %></span></h6>
+            <h6>Planning Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
             <hr>
             <p>Hypothesis:&nbsp;<%= hypothesis %></p>
@@ -89,7 +89,7 @@
 
     <script id="notes-list-template" type="text/template">
         <a class="disabled" href="#">
-            <li class="list-item" data-id=<%= id %>>
+            <li class="list-item <%= note_type %>" data-id=<%= id %>>
                 <div>
                     <h4><%= title %></h4>
                     <i><span><%= author %></span></i>
@@ -310,7 +310,7 @@
                         </ul>
                     </div>
 
-                    <div class="span7 note-details">
+                    <div class="span8 note-details">
                         <!-- photo-set-note template inserted here  -->
                     </div>
             </div>

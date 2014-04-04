@@ -132,7 +132,7 @@
             <div class="note-type-title">Photo Set Note</div>
             <div class="form-group">
                 <div class="input-field-group">
-                    <select>
+                    <select class="camera-trap-region-dropdown">
                         <option value="0">Select the region for your camera trap</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -160,7 +160,7 @@
                 <hr/>
                 <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
                 <div class="input-field-group">
-                    <span>Tag your note</span><span>+</span>
+                    <span>Tag your note</span><button class="tag-btn">+</button>
                 </div>
             </div>
         </form>
@@ -179,8 +179,9 @@
                         <span>Your camera trap number: </span><span class="related-camera-traps"/>
                     </div>
                 </div>
+                <br/>
                 <div class="input-field-group">
-                    <select>
+                    <select class="camera-trap-region-dropdown">
                         <option value="0">Select the region of your camera trap</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -188,7 +189,7 @@
                     </select>
                 </div>
                 <div class="input-field-group">
-                    <span>Add key photos from this camera trap place or analysis</span><img class="camera-btn" src="img/camera2_small.png"/>
+                    <span>Add key photos from this camera trap placement or analysis</span><img class="camera-btn" src="img/camera2_small.png"/>
                 </div>
                 <label>What you found</label>
                 <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe what you found in your photo set..."></textarea>
@@ -256,6 +257,10 @@
         <img class="photo" src="<%= url %>" />
     </script>
 
+    <!-- tag template -->
+    <script id="tag-template" type="text/template">
+        <div class="tag"><%= tagName %></div>
+    </script>
 
 
 </head>
@@ -402,7 +407,7 @@
                         <!-- filled by template via view -->
                     </div>
 
-                    <div class="span12">
+                    <div class="span12 note-btn-container">
                         <button class="cancel-note-btn btn btn-large btn-danger ">Cancel</button>
                         <button class="share-note-btn btn btn-large btn-success ">Submit</button>
                     </div>
@@ -449,22 +454,25 @@
                         <h3>Photos</h3>             <!-- TODO: this should be different depending on note (text and color) -->
                     </div>
 
-                    <!-- get this set up with its own collection and view -->
                     <div class="photo-modal-body">
-                        <!-- <form>
-                            <button class="btn-primary">Apply Filters</button>
-                        </form> -->
                         <div class="photos-container">
-<!--                             <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
-                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
-                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
-                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
-                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" />
-                            <img class="photo" src="http://pikachu.badger.encorelab.org/o7shv2i0ao.jpg" /> -->
+                            <!-- filled by the backpack collection (photos) -->
                         </div>
                         <button class="add-photos-btn btn btn-large btn-success">Add</button>
                     </div>
+                </div>
 
+                <div class="modal hide fade tag-picker" tabindex="-1" role="dialog" aria-labelledby="tag-picker" aria-hidden="true">
+                    <div class="modal-header">
+                        <h3>Tags</h3>             <!-- TODO: this should be different depending on note (text and color) -->
+                    </div>
+
+                    <div class="tags-modal-body">
+                        <div class="tags-container">
+                            <!-- filled by the tags collection -->
+                        </div>
+                        <button class="add-tags-btn btn btn-large btn-success">Add</button>
+                    </div>
                 </div>
 
             </div>

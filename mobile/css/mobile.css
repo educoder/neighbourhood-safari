@@ -67,6 +67,13 @@
     height: 9em;
     margin: 0.2em; }
 
+  .tag {
+    width: 10em;
+    height: 4em;
+    background-color: #bbb6b5;
+    border-radius: 0.2em;
+    margin: 0.3em; }
+
   .selected {
     opacity: 0.4; }
 
@@ -88,8 +95,15 @@
     text-align: center;
     padding: 2%; }
 
+  .photo-picker {
+    width: 60%; }
+
   .add-photos-btn {
     margin-top: 2em; }
+
+  .note-btn-container {
+    text-align: center;
+    margin-top: 4em; }
 
   /*********************************** NAVBAR *********************************/
   /* This hides any element with class alert directly after an input field with a pattern (regex) */
@@ -124,32 +138,48 @@
       display: none; }
 
   /******************************** WRITE *******************************/
-  .note-input .note-type-title {
-    background-color: #39b54a;
-    color: white;
-    padding: 0.7em 2em 0.7em;
-    margin-bottom: 1.5em; }
-  .note-input .form-group {
-    padding-left: 3em;
-    padding-right: 3em; }
-  .note-input label {
-    font-weight: bold; }
-  .note-input hr {
-    height: 7px;
-    border: 0; }
-  .note-input .input-field-group {
-    margin-bottom: 1em; }
-  .note-input .camera-btn {
-    width: 3em;
-    margin-left: 1em;
-    /* fix this eventually - all the buttons and add related_camera_traps */ }
-  .note-input .related-camera-traps-input {
-    width: 2em;
-    margin-left: 0.2em;
-    margin-bottom: -0.1em;
-    /* to get this to align with the text and button elements */ }
-  .note-input .add-related-camera-traps-btn {
-    color: white; }
+  .note-input {
+    /* think about a total container for note entry of about 60% (instead of this) */ }
+    .note-input .input-container {
+      width: 60%; }
+    .note-input .note-type-title {
+      background-color: #39b54a;
+      color: white;
+      padding: 0.7em 2em 0.7em;
+      margin-bottom: 1.5em; }
+    .note-input .form-group {
+      padding-left: 20%;
+      padding-right: 20%; }
+    .note-input label {
+      font-weight: 900; }
+    .note-input hr {
+      height: 7px;
+      /*width: 110%;*/
+      border: 0; }
+    .note-input .input-field-group {
+      margin-bottom: 1em; }
+    .note-input .camera-btn {
+      width: 3em;
+      margin-left: 1em;
+      /* fix this eventually - all the buttons and add related_camera_traps */ }
+    .note-input .related-camera-traps-input {
+      width: 2em;
+      margin-left: 0.8em;
+      margin-bottom: -0.1em;
+      /* to get this to align with the text and button elements */
+      margin-right: 0.1em; }
+    .note-input .add-related-camera-traps-btn {
+      color: white; }
+    .note-input .camera-trap-region-dropdown {
+      width: 60%; }
+    .note-input .tag-btn {
+      width: 1em;
+      height: 1em;
+      margin-left: 0.5em;
+      font-size: 2.5em;
+      font-weight: 900;
+      color: white;
+      padding-bottom: 0.25em; }
 
   .photos-container {
     overflow-y: scroll; }
@@ -164,7 +194,11 @@
   .planning-note-input hr {
     background: #39b54a; }
   .planning-note-input .add-related-camera-traps-btn {
-    background-color: #39b54a; }
+    background-color: #39b54a;
+    border-color: #39b54a; }
+  .planning-note-input .tag-btn {
+    background-color: #39b54a;
+    border-color: #39b54a; }
 
   /*                    */
   /*   photo set note   */
@@ -176,7 +210,11 @@
   .photo-set-note-input hr {
     background: #fca91e; }
   .photo-set-note-input .add-related-camera-traps-btn {
-    background-color: #fca91e; }
+    background-color: #fca91e;
+    border-color: #fca91e; }
+  .photo-set-note-input .tag-btn {
+    background-color: #fca91e;
+    border-color: #fca91e; }
 
   /*                        */
   /*   cross-cutting note   */
@@ -187,6 +225,9 @@
     border-color: #9282f3; }
   .cross-cutting-note-input hr {
     background: #9282f3; }
+  .cross-cutting-note-input .tag-btn {
+    background-color: #9282f3;
+    border-color: #9282f3; }
 
   /*                        */
   /*   cross-cutting note   */
@@ -197,6 +238,9 @@
     border-color: #cd16ac; }
   .open-note-input hr {
     background: #cd16ac; }
+  .open-note-input .tag-btn {
+    background-color: #cd16ac;
+    border-color: #cd16ac; }
 
   /******************************** READ *******************************/
   /* MAYBE CHANGE TO note-details */
@@ -237,10 +281,10 @@
 
   /* LET THE GROSSNESS BEGIN */
   #list-screen .span12 {
-    border-bottom: 1px solid #eee; }
+    border-bottom: 1px solid #eeeeee; }
   #list-screen .span4 {
     max-height: 588px;
-    border-right: 1px solid #eee; }
+    border-right: 1px solid #eeeeee; }
   #list-screen ul {
     background-color: white; }
   #list-screen li {

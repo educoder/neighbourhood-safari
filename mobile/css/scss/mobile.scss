@@ -2,6 +2,7 @@ $planning-color: rgb(57, 181, 74);
 $photo-set-color: rgb(252, 169, 30);
 $cross-cutting-color: rgb(146, 130, 243);
 $open-color: rgb(205, 22, 172);
+$tag-color: rgb(187, 182, 181);
 
 @media all and (orientation: landscape) {
 
@@ -80,6 +81,13 @@ $open-color: rgb(205, 22, 172);
     height: 9em;
     margin: 0.2em;
   }
+  .tag {
+    width: 10em;
+    height: 4em;
+    background-color: $tag-color;
+    border-radius: 0.2em;
+    margin: 0.3em;
+  }
   .selected {
     opacity: 0.4;
   }
@@ -101,8 +109,15 @@ $open-color: rgb(205, 22, 172);
     text-align: center;
     padding: 2%;
   }
+  .photo-picker {
+    width: 60%;
+  }
   .add-photos-btn {
     margin-top: 2em;
+  }
+  .note-btn-container {
+    text-align: center;
+    margin-top: 4em;
   }
 
   /*********************************** NAVBAR *********************************/
@@ -152,6 +167,9 @@ $open-color: rgb(205, 22, 172);
   /******************************** WRITE *******************************/
 
   .note-input {
+    .input-container {
+      width: 60%;
+    }
     .note-type-title {
       background-color: $planning-color;
       color: white;
@@ -159,14 +177,15 @@ $open-color: rgb(205, 22, 172);
       margin-bottom: 1.5em;
     }
     .form-group {
-      padding-left: 3em;
-      padding-right: 3em;
+      padding-left: 20%;
+      padding-right: 20%;
     }
     label {
-      font-weight: bold;
+      font-weight: 900;
     }
     hr {
       height: 7px;
+      /*width: 110%;*/
       border: 0;
     }
     .input-field-group {
@@ -179,11 +198,25 @@ $open-color: rgb(205, 22, 172);
     }
     .related-camera-traps-input {
       width: 2em;
-      margin-left: 0.2em;
+      margin-left: 0.8em;
       margin-bottom: -0.1em;        /* to get this to align with the text and button elements */
+      margin-right: 0.1em;
     }
     .add-related-camera-traps-btn {
       color: white;
+    }
+    /* think about a total container for note entry of about 60% (instead of this) */
+    .camera-trap-region-dropdown {
+      width: 60%;
+    }
+    .tag-btn {
+      width: 1em;
+      height: 1em;
+      margin-left: 0.5em;
+      font-size: 2.5em;
+      font-weight: 900;
+      color: white;
+      padding-bottom: 0.25em;
     }
   }
 
@@ -206,6 +239,11 @@ $open-color: rgb(205, 22, 172);
     }
     .add-related-camera-traps-btn {
       background-color: $planning-color;
+      border-color: $planning-color;
+    }
+    .tag-btn {
+      background-color: $planning-color;
+      border-color: $planning-color;
     }
   }
 
@@ -224,6 +262,11 @@ $open-color: rgb(205, 22, 172);
     }
     .add-related-camera-traps-btn {
       background-color: $photo-set-color;
+      border-color: $photo-set-color;
+    }
+    .tag-btn {
+      background-color: $photo-set-color;
+      border-color: $photo-set-color;
     }
   }
 
@@ -240,6 +283,10 @@ $open-color: rgb(205, 22, 172);
     hr {
       background: $cross-cutting-color;
     }
+    .tag-btn {
+      background-color: $cross-cutting-color;
+      border-color: $cross-cutting-color;
+    }
   }
 
   /*                        */
@@ -254,6 +301,10 @@ $open-color: rgb(205, 22, 172);
     }
     hr {
       background: $open-color;
+    }
+    .tag-btn {
+      background-color: $open-color;
+      border-color: $open-color;
     }
   }
 

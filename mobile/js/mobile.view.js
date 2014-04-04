@@ -19,6 +19,7 @@
     photoSetNoteTemplate: "#photo-set-note-input",
     crossCuttingNoteInputTemplate: "#cross-cutting-note-input",
     photoTemplate: "#photo-template",
+    tagTemplate: "#tag-template",
 
     initialize: function() {
       var view = this;
@@ -34,8 +35,11 @@
       'click .share-note-btn'    : 'publishNote',
       'click .add-related-camera-traps-btn': 'addCameraTrapNumbers',
       'click .camera-btn'        : 'showPhotoPicker',
-      'click .photo'             : 'selectPhoto',
+      'click .photo'             : 'setSelected',
       'click .photo-picker button': 'addPhotos',
+      'click .tag-btn'            : 'showTagPicker',
+      'click .tag'                : 'setSelected',
+      'click .tag-picker button'  : 'addTags',
       //'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
         var view = this,
@@ -108,6 +112,7 @@
         type: note_type,
         body: {},
         photos: [],
+        tags: [],
         related_camera_traps: [],
         published: false
       };
@@ -135,7 +140,7 @@
 
       // Clear input fields
       view.$el.find('textarea').val('');
-      jQuery('.photo').removeClass('selected');
+      jQuery('#notes-screen-input').removeClass('selected');
 
       // hide modal
       jQuery('.note-type-picker').modal('hide');
@@ -143,6 +148,10 @@
       jQuery('.note-taking-toggle').slideDown();
 
       jQuery('#show-note-container').addClass('hidden');
+    },
+
+    setSelected: function(ev) {
+      jQuery(ev.target).addClass('selected');
     },
 
     addCameraTrapNumbers: function(ev) {
@@ -162,30 +171,20 @@
 
     showPhotoPicker: function() {
       var view = this;
-      debugger;
       // iterate over this group's photo collection
       var myBackpack = app.backpacks.findWhere({"owner":app.username});
+      var photoHTML = "";
 
       // make sure they have a backpack
-      var photoHTML = "";
       if (myBackpack) {
         _.each(myBackpack.get('content'), function(o) {
           photoHTML += _.template(jQuery(view.photoTemplate).text(), {'url':o.image_url});
-          //photoHTML = _.template(jQuery(view.crossCuttingNoteInputTemplate).text(), {});
-          //planningNoteInputTemplate: "#planning-note-input",
-          //o.image_url;
-
         });
         jQuery('.photos-container').html(photoHTML);
-
         jQuery('.photo-picker').modal('show');
       } else {
         jQuery().toastmessage('showErrorToast', "Sorry, you do not have a backpack yet");
       }
-    },
-
-    selectPhoto: function(ev) {
-      jQuery(ev.target).addClass('selected');
     },
 
     // TODO: move me to mobile.js?
@@ -201,6 +200,37 @@
       app.currentNote.set('photos', photosAr);
       jQuery('.photo-picker').modal('hide');
       jQuery().toastmessage('showSuccessToast', "Photos attached to note");
+    },
+
+    showTagPicker: function(ev) {
+      ev.preventDefault();
+      var view = this;
+      var tagHTML= "";
+
+      // make sure there is a tag collection
+      if (app.tags) {
+        _.each(app.tags.models, function(t) {
+          tagHTML += _.template(jQuery(view.tagTemplate).text(), {'tagName':t.get('name')});
+        });
+        jQuery('.tags-container').html(tagHTML);
+        jQuery('.tag-picker').modal('show');
+      } else {
+        jQuery().toastmessage('showErrorToast', "There aren't any tags yet!");
+      }
+    },
+
+    addTags: function() {
+      // clear out all tags previous attached to the note
+      app.currentNote.set('tags',[]);
+      var tagsAr = [];
+      // create an array or urls of all of the photos marked as selected
+      _.each(jQuery('.tag-picker .selected'), function(el) {
+        tagsAr.push(jQuery(el).text());
+      });
+      // set that array into the currentNote
+      app.currentNote.set('tags', tagsAr);
+      jQuery('.tag-picker').modal('hide');
+      jQuery().toastmessage('showSuccessToast', "Tags attached to note");
     },
 
     cancelNote: function() {

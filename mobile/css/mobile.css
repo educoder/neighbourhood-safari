@@ -14,7 +14,7 @@
 /*                           */
 /* 2.0 Landscape Orientation */
 /*                           */
-@media all and (orientation: landscape) {
+@media all {
   body {
     font-family: "Roboto", sans-serif; }
 
@@ -237,6 +237,9 @@
       color: white;
       padding-bottom: 0.25em; }
 
+  .photos-container {
+    overflow-y: scroll; }
+
   .planning-note-input .note-type-title,
   .cross-cutting-note-input .note-type-title,
   .open-note-input .note-type-title,
@@ -345,13 +348,17 @@
     #list-screen .span4 li.planning, #list-screen .span4 li.cross_cutting, #list-screen .span4 li.open, #list-screen .span4 li.photo_set {
       background-color: #fff; }
     #list-screen .span4 li.planning h4 {
-      color: #39b54a; }
+      color: #39b54a;
+      padding-top: 2px; }
     #list-screen .span4 li.cross_cutting h4 {
-      color: #9282f3; }
+      color: #9282f3;
+      padding-top: 2px; }
     #list-screen .span4 li.open h4 {
-      color: #cd16ac; }
+      color: #cd16ac;
+      padding-top: 2px; }
     #list-screen .span4 li.photo_set h4 {
-      color: #fca91e; }
+      color: #fca91e;
+      padding-top: 2px; }
   #list-screen .span8 {
     margin-left: 0; }
     #list-screen .span8 .note-details-container h3, #list-screen .span8 .note-details-container h6, #list-screen .span8 .note-details-container p {
@@ -382,14 +389,16 @@
 /*                 */
 /*  3.0 Portrait   */
 /*                 */
-@media all and (orientation: portrait) {
+/*@media all and (orientation: portrait) {
   .row-fluid, .navbar {
-    display: none; }
-
+    display: none;
+  }
   .orientation-warning {
     text-align: center;
     font-size: 2em;
-    margin-top: 25%; } }
+    margin-top: 25%;
+  }
+}*/
 @media (max-width: 980px) {
   .row-fluid {
     padding-top: 0px; }

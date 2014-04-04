@@ -1,3 +1,18 @@
+/*                               */
+/*        LEGEND                 */
+/*                               */
+/*        1.0 Variables          */
+/*        2.0 Landscape          */
+/*        2.1 Helper             */
+/*        2.2 Write Screen       */
+/*        2.3 Read Screen        */
+/*        3.0 Portrait           */
+/*               */
+/* 1.0 Variables */
+/*               */
+/*                           */
+/* 2.0 Landscape Orientation */
+/*                           */
 @media all and (orientation: landscape) {
   body {
     font-family: "Roboto", sans-serif; }
@@ -32,13 +47,9 @@
     user-select: text;
     color: #333; }
 
-  /*              */
-  /*  MISC Styles */
-  /*              */
-  /*  .label-strong{
-      font-size: 1.2em;
-      font-weight: 700;
-    }*/
+  /*                      */
+  /*  2.1 Helper Styles   */
+  /*                      */
   .scrollable-y {
     overflow-y: scroll; }
 
@@ -91,7 +102,9 @@
   .add-photos-btn {
     margin-top: 2em; }
 
-  /*********************************** NAVBAR *********************************/
+  /*        */
+  /* Navbar */
+  /*        */
   /* This hides any element with class alert directly after an input field with a pattern (regex) */
   input[pattern] + .alert {
     display: none; }
@@ -123,7 +136,9 @@
       /* TODO: this is a crude way of hiding right now and should be improved */
       display: none; }
 
-  /******************************** WRITE *******************************/
+  /*                  */
+  /* 2.2 Write Screen */
+  /*                  */
   .note-input .note-type-title {
     background-color: #39b54a;
     color: white;
@@ -198,8 +213,9 @@
   .open-note-input hr {
     background: #cd16ac; }
 
-  /******************************** READ *******************************/
-  /* LIST SCREEN */
+  /*                  */
+  /* 2.3 Read Screen  */
+  /*                  */
   #activity-dropdown {
     float: left;
     width: -moz-calc(100% - 115px);
@@ -216,13 +232,12 @@
   .headline-text-entry {
     width: 65%; }
 
-  /* INPUT SCREEN */
+  /*              */
+  /* Input screen */
+  /*              */
   .input-box-wrapper {
     padding: 5px; }
 
-  /*                       */
-  /* READ AND LIST SCREEN  */
-  /*                       */
   #list-screen .span12 {
     border-bottom: 1px solid #eee;
     width: 97.5%; }
@@ -244,8 +259,11 @@
       padding-left: 20px; }
     #list-screen .span8 .open-note-details h3, #list-screen .span8 .planning-note-details h3, #list-screen .span8 .cross-cutting-note-details h3, #list-screen .span8 .photo-note-details h3 {
       color: #fff;
+      display: inline-block;
+      padding-right: 2%;
       margin-top: 0;
-      border-radius: 0 0 5px 0; }
+      border-radius: 0 5px 5px 0;
+      border-bottom: 2px solid #7E7E7E; }
     #list-screen .span8 .open-note-details h3 {
       background-color: #cd16ac; }
     #list-screen .span8 .planning-note-details h3 {
@@ -262,6 +280,9 @@
 
   /* end .list-screen */ }
 /* end orientation landscape */
+/*                 */
+/*  3.0 Portrait   */
+/*                 */
 @media all and (orientation: portrait) {
   .row-fluid, .navbar {
     display: none; }

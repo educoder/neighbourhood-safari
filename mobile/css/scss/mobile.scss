@@ -1,8 +1,28 @@
+/*                               */
+/*        LEGEND                 */
+/*                               */
+/*        1.0 Variables          */
+/*        2.0 Landscape          */
+/*        2.1 Helper             */
+/*        2.2 Write Screen       */
+/*        2.3 Read Screen        */
+/*        3.0 Portrait           */
+
+
+
+/*               */
+/* 1.0 Variables */
+/*               */
+
 $planning-color: rgb(57, 181, 74);
 $photo-set-color: rgb(252, 169, 30);
 $cross-cutting-color: rgb(146, 130, 243);
 $open-color: rgb(205, 22, 172);
 
+
+/*                           */
+/* 2.0 Landscape Orientation */
+/*                           */
 @media all and (orientation: landscape) {
 
   body {
@@ -42,14 +62,10 @@ $open-color: rgb(205, 22, 172);
     color: #333;
   }
 
-  /*              */
-  /*  MISC Styles */
-  /*              */
+  /*                      */
+  /*  2.1 Helper Styles   */
+  /*                      */
 
-/*  .label-strong{
-    font-size: 1.2em;
-    font-weight: 700;
-  }*/
   .scrollable-y {
     overflow-y: scroll;
   }
@@ -104,8 +120,9 @@ $open-color: rgb(205, 22, 172);
   .add-photos-btn {
     margin-top: 2em;
   }
-
-  /*********************************** NAVBAR *********************************/
+  /*        */
+  /* Navbar */
+  /*        */
 
   /* This hides any element with class alert directly after an input field with a pattern (regex) */
   input {
@@ -148,8 +165,9 @@ $open-color: rgb(205, 22, 172);
       display: none;
     }
   }
-
-  /******************************** WRITE *******************************/
+  /*                  */
+  /* 2.2 Write Screen */
+  /*                  */
 
   .note-input {
     .note-type-title {
@@ -256,10 +274,10 @@ $open-color: rgb(205, 22, 172);
       background: $open-color;
     }
   }
+/*                  */
+/* 2.3 Read Screen  */
+/*                  */
 
-  /******************************** READ *******************************/
-
-  /* LIST SCREEN */
   #activity-dropdown {
     float: left;
     width: -moz-calc(100% - 115px);
@@ -277,14 +295,14 @@ $open-color: rgb(205, 22, 172);
   .headline-text-entry {
     width: 65%;
   }
-  /* INPUT SCREEN */
+
+  /*              */
+  /* Input screen */
+  /*              */
+
   .input-box-wrapper {
     padding: 5px;
   }
-
-  /*                       */
-  /* READ AND LIST SCREEN  */
-  /*                       */
 
   #list-screen {
     .span12 {
@@ -328,8 +346,11 @@ $open-color: rgb(205, 22, 172);
       }
       .open-note-details h3, .planning-note-details h3, .cross-cutting-note-details h3, .photo-note-details h3 {
         color: #fff;
+        display: inline-block;
+        padding-right: 2%;
         margin-top:0;
-        border-radius: 0 0 5px 0;
+        border-radius: 0 5px 5px 0;
+        border-bottom: 2px solid #7E7E7E;
       }
       .open-note-details h3 {
         background-color: $open-color;
@@ -353,6 +374,11 @@ $open-color: rgb(205, 22, 172);
     }
   } /* end .list-screen */
 }   /* end orientation landscape */
+
+
+/*                 */
+/*  3.0 Portrait   */
+/*                 */
 
 @media all and (orientation: portrait) {
   .row-fluid, .navbar {

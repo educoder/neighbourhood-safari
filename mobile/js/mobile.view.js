@@ -486,6 +486,9 @@
 
         // set model from collection
         var clickedModel = view.collection.get(modelId);
+        if (clickedModel.get('body').title === '') {
+          clickedModel.get('body').title = 'Untitled Note';
+        }
 
         // set templateType and htmlContents
         if (clickedModel.get('type') === 'open') {

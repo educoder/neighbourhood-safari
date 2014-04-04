@@ -17,22 +17,6 @@
   body {
     font-family: "Roboto", sans-serif; }
 
-  .planning {
-    background-image: none;
-    background-color: #39b54a; }
-
-  .photo-set {
-    background-image: none;
-    background-color: #fca91e; }
-
-  .cross-cutting {
-    background-image: none;
-    background-color: #9282f3; }
-
-  .open {
-    background-image: none;
-    background-color: #cd16ac; }
-
   .orientation-warning {
     display: none; }
 
@@ -139,6 +123,28 @@
   /*                  */
   /* 2.2 Write Screen */
   /*                  */
+  /* TODO shouldn't the rest be wrapped in here too? */
+  #notes-screen-input .note-type-picker .planning {
+    background-image: none;
+    background-color: #39b54a; }
+  #notes-screen-input .note-type-picker .photo-set {
+    background-image: none;
+    background-color: #fca91e; }
+  #notes-screen-input .note-type-picker .cross-cutting {
+    background-image: none;
+    background-color: #9282f3; }
+  #notes-screen-input .note-type-picker .open {
+    background-image: none;
+    background-color: #cd16ac; }
+  #notes-screen-input li.planning a {
+    color: #39b54a; }
+  #notes-screen-input li.cross_cutting a {
+    color: #9282f3; }
+  #notes-screen-input li.open a {
+    color: #cd16ac; }
+  #notes-screen-input li.photo_set a {
+    color: #fca91e; }
+
   .note-input .note-type-title {
     background-color: #39b54a;
     color: white;

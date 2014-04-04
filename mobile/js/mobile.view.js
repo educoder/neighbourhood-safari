@@ -371,7 +371,7 @@
           title = title.substring(0,19);
           title += '[...]';
         }
-        option = _.template(jQuery(view.template).text(), {'title': title, id: note.id});
+        option = _.template(jQuery(view.template).text(), {'title': title, 'id': note.id, 'type': note.get('type')});
         view.$el.find('.dropdown-menu').append(option);
       });
     }

@@ -418,7 +418,7 @@
   **/
   app.View.ReadView = Backbone.View.extend({
 
-    template: "#notes-list-template",
+    noteListTemplate: "#notes-list-template",
     openNoteDetailTemplate: "#open-note-detail-template",
     planningNoteDetailTemplate: "#planning-note-detail-template",
     cuttingNoteDetailTemplate: "#cross-note-detail-template",
@@ -566,13 +566,15 @@
           title = 'Untitled Note';
         }
         var bodyText = body[_.keys(body)[0]];
+        var noteType = note.get('type');
 
-        var listItem = _.template(jQuery(view.template).text(), {
+        var listItem = _.template(jQuery(view.noteListTemplate).text(), {
           'id': note.id,
           'text': bodyText,
           'me_or_others': me_or_others,
           'author': note.get('author'),
           'created_at': note.get('created_at'),
+          'note_type' : noteType,
           'title': title
         });
 

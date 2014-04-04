@@ -259,22 +259,6 @@ $open-color: rgb(205, 22, 172);
 
   /******************************** READ *******************************/
 
-/* MAYBE CHANGE TO note-details */
-/*  .photo-set-note-screen {
-    h5 {
-      color: $photo-set-color;
-    }
-    p, h5 {
-      display: inline;
-    }
-    .paragraph {
-      display: block;
-      margin: 0 0 5px 0;
-      padding: 5px;
-    }
-  }*/
-
-  /* hide a row */
   /* LIST SCREEN */
   #activity-dropdown {
     float: left;
@@ -285,6 +269,7 @@ $open-color: rgb(205, 22, 172);
     font-size: 30px;
     margin-bottom: 20px;
   }
+
   .note-entry-field {
     width: 99%;
     margin-top: -11px;
@@ -296,103 +281,78 @@ $open-color: rgb(205, 22, 172);
   .input-box-wrapper {
     padding: 5px;
   }
-  /* LET THE GROSSNESS BEGIN */
+
+  /*                       */
+  /* READ AND LIST SCREEN  */
+  /*                       */
 
   #list-screen {
     .span12 {
       border-bottom: 1px solid #eee;
+      width: 97.5%;
     }
 
     .span4 {
+      margin-left: 0;
+      li.planning, li.cross_cutting, li.open, li.photo_set {
+        background-color: #fff;
+      }
+      li.planning {
+        h4 {
+          color: $planning-color;
+        }
+      }
+      li.cross_cutting {
+        h4 {
+          color: $cross-cutting-color;
+        }
+      }
+      li.open {
+        h4 {
+          color: $open-color;
+        }
+      }
+      li.photo_set {
+        h4 {
+          color: $photo-set-color;
+        }
+      }
+    }
+
+    .span8 {
+      margin-left: 0;
+      .note-details-container {
+        h3, h6, p {
+          padding-left: 20px;
+        }
+      }
+      .open-note-details h3, .planning-note-details h3, .cross-cutting-note-details h3, .photo-note-details h3 {
+        color: #fff;
+        margin-top:0;
+        border-radius: 0 0 5px 0;
+      }
+      .open-note-details h3 {
+        background-color: $open-color;
+      }
+      .planning-note-details h3 {
+        background-color: $planning-color;
+      }
+      .cross-cutting-note-details h3 {
+        background-color: $cross-cutting-color;
+      }
+      .photo-note-details h3 {
+        background-color: $photo-set-color;
+      }
+    }
+    .span4 {
       max-height: 708px - 120px;
       border-right: 1px solid #eee;
-      // padding: 0 10px 0 0;
-    }
-
-    ul {
-      background-color: white;
-      // 708
-    }
-    li {
-      margin: 5px;
     }
     .list-item {
-      margin-left: 15px;
+      margin-left: 2%;
     }
-    .note {
-      position: relative;
-      padding: 10px;
-      margin: 10px 0;
-      width: 50%;
-    }
-    .author-container {
-      position: absolute;
-      height: 100%;
-      width: 60px;
-      border: 1px solid black;
-      margin-top: -6px;
-      font-size: 20px;
-      text-align: center;
-      color: white;
-      background-color: red;
-    }
-    .part {
-      margin-left: 70px;
-    }
-    .create-reply-btn {
-      padding-left: 70px;
-      margin-top: 12px;
-      margin-bottom: 3px;
-      color: #08C;
-    }
-    .reply-entry {
-      position: relative;
-      margin-left: 47px;
-      margin-top: -3px;
-      width: -moz-calc(100% - 62px);
-      width: -webkit-calc(100% - 62px);
-      width: calc(100% - 62px);
-    }
-    .reply-text-entry {
-      padding-right: 64px;
-      width: calc(100% - 60px);
-      height: 60px;
-    }
-    .submit-reply-btn {
-      position: absolute;
-      /*top: 24px;*/
-      bottom: 16px;
-      right: 6px;
-      border-radius: 3px;
-    }
-    .reply {
-      position: relative;
-      width: -moz-calc(100% - 62px);
-      width: -webkit-calc(100% - 62px);
-      width: calc(100% - 62px);
-      margin: 2px 0px -2px 47px;
-      min-height: 60px;
-    }
-    .content {
-      height: 100%;
-      width: -moz-calc(100% - 62px);
-      width: -webkit-calc(100% - 62px);
-      width: calc(100% - 62px);
-      min-height: 51px;
-      margin: -6px 61px;
-      padding: 7px;
-      border: 1px solid black;
-      color: black;
-    }
-  }
-
-  .author {
-    z-index: 2;
-    text-align: center;
-    padding-top: 35%;
-  }
-}
-
+  } /* end .list-screen */
+}   /* end orientation landscape */
 
 @media all and (orientation: portrait) {
   .row-fluid, .navbar {
@@ -405,13 +365,7 @@ $open-color: rgb(205, 22, 172);
   }
 }
 
-// Remove padding from top
-@media (max-width: 1260px) {
-  li.list-item.span4 {
-    width: 45%;
-  }
-}
-
+// Remove padding from top from below nav
 @media (max-width: 980px) {
   .row-fluid {
     padding-top: 0px;

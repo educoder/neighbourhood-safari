@@ -1,3 +1,18 @@
+/*                               */
+/*        LEGEND                 */
+/*                               */
+/*        1.0 Variables          */
+/*        2.0 Landscape          */
+/*        2.1 Helper             */
+/*        2.2 Write Screen       */
+/*        2.3 Read Screen        */
+/*        3.0 Portrait           */
+/*               */
+/* 1.0 Variables */
+/*               */
+/*                           */
+/* 2.0 Landscape Orientation */
+/*                           */
 @media all and (orientation: landscape) {
   body {
     font-family: "Roboto", sans-serif; }
@@ -32,13 +47,9 @@
     user-select: text;
     color: #333; }
 
-  /*              */
-  /*  MISC Styles */
-  /*              */
-  /*  .label-strong{
-      font-size: 1.2em;
-      font-weight: 700;
-    }*/
+  /*                      */
+  /*  2.1 Helper Styles   */
+  /*                      */
   .scrollable-y {
     overflow-y: scroll; }
 
@@ -91,7 +102,9 @@
   .add-photos-btn {
     margin-top: 2em; }
 
-  /*********************************** NAVBAR *********************************/
+  /*        */
+  /* Navbar */
+  /*        */
   /* This hides any element with class alert directly after an input field with a pattern (regex) */
   input[pattern] + .alert {
     display: none; }
@@ -123,7 +136,9 @@
       /* TODO: this is a crude way of hiding right now and should be improved */
       display: none; }
 
-  /******************************** WRITE *******************************/
+  /*                  */
+  /* 2.2 Write Screen */
+  /*                  */
   .note-input .note-type-title {
     background-color: #39b54a;
     color: white;
@@ -198,23 +213,9 @@
   .open-note-input hr {
     background: #cd16ac; }
 
-  /******************************** READ *******************************/
-  /* MAYBE CHANGE TO note-details */
-  /*  .photo-set-note-screen {
-      h5 {
-        color: $photo-set-color;
-      }
-      p, h5 {
-        display: inline;
-      }
-      .paragraph {
-        display: block;
-        margin: 0 0 5px 0;
-        padding: 5px;
-      }
-    }*/
-  /* hide a row */
-  /* LIST SCREEN */
+  /*                  */
+  /* 2.3 Read Screen  */
+  /*                  */
   #activity-dropdown {
     float: left;
     width: -moz-calc(100% - 115px);
@@ -231,83 +232,57 @@
   .headline-text-entry {
     width: 65%; }
 
-  /* INPUT SCREEN */
+  /*              */
+  /* Input screen */
+  /*              */
   .input-box-wrapper {
     padding: 5px; }
 
-  /* LET THE GROSSNESS BEGIN */
   #list-screen .span12 {
-    border-bottom: 1px solid #eee; }
+    border-bottom: 1px solid #eee;
+    width: 97.5%; }
+  #list-screen .span4 {
+    margin-left: 0; }
+    #list-screen .span4 li.planning, #list-screen .span4 li.cross_cutting, #list-screen .span4 li.open, #list-screen .span4 li.photo_set {
+      background-color: #fff; }
+    #list-screen .span4 li.planning h4 {
+      color: #39b54a; }
+    #list-screen .span4 li.cross_cutting h4 {
+      color: #9282f3; }
+    #list-screen .span4 li.open h4 {
+      color: #cd16ac; }
+    #list-screen .span4 li.photo_set h4 {
+      color: #fca91e; }
+  #list-screen .span8 {
+    margin-left: 0; }
+    #list-screen .span8 .note-details-container h3, #list-screen .span8 .note-details-container h6, #list-screen .span8 .note-details-container p {
+      padding-left: 20px; }
+    #list-screen .span8 .open-note-details h3, #list-screen .span8 .planning-note-details h3, #list-screen .span8 .cross-cutting-note-details h3, #list-screen .span8 .photo-note-details h3 {
+      color: #fff;
+      display: inline-block;
+      padding-right: 2%;
+      margin-top: 0;
+      border-radius: 0 5px 5px 0;
+      border-bottom: 2px solid #7E7E7E; }
+    #list-screen .span8 .open-note-details h3 {
+      background-color: #cd16ac; }
+    #list-screen .span8 .planning-note-details h3 {
+      background-color: #39b54a; }
+    #list-screen .span8 .cross-cutting-note-details h3 {
+      background-color: #9282f3; }
+    #list-screen .span8 .photo-note-details h3 {
+      background-color: #fca91e; }
   #list-screen .span4 {
     max-height: 588px;
     border-right: 1px solid #eee; }
-  #list-screen ul {
-    background-color: white; }
-  #list-screen li {
-    margin: 5px; }
   #list-screen .list-item {
-    margin-left: 15px; }
-  #list-screen .note {
-    position: relative;
-    padding: 10px;
-    margin: 10px 0;
-    width: 50%; }
-  #list-screen .author-container {
-    position: absolute;
-    height: 100%;
-    width: 60px;
-    border: 1px solid black;
-    margin-top: -6px;
-    font-size: 20px;
-    text-align: center;
-    color: white;
-    background-color: red; }
-  #list-screen .part {
-    margin-left: 70px; }
-  #list-screen .create-reply-btn {
-    padding-left: 70px;
-    margin-top: 12px;
-    margin-bottom: 3px;
-    color: #08C; }
-  #list-screen .reply-entry {
-    position: relative;
-    margin-left: 47px;
-    margin-top: -3px;
-    width: -moz-calc(100% - 62px);
-    width: -webkit-calc(100% - 62px);
-    width: calc(100% - 62px); }
-  #list-screen .reply-text-entry {
-    padding-right: 64px;
-    width: calc(100% - 60px);
-    height: 60px; }
-  #list-screen .submit-reply-btn {
-    position: absolute;
-    /*top: 24px;*/
-    bottom: 16px;
-    right: 6px;
-    border-radius: 3px; }
-  #list-screen .reply {
-    position: relative;
-    width: -moz-calc(100% - 62px);
-    width: -webkit-calc(100% - 62px);
-    width: calc(100% - 62px);
-    margin: 2px 0px -2px 47px;
-    min-height: 60px; }
-  #list-screen .content {
-    height: 100%;
-    width: -moz-calc(100% - 62px);
-    width: -webkit-calc(100% - 62px);
-    width: calc(100% - 62px);
-    min-height: 51px;
-    margin: -6px 61px;
-    padding: 7px;
-    border: 1px solid black;
-    color: black; }
+    margin-left: 2%; }
 
-  .author {
-    z-index: 2;
-    text-align: center;
-    padding-top: 35%; } }
+  /* end .list-screen */ }
+/* end orientation landscape */
+/*                 */
+/*  3.0 Portrait   */
+/*                 */
 @media all and (orientation: portrait) {
   .row-fluid, .navbar {
     display: none; }
@@ -316,9 +291,6 @@
     text-align: center;
     font-size: 2em;
     margin-top: 25%; } }
-@media (max-width: 1260px) {
-  li.list-item.span4 {
-    width: 45%; } }
 @media (max-width: 980px) {
   .row-fluid {
     padding-top: 0px; } }

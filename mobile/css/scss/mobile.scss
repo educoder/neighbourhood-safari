@@ -105,6 +105,8 @@ $tag-color: rgb(187, 182, 181);
     user-select: text;
     color: #333;
     width: 98%;
+    padding: 10px;
+    resize: vertical;
   }
   .photo {
     width: 12em;
@@ -276,6 +278,7 @@ $tag-color: rgb(187, 182, 181);
     }
     hr {
       height: 7px;
+      border-radius: 10px;
       border: 0;
     }
     .input-field-group {
@@ -491,7 +494,7 @@ $tag-color: rgb(187, 182, 181);
         padding-right: 2%;
         margin-top:0;
         border-radius: 0 10px 10px 0;
-        border-bottom: 2px solid #7E7E7E;
+        border-bottom: 2px solid #7e7e7e;
       }
       .open-note-details h3 {
         background-color: $open-color;
@@ -512,6 +515,10 @@ $tag-color: rgb(187, 182, 181);
     }
     .list-item {
       margin-left: 2%;
+      border-bottom: 1px solid #eee;
+    }
+    .list-item:last-child {
+      border-bottom: none;
     }
   } /* end .span8 */
 }   /* end orientation landscape */
@@ -541,6 +548,9 @@ $tag-color: rgb(187, 182, 181);
 
     .span12 {
       border-bottom: none;
+      .pull-right {
+        padding-top: 5px;
+      }
     }
 
     .span4 {
@@ -560,6 +570,12 @@ $tag-color: rgb(187, 182, 181);
       }
     }
   }
+  #notes-screen-input {
+    .note-type-title {
+      margin-left: -25px;
+      margin-bottom: 5%;
+    }
+  }
 }
 
 // 3.2 Small Screen/Phone and below specific styles
@@ -570,6 +586,7 @@ $tag-color: rgb(187, 182, 181);
         float: left !important;
         margin-left: 1%;
         margin: 1% 0 1% 1%;
+        padding: 0 0 5px 0;
         button {
           margin: 0 5px 0 0;
           display: inline-block !important;

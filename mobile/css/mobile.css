@@ -80,7 +80,9 @@
     -webkit-user-select: text;
     user-select: text;
     color: #333;
-    width: 98%; }
+    width: 98%;
+    padding: 10px;
+    resize: vertical; }
 
   .photo {
     width: 12em;
@@ -214,6 +216,7 @@
       font-weight: 900; }
     .note-input hr {
       height: 7px;
+      border-radius: 10px;
       border: 0; }
     .note-input .input-field-group {
       margin-bottom: 1em; }
@@ -372,7 +375,7 @@
       padding-right: 2%;
       margin-top: 0;
       border-radius: 0 10px 10px 0;
-      border-bottom: 2px solid #7E7E7E; }
+      border-bottom: 2px solid #7e7e7e; }
     #list-screen .span8 .open-note-details h3 {
       background-color: #cd16ac; }
     #list-screen .span8 .planning-note-details h3 {
@@ -385,7 +388,10 @@
     max-height: 588px;
     border-right: 1px solid #eee; }
   #list-screen .list-item {
-    margin-left: 2%; }
+    margin-left: 2%;
+    border-bottom: 1px solid #eee; }
+  #list-screen .list-item:last-child {
+    border-bottom: none; }
 
   /* end .span8 */ }
 /* end orientation landscape */
@@ -405,6 +411,8 @@
 @media (max-width: 767px) {
   #list-screen .span12 {
     border-bottom: none; }
+    #list-screen .span12 .pull-right {
+      padding-top: 5px; }
   #list-screen .span4 {
     height: 300px;
     border-bottom: none;
@@ -413,12 +421,17 @@
     margin: 3% 0 3% 0; }
   #list-screen .span8.note-details .note-details-container h3 {
     width: 95%;
-    border-radius: 10px; } }
+    border-radius: 10px; }
+
+  #notes-screen-input .note-type-title {
+    margin-left: -25px;
+    margin-bottom: 5%; } }
 @media (max-width: 485px) {
   #list-screen .span12 .pull-right {
     float: left !important;
     margin-left: 1%;
-    margin: 1% 0 1% 1%; }
+    margin: 1% 0 1% 1%;
+    padding: 0 0 5px 0; }
     #list-screen .span12 .pull-right button {
       margin: 0 5px 0 0;
       display: inline-block !important; } }

@@ -5,6 +5,7 @@
   "use strict";
   var HG = this.HG || {};
   this.Skeletor.Mobile = this.Skeletor.Mobile || {};
+  var Model = this.Skeletor.Model;
   var app = this.Skeletor.Mobile;
   app.View = this.Skeletor.Mobile.View || {};
 
@@ -13,7 +14,7 @@
   **/
   app.View.WriteView = Backbone.View.extend({
     view: this,
-    template: "#resume-unpublished-notes",
+    resumeTemplate: "#resume-unpublished-notes",
     openNoteInputTemplate: "#open-note-input",
     planningNoteInputTemplate: "#planning-note-input",
     photoSetNoteTemplate: "#photo-set-note-input",
@@ -390,7 +391,15 @@
       // ATTENTION: render fills the dropdown to resume notes. Be careful when editing!
 
       // retrieve unpublished notes of user
-      var notesToRestore = view.collection.where({author: app.username, published: false});
+      // This url does the work http://drowsy.badger.encorelab.org/dev-safari-ben/notes?selector={%22body%22:{%22$ne%22:{}},%20%22published%22:false,%20%22author%22:%22hellcats%22}
+      // cannot express this in the where statement :/
+      // var notesToRestore = view.collection.where({"author": app.username, "published": false, "body":{"$ne":{}} });
+      var notesToRestore = view.collection.where({"author": app.username, "published": false});
+      // Armin will hate this, but it's really necessary. Armin, if you want to find a cleaner way of doing this plz let me know
+      // filter the notesToRestore collection down to only notes that have a body (ie user has inputted content)
+      notesToRestore = _.filter(notesToRestore, function(n) {
+        return !jQuery.isEmptyObject(n.get('body'));
+      });
 
       // clear dropdown button list
       view.$el.find('.dropdown-menu').html('');
@@ -410,7 +419,7 @@
           title = title.substring(0,19);
           title += '[...]';
         }
-        option = _.template(jQuery(view.template).text(), {'title': title, 'id': note.id, 'type': note.get('type')});
+        option = _.template(jQuery(view.resumeTemplate).text(), {'title': title, 'id': note.id, 'type': note.get('type')});
         view.$el.find('.dropdown-menu').append(option);
       });
     }

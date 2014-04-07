@@ -222,7 +222,7 @@
 
       /* ======================================================
        * Function to enable click listeners in the UI
-       * Beware: some click listeners might belong into Views
+       * Beware: some click listeners might belong in Views
        * ======================================================
        */
       setUpClickListeners();

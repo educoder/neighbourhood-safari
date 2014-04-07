@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     },
     jsonlint: {
       dev: {
-        src: ['./*.json', 'test-data/*.json' ]
+        src: ['./*.json', 'test_data/*.json' ]
       }
     },
     watch: {

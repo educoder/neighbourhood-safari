@@ -18,6 +18,12 @@ if (RUN === "ben") {
     jsonObject = fs.readFileSync('./test_data/ben.json', 'utf8');
 } else if (RUN === "amanda") {
     jsonObject = fs.readFileSync('./test_data/amanda.json', 'utf8');
+} else if (RUN === "7BL") {
+    jsonObject = fs.readFileSync('./test_data/7BL.json', 'utf8');
+} else if (RUN === "7MS") {
+    jsonObject = fs.readFileSync('./test_data/7MS.json', 'utf8');
+} else if (RUN === "7MD") {
+    jsonObject = fs.readFileSync('./test_data/7MD.json', 'utf8');
 } else {
     console.warn("A unknown collection <"+RUN+"> was choosen.");
     console.error("Exit with error");

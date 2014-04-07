@@ -395,7 +395,7 @@
       // filter the notesToRestore collection down to only notes that have a body (ie user has inputted content)
       notesToRestore = _.filter(notesToRestore, function(n) {
         return !jQuery.isEmptyObject(n.get('body'));
-      })
+      });
 
       // clear dropdown button list
       view.$el.find('.dropdown-menu').html('');

@@ -13,7 +13,7 @@
   **/
   app.View.WriteView = Backbone.View.extend({
     view: this,
-    template: "#resume-unpublished-notes",
+    resumeTemplate: "#resume-unpublished-notes",
     openNoteInputTemplate: "#open-note-input",
     planningNoteInputTemplate: "#planning-note-input",
     photoSetNoteTemplate: "#photo-set-note-input",
@@ -391,6 +391,11 @@
 
       // retrieve unpublished notes of user
       var notesToRestore = view.collection.where({author: app.username, published: false});
+      // Armin will hate this, but it's really necessary. Armin, if you want to find a cleaner way of doing this plz let me know
+      // filter the notesToRestore collection down to only notes that have a body (ie user has inputted content)
+      notesToRestore = _.filter(notesToRestore, function(n) {
+        return !jQuery.isEmptyObject(n.get('body'));
+      })
 
       // clear dropdown button list
       view.$el.find('.dropdown-menu').html('');
@@ -410,7 +415,7 @@
           title = title.substring(0,19);
           title += '[...]';
         }
-        option = _.template(jQuery(view.template).text(), {'title': title, 'id': note.id, 'type': note.get('type')});
+        option = _.template(jQuery(view.resumeTemplate).text(), {'title': title, 'id': note.id, 'type': note.get('type')});
         view.$el.find('.dropdown-menu').append(option);
       });
     }

@@ -7,17 +7,8 @@
   this.Skeletor.Mobile = this.Skeletor.Mobile || {};
   var app = this.Skeletor.Mobile;
   app.View = this.Skeletor.Mobile.View || {};
-  // filterObj is meant to query the collection
-  var filterObj = {
-  };
-
-    // filterObj.noteType = [];
-    // filterObj.mapRegion = "";
-    // filterObj.tag = [];
-
-    // {published: true, type: 'open' || 'photo_set'}
-
-  //view.collection.where({published: true, type: 'open'}).reverse();
+  // filterObj is used for conditions to
+  var filterObj = {};
 
   /**
     Read View
@@ -73,6 +64,12 @@
     filterNotes: function() {
       // show modal
       jQuery('.filter-notes-modal').modal('show');
+
+      // add tags from collection to dropdown
+      app.tags.each(function(tag) {
+        var tagName = tag.get('name');
+        jQuery('.filter-tags-dropdown').append('<option value='+tagName+'>'+tagName+'</option>')
+      });
 
       // adding selected class
       jQuery('.tag').on('click', function() {

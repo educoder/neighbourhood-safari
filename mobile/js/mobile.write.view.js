@@ -67,10 +67,10 @@
       'click .share-note-btn'    : 'publishNote',
       'click .add-related-camera-traps-btn': 'addCameraTrapNumbers',
       'click .camera-btn'        : 'showPhotoPicker',
-      'click .photo'             : 'setSelected',
+      'click .photo'             : 'toggleSelected',
       'click .photo-picker button': 'addPhotos',
       'click .tag-btn'            : 'showTagPicker',
-      'click .tag'                : 'setSelected',
+      'click .tag'                : 'toggleSelected',
       'click .tag-picker button'  : 'addTags',
       //'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
@@ -194,8 +194,8 @@
       jQuery('#show-note-container').addClass('hidden');
     },
 
-    setSelected: function(ev) {
-      jQuery(ev.target).addClass('selected');
+    toggleSelected: function(ev) {
+      jQuery(ev.target).toggleClass('selected');
     },
 
     addCameraTrapNumbers: function(ev) {

@@ -7,12 +7,8 @@
   this.Skeletor.Mobile = this.Skeletor.Mobile || {};
   var app = this.Skeletor.Mobile;
   app.View = this.Skeletor.Mobile.View || {};
-  // filterObj is used for conditions to
-  var filterObj = {
-    types: ['planning'],
-    tags: [],
-    map_region: 0
-  };
+  // filterObj is used for conditions to filter the notes collection
+  var filterObj = {};
 
   /**
     Read View
@@ -54,20 +50,26 @@
         }
       });
 
+      jQuery('.tag').on('click', function(ev) {
+        jQuery(ev.target).toggleClass('selected');
+      });
+
+      jQuery('.apply-filter').on('click', function() {
+        view.applyFilters();
+      });
+
       view.render();
 
       return view;
     },
 
     events: {
-      'click .filter-notes': 'filterNotes',
+      'click .filter-notes': 'showFilterModal',
       'click .clear-notes': 'clearFilter',
       'click .list-item': 'showNoteDetails'
     },
 
-    filterNotes: function() {
-      var view = this;
-
+    showFilterModal: function() {
       // show modal
       jQuery('.filter-notes-modal').modal('show');
 
@@ -76,11 +78,16 @@
         var tagName = tag.get('name');
         jQuery('.filter-tags-dropdown').append('<option value=' + '"' + tagName + '"' +'>'+ tagName +'</option>');
       });
+    },
 
-      // adding selected class
-      jQuery('.tag').on('click', function() {
-        jQuery(this).addClass('selected');
-      });
+    applyFilters: function() {
+      var view = this;
+      filterObj = {
+        published: true,
+        types: [],
+        tags: [],
+        map_region: 0
+      };
 
       // Populate taggedNotes on click and hide modal
       jQuery('.apply-filter').on('click', function(){
@@ -95,16 +102,12 @@
         // Tag custom tags
         _.each(jQuery('.filter-tags-dropdown'), function(dropdown) {
           var tag = jQuery(dropdown).val();
-          debugger;
           if (tag !== "") {
             filterObj.tags.push(tag);
           }
         });
         // unique them
         filterObj.tags = _.uniq(filterObj.tags);
-
-        // reset selected classes off divs
-        jQuery('.selected').removeClass('selected');
 
         // hide modal
         jQuery('.filter-notes-modal').modal('hide');
@@ -117,6 +120,7 @@
       var view = this;
 
       filterObj = {};
+      jQuery('#filter-note-types-container .selected').removeClass('selected');
       view.render();
       jQuery().toastmessage('showSuccessToast', "Filters have been cleared");
     },
@@ -192,12 +196,19 @@
 
       function filterer(note) {
         return note.get('published') === true &&
-          filterObj.map_region === note.get('map_region') &&
+          // if map_region is undefined, 0 or equal to current note
+          (!filterObj.map_region || filterObj.map_region === '0' || filterObj.map_region === note.get('map_region')) &&
           _.contains(filterObj.types, note.get('type')) &&
           _.intersection(note.get('tags'), filterObj.tags).length === filterObj.tags.length;
       }
 
-      var filteredNotes = view.collection.filter(filterer).reverse();
+      var filteredNotes = null;
+      if (jQuery.isEmptyObject(filterObj)) {
+        filteredNotes = view.collection.where({published: true});
+      } else {
+        filteredNotes = view.collection.filter(filterer);
+      }
+      //.reverse();
       var totalNumPubNotes = filteredNotes.length;
 
       // adding total number of notes to H3

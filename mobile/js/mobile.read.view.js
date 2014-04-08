@@ -74,12 +74,12 @@
       // populating the tags dropdowns from the tags collection
       app.tags.each(function(tag) {
         var tagName = tag.get('name');
-        jQuery('.filter-tags-dropdown').append('<option value=' + '"'+ tagName + '"' +'>'+ tagName +'</option>');
+        jQuery('.filter-tags-dropdown').append('<option value=' + '"' + tagName + '"' +'>'+ tagName +'</option>');
       });
 
       // adding selected class
       jQuery('.tag').on('click', function() {
-        jQuery(this).toggleClass('selected');
+        jQuery(this).addClass('selected');
       });
 
       // Populate taggedNotes on click and hide modal

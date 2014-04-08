@@ -355,11 +355,11 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <div class="span12">
-                            <div class="tag cross-cutting">Cross Cutting</div>
-                            <div class="tag open">Open</div>
-                            <div class="tag photo-set">Photo Set</div>
-                            <div class="tag planning">Planning</div>
+                        <div id="filter-note-types-container" class="span12">
+                            <div class="tag cross-cutting" data-type="cross_cutting">Cross Cutting</div>
+                            <div class="tag open" data-type="open">Open</div>
+                            <div class="tag photo-set" data-type="photo_set">Photo Set</div>
+                            <div class="tag planning" data-type="planning">Planning</div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -370,8 +370,8 @@
                     </div>
                     <div class="form-group">
                         <label for="">Map Region</label>
-                        <select class="span12" name="" id="">
-                            <option value=""></option>
+                        <select class="span12" id="filter-map-region">
+                            <option value="0"></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

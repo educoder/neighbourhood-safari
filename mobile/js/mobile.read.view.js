@@ -8,7 +8,11 @@
   var app = this.Skeletor.Mobile;
   app.View = this.Skeletor.Mobile.View || {};
   // filterObj is used for conditions to
-  var filterObj = {};
+  var filterObj = {
+    types: [],
+    tags: [],
+    map_region: 0
+  };
 
   /**
     Read View
@@ -58,17 +62,19 @@
     events: {
       'click .filter-notes': 'filterNotes',
       'click .clear-notes': 'clearFilter',
-      'click .list-item': 'showNoteDetails',
+      'click .list-item': 'showNoteDetails'
     },
 
     filterNotes: function() {
+      var view = this;
+
       // show modal
       jQuery('.filter-notes-modal').modal('show');
 
-      // add tags from collection to dropdown
+      // populating the tags dropdowns from the tags collection
       app.tags.each(function(tag) {
         var tagName = tag.get('name');
-        jQuery('.filter-tags-dropdown').append('<option value='+tagName+'>'+tagName+'</option>')
+        jQuery('.filter-tags-dropdown').append('<option value='+tagName+'>'+tagName+'</option>');
       });
 
       // adding selected class
@@ -79,30 +85,37 @@
       // Populate taggedNotes on click and hide modal
       jQuery('.apply-filter').on('click', function(){
         // get all elements with .selected class and add to filterObj
-        jQuery('.selected').each(function(index){
-          // reform tag and add to filterObj.tag array
-          filterObj.noteType[index] = this.innerHTML.toLowerCase().replace(' ','-');
-          console.log(filterObj.noteType[index]);
+        _.each(jQuery('#filter-note-types-container .selected'), function(el, index) {
+          filterObj.types.push(jQuery(el).data().type);
         });
 
-        // add related safari filter
-
         // Add map region filter
+        filterObj.map_region = Number(jQuery('#filter-map-region').val());
 
         // Tag custom tags
+        _.each(jQuery('.filter-tags-dropdown'), function(dropdown) {
+          var tag = jQuery(dropdown).val();
+          if (tag !== "") {
+            filterObj.tags.push(tag);
+          }
+        });
+        // unique them
+        filterObj.tags = _.uniq(filterObj.tags);
 
         // reset selected classes off divs
         jQuery('.selected').removeClass('selected');
         jQuery('.filter-notes-modal').modal('hide');
+
+        view.render();
       });
     },
 
     clearFilter: function() {
-      // Trigger some sort of query
-      alert('Clearing Filters');
+      var view = this;
 
-      // clear all properties in filterObj
-
+      filterObj = {};
+      view.render();
+      jQuery().toastmessage('showSuccessToast', "Filters have been cleared");
     },
 
     showNoteDetails: function(event) {
@@ -172,20 +185,7 @@
 
       // find the list where items are rendered into
       var list = this.$el.find('.note-list');
-
-      filterObj = {
-        published: true,
-        map_region: 1,
-        types: [
-          'open',
-          'photo_set',
-          'planning'
-        ],
-        tags: [
-          'Raccoon',
-          'Tree'
-        ]
-      };
+      list.html('');
 
       function filterer(note) {
         return note.get('published') === true &&

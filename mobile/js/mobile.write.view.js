@@ -154,6 +154,7 @@
         created_at: new Date(),
         type: note_type,
         body: {},
+        map_region: 0,
         photos: [],
         tags: [],
         related_camera_traps: [],
@@ -372,10 +373,12 @@
       });
 
       // app.currentNote.set('body', this.$el.find('.note-body').val());
+      if (jQuery('.map-region-dropdown').val()) {
+        app.currentNote.set('map_region', Number(jQuery('.map-region-dropdown').val()));
+      }
       app.currentNote.set('published', true);
 
       app.currentNote.save();
-
       // clearing up
       // this.$el.find('.note-body').val('');
       // turn off auto save
@@ -384,6 +387,8 @@
       jQuery('.note-taking-toggle').slideUp();
 
       jQuery('#show-note-container').removeClass('hidden');
+
+      jQuery().toastmessage('showSuccessToast', "Note submitted");
     },
 
     render: function () {

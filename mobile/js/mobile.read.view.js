@@ -8,10 +8,16 @@
   var app = this.Skeletor.Mobile;
   app.View = this.Skeletor.Mobile.View || {};
   // filterObj is meant to query the collection
-  var filterObj = {};
-    filterObj.noteType = [];
-    filterObj.mapRegion = "";
-    filterObj.tag = [];
+  var filterObj = {
+  };
+
+    // filterObj.noteType = [];
+    // filterObj.mapRegion = "";
+    // filterObj.tag = [];
+
+    // {published: true, type: 'open' || 'photo_set'}
+
+  //view.collection.where({published: true, type: 'open'}).reverse();
 
   /**
     Read View
@@ -170,18 +176,29 @@
       // find the list where items are rendered into
       var list = this.$el.find('.note-list');
 
-      // Only want to show published notes at some point
-      // var whereObj = {published: true};
-      // if (planningFlag === "true") {
-      //   // update whereObj to {published: true, type: "planning"}
-      // }
+      filterObj = {
+        published: true,
+        map_region: 1,
+        types: [
+          'open',
+          'photo_set',
+          'planning'
+        ],
+        tags: [
+          'Raccoon',
+          'Tree'
+        ]
+      };
 
-      //var publishedNotes = view.collection.where(filterObj).reverse();
-      var publishedNotes = view.collection.where({published: true}).reverse();
+      function filterer(note) {
+        return note.get('published') === true &&
+          filterObj.map_region === note.get('map_region') &&
+          _.contains(filterObj.types, note.get('type')) &&
+          _.intersection(note.get('tags'), filterObj.tags).length === filterObj.tags.length;
+      }
 
-      // var publishedNotes = view.collection.where({type: 'open'});
-      // publishedNotes.reverse();
-      var totalNumPubNotes = publishedNotes.length;
+      var filteredNotes = view.collection.filter(filterer).reverse();
+      var totalNumPubNotes = filteredNotes.length;
 
       // adding total number of notes to H3
       if (totalNumPubNotes === 1) {
@@ -190,7 +207,7 @@
          jQuery('.note-number-total').html(totalNumPubNotes + ' Notes');
       }
 
-      _.each(publishedNotes, function(note){
+      _.each(filteredNotes, function(note){
         var me_or_others = 'others';
         // add class 'me' or 'other' to note
         if (note.get('author') === app.username) {

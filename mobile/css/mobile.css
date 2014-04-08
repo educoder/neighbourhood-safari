@@ -26,7 +26,7 @@
 
   /*disable bootstrap default hover state*/
   .disabled {
-    color: #333 !important;
+    color: #333333 !important;
     text-decoration: none !important; }
 
   input {
@@ -230,7 +230,7 @@
       margin-right: 0.1em; }
     .note-input .add-related-camera-traps-btn {
       color: white; }
-    .note-input .camera-trap-region-dropdown {
+    .note-input .map-region-dropdown {
       width: 60%; }
     .note-input .tag-btn {
       width: 1em;
@@ -251,7 +251,7 @@
     width: 25%;
     min-width: 350px;
     border-radius: 0 0 10px 0;
-    border-bottom: 2px solid #7E7E7E;
+    border-bottom: 2px solid #7e7e7e;
     margin: -14px 0 25px -5px;
     padding: 10px 0; }
     .planning-note-input .note-type-title h3,
@@ -346,7 +346,7 @@
   /* List Screen */
   /*             */
   #list-screen .span12 {
-    border-bottom: 1px solid #eee; }
+    border-bottom: 1px solid #eeeeee; }
   #list-screen .span4 {
     margin-left: 0; }
     #list-screen .span4 li.planning, #list-screen .span4 li.cross_cutting, #list-screen .span4 li.open, #list-screen .span4 li.photo_set {
@@ -384,10 +384,10 @@
       background-color: #fca91e; }
   #list-screen .span4 {
     max-height: 588px;
-    border-right: 1px solid #eee; }
+    border-right: 1px solid #eeeeee; }
   #list-screen .list-item {
     margin-left: 2%;
-    border-bottom: 1px solid #eee; }
+    border-bottom: 1px solid #eeeeee; }
   #list-screen .list-item:last-child {
     border-bottom: none; }
 
@@ -425,7 +425,7 @@
     height: 300px;
     border-bottom: none;
     border-right: none;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #eeeeee;
     margin: 3% 0 3% 0; }
   #list-screen .span8.note-details .note-details-container h3 {
     width: 95%;

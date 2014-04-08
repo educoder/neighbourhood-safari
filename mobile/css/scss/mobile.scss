@@ -218,20 +218,19 @@ $tag-color: rgb(187, 182, 181);
   #notes-screen-input {
 
     .note-type-picker {
-      .planning {
+      .planning, .photo-set, .cross-cutting, .open {
         background-image: none;
+      }
+      .planning {
         background-color: $planning-color;
       }
       .photo-set {
-        background-image: none;
         background-color: $photo-set-color;
       }
       .cross-cutting {
-        background-image: none;
         background-color: $cross-cutting-color;
       }
       .open {
-        background-image: none;
         background-color: $open-color;
       }
     }
@@ -449,7 +448,6 @@ $tag-color: rgb(187, 182, 181);
     .span12 {
       border-bottom: 1px solid #eee;
     }
-
     .span4 {
       margin-left: 0;
       li.planning, li.cross_cutting, li.open, li.photo_set {
@@ -480,7 +478,6 @@ $tag-color: rgb(187, 182, 181);
         }
       }
     }
-
     .span8 {
         margin-left: 0;
       .note-details-container {
@@ -521,6 +518,23 @@ $tag-color: rgb(187, 182, 181);
       border-bottom: none;
     }
   } /* end .span8 */
+  .filter-notes-modal {
+    .modal-body {
+      overflow: hidden;
+    }
+    .planning {
+      background-color: $planning-color;
+    }
+    .cross-cutting {
+      background-color: $cross-cutting-color;
+    }
+    .open {
+      background-color: $open-color;
+    }
+    .photo-set {
+      background-color: $photo-set-color;
+    }
+  }
 }   /* end orientation landscape */
 
 

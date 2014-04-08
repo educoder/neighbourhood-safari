@@ -7,6 +7,11 @@
   this.Skeletor.Mobile = this.Skeletor.Mobile || {};
   var app = this.Skeletor.Mobile;
   app.View = this.Skeletor.Mobile.View || {};
+  // filterObj is meant to query the collection
+  var filterObj = {};
+    filterObj.noteType = [];
+    filterObj.mapRegion = "";
+    filterObj.tag = [];
 
   /**
     Read View
@@ -55,17 +60,46 @@
 
     events: {
       'click .filter-notes': 'filterNotes',
-      'click .clear-notes': 'clearNotes',
+      'click .clear-notes': 'clearFilter',
       'click .list-item': 'showNoteDetails',
     },
 
     filterNotes: function() {
+      // show modal
       jQuery('.filter-notes-modal').modal('show');
+
+      // adding selected class
+      jQuery('.tag').on('click', function() {
+        jQuery(this).addClass('selected');
+      });
+
+      // Populate taggedNotes on click and hide modal
+      jQuery('.apply-filter').on('click', function(){
+        // get all elements with .selected class and add to filterObj
+        jQuery('.selected').each(function(index){
+          // reform tag and add to filterObj.tag array
+          filterObj.noteType[index] = this.innerHTML.toLowerCase().replace(' ','-');
+          console.log(filterObj.noteType[index]);
+        });
+
+        // add related safari filter
+
+        // Add map region filter
+
+        // Tag custom tags
+
+        // reset selected classes off divs
+        jQuery('.selected').removeClass('selected');
+        jQuery('.filter-notes-modal').modal('hide');
+      });
     },
 
-    clearNotes: function() {
+    clearFilter: function() {
       // Trigger some sort of query
-      alert('Clearing Fitlers');
+      alert('Clearing Filters');
+
+      // clear all properties in filterObj
+
     },
 
     showNoteDetails: function(event) {
@@ -78,9 +112,12 @@
 
       // set model from collection
       var clickedModel = view.collection.get(modelId);
+
+      // If note is untitled
       if (clickedModel.get('body').title === '') {
         clickedModel.get('body').title = 'Untitled Note';
       }
+
       // set templateType and htmlContents
       if (clickedModel.get('type') === 'open') {
         templateType = view.openNoteDetailTemplate;
@@ -134,7 +171,14 @@
       var list = this.$el.find('.note-list');
 
       // Only want to show published notes at some point
+      // var whereObj = {published: true};
+      // if (planningFlag === "true") {
+      //   // update whereObj to {published: true, type: "planning"}
+      // }
+
+      //var publishedNotes = view.collection.where(filterObj).reverse();
       var publishedNotes = view.collection.where({published: true}).reverse();
+
       // var publishedNotes = view.collection.where({type: 'open'});
       // publishedNotes.reverse();
       var totalNumPubNotes = publishedNotes.length;

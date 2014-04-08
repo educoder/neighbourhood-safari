@@ -204,9 +204,9 @@
 
       var filteredNotes = null;
       if (jQuery.isEmptyObject(filterObj)) {
-        filteredNotes = view.collection.where({published: true});
+        filteredNotes = view.collection.where({published: true}).reverse();
       } else {
-        filteredNotes = view.collection.filter(filterer);
+        filteredNotes = view.collection.filter(filterer).reverse();
       }
       //.reverse();
       var totalNumPubNotes = filteredNotes.length;

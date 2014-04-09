@@ -436,7 +436,9 @@
     margin: 3% 0 3% 0; }
   #list-screen .span8.note-details .note-details-container h3 {
     width: 95%;
-    border-radius: 10px; }
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 35px; }
 
   #notes-screen-input .note-type-title {
     margin-left: -25px;

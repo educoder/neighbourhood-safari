@@ -15,6 +15,7 @@
   **/
   app.View.ReadView = Backbone.View.extend({
 
+    // Templates
     noteListTemplate: "#notes-list-template",
     openNoteDetailTemplate: "#open-note-detail-template",
     planningNoteDetailTemplate: "#planning-note-detail-template",
@@ -54,9 +55,10 @@
         jQuery(ev.target).toggleClass('selected');
       });
 
-      jQuery('.apply-filter').on('click', function() {
-        view.applyFilters();
-      });
+      // Is this the cause of the multiple renders? I think soo.....
+      // jQuery('.apply-filter').on('click', function() {
+      //   view.applyFilters();
+      // });
 
       view.render();
 
@@ -66,7 +68,8 @@
     events: {
       'click .filter-notes': 'showFilterModal',
       'click .clear-notes': 'clearFilter',
-      'click .list-item': 'showNoteDetails'
+      'click .list-item': 'showNoteDetails',
+      'click .apply-filter': 'applyFilters',
     },
 
     showFilterModal: function() {
@@ -89,34 +92,31 @@
         map_region: 0
       };
 
-      // Populate taggedNotes on click and hide modal
-      jQuery('.apply-filter').on('click', function(){
-        // get all elements with .selected class and add to filterObj
-        _.each(jQuery('#filter-note-types-container .selected'), function(el, index) {
-          filterObj.types.push(jQuery(el).data().type);
-        });
-
-        // Add map region filter
-        filterObj.map_region = Number(jQuery('#filter-map-region').val());
-
-        // Tag custom tags
-        _.each(jQuery('.filter-tags-dropdown'), function(dropdown) {
-          var tag = jQuery(dropdown).val();
-          if (tag !== "") {
-            filterObj.tags.push(tag);
-          }
-        });
-        // unique them
-        filterObj.tags = _.uniq(filterObj.tags);
-
-        // css up the filter button (maybe more make more heavy css)
-        jQuery('.clear-notes').addClass('activated');
-
-        // hide modal
-        jQuery('.filter-notes-modal').modal('hide');
-
-        view.render();
+      // get all elements with .selected class and add to filterObj
+      _.each(jQuery('#filter-note-types-container .selected'), function(element, index) {
+        filterObj.types.push(jQuery(element).data().type);
       });
+
+      // Get map region val and add to map region filterObj
+      filterObj.map_region = Number(jQuery('#filter-map-region').val());
+
+      // Tag custom tags
+      _.each(jQuery('.filter-tags-dropdown'), function(dropdown) {
+        var tag = jQuery(dropdown).val();
+        if (tag !== "") {
+          filterObj.tags.push(tag);
+        }
+      });
+
+      // unique them
+      filterObj.tags = _.uniq(filterObj.tags);
+
+      // hide modal
+      jQuery('.filter-notes-modal').modal('hide');
+      // css up the filter button (maybe more make more heavy css)
+      jQuery('.clear-notes').addClass('activated');
+
+      view.render();
     },
 
     clearFilter: function() {
@@ -131,12 +131,13 @@
         view.render();
         jQuery().toastmessage('showSuccessToast', "Filters have been cleared");
       }
-
     },
 
     showNoteDetails: function(event) {
       var view = this;
+      // Type of template used
       var templateType = null;
+      // The html contents passed into the view
       var htmlContents = null;
 
       // fetch model ID from DOM
@@ -217,7 +218,7 @@
       } else {
         filteredNotes = view.collection.filter(filterer).reverse();
       }
-      //.reverse();
+
       var totalNumPubNotes = filteredNotes.length;
 
       // adding total number of notes to H3

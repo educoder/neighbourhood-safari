@@ -109,6 +109,9 @@
         // unique them
         filterObj.tags = _.uniq(filterObj.tags);
 
+        // css up the filter button (maybe more make more heavy css)
+        jQuery('.clear-notes').addClass('activated');
+
         // hide modal
         jQuery('.filter-notes-modal').modal('hide');
 
@@ -119,10 +122,16 @@
     clearFilter: function() {
       var view = this;
 
-      filterObj = {};
-      jQuery('#filter-note-types-container .selected').removeClass('selected');
-      view.render();
-      jQuery().toastmessage('showSuccessToast', "Filters have been cleared");
+      if (jQuery.isEmptyObject(filterObj)) {
+        jQuery().toastmessage('showErrorToast', "No filters set");
+      } else {
+        filterObj = {};
+        jQuery('#filter-note-types-container .selected').removeClass('selected');
+        jQuery('.clear-notes').removeClass('activated');
+        view.render();
+        jQuery().toastmessage('showSuccessToast', "Filters have been cleared");
+      }
+
     },
 
     showNoteDetails: function(event) {

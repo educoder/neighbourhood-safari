@@ -127,7 +127,7 @@
 
     <script id="planning-note-input" type="text/template">
         <form class="planning-note-input note-input">
-            <div class="note-type-title"><h3>Photo Set Note</h3></div>
+            <div class="note-type-title"><h3>Planning Note</h3></div>
             <div class="form-group">
                 <div class="input-field-group">
                     <select class="map-region-dropdown">
@@ -138,23 +138,23 @@
                     </select>
                 </div>
                 <label>Your hypothesis or question</label>
-                <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="2" placeholder="Describe what you think you will see..."></textarea>
+                <textarea class="note-hypothesis note-text-input row-fuild" name="hypothesis" rows="2" placeholder="Describe what you expect to see..."></textarea>
                 <label>Photographic evidence</label>
                 <div class="input-field-group">
                     <span>Add a photo of your planning map</span><img class="camera-btn" src="img/camera1_small.png"/>
                 </div>
                 <div class="input-field-group">
-                    <span>Identify the camera trap number(s) you included on your map</span><input type="number" class="related-camera-traps-input"></input><button class="add-related-camera-traps-btn">Add</button>
+                    <span>Identify all other camera trap number(s) that were included on your map</span><input type="number" class="related-camera-traps-input"></input><button class="add-related-camera-traps-btn">Add</button>
                     <div>
                         <span>Related camera traps: </span><span class="related-camera-traps"/>
                     </div>
                 </div>
+                <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe the elements of your planning map (e.g., tokens, drawings, and arrows)..."></textarea>
                 <div class="input-field-group">
-                    <span>Add additional photos from your backpack that support your reasoning</span><img class="camera-btn" src="img/camera1_small.png"/>
+                    <span>Add additional photos from your backpack (optional)</span><img class="camera-btn" src="img/camera1_small.png"/>
                 </div>
-                <textarea class="note-description note-text-input row-fuild" name="description" rows="2" placeholder="Describe how these photos influenced your plan..."></textarea>
                 <label>Other evidence that influenced your plan</label>
-                <textarea class="note-evidence note-text-input row-fuild" name="evidence" rows="2" placeholder="Describe other evidence (e.g., animal signs, readings) that influenced your plan..."></textarea>
+                <textarea class="note-evidence note-text-input row-fuild" name="evidence" rows="2" placeholder="Describe other evidence (e.g., class discussions, photos, or notes from other student groups) that influenced your plan..."></textarea>
                 <hr/>
                 <textarea class="note-title note-text-input row-fuild" name="title" rows="1" placeholder="Give your note a title..."></textarea>
                 <div class="input-field-group">
@@ -365,7 +365,7 @@
                         <button class="btn btn-primary btn-small open" value="open">Open Note</button> -->
                     </div>
                     <div class="form-group">
-                        <label>Map Region</label>
+                        <label>Map Region (pick 1)</label>
                         <select class="span12" id="filter-map-region">
                             <option value="0">All</option>
                             <option value="1">1</option>
@@ -374,7 +374,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Tags</label>
+                        <label for="">Tags (pick up to 3)</label>
                         <select class="filter-tags-dropdown span12">
                             <option value=""></option>
                         </select>

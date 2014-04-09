@@ -48,6 +48,10 @@ $tag-color: rgb(187, 182, 181);
     color: #333;
   }
 
+  /*.btn-primary {
+    background: rgb(31, 136, 214) !important;
+  }*/
+
   /*                      */
   /*  2.1 Helper Styles   */
   /*                      */
@@ -626,3 +630,24 @@ $tag-color: rgb(187, 182, 181);
   margin: -25px 0 10px -5px;
   }
 }
+
+
+/* TESTING GROUNDS */
+.activated {
+  -webkit-box-shadow: 4px 3px 3px #EB987F;
+  -moz-box-shadow: 4px 3px 3px #EB987F;
+  box-shadow: 4px 3px 3px #EB987F;
+}
+
+/*.gps_ring {
+    border: 3px solid #999;
+    -webkit-border-radius: 30px;
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.0
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}*/

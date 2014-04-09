@@ -35,6 +35,9 @@
     user-select: text;
     color: #333; }
 
+  /*.btn-primary {
+    background: rgb(31, 136, 214) !important;
+  }*/
   /*                      */
   /*  2.1 Helper Styles   */
   /*                      */
@@ -456,3 +459,21 @@
   .open-note-input .note-type-title,
   .photo-set-note-input .note-type-title {
     margin: -25px 0 10px -5px; } }
+/* TESTING GROUNDS */
+.activated {
+  -webkit-box-shadow: 4px 3px 3px #eb987f;
+  -moz-box-shadow: 4px 3px 3px #eb987f;
+  box-shadow: 4px 3px 3px #eb987f; }
+
+/*.gps_ring {
+    border: 3px solid #999;
+    -webkit-border-radius: 30px;
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.0
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}*/

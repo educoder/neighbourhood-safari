@@ -203,7 +203,7 @@
       var cameraTrap = Number(jQuery('.related-camera-traps-input').val());
       jQuery('.related-camera-traps-input').val("");
       // TODO: maybe check based on the safari counter in the collection that gugo makes instead of arbitrary 999
-      if (cameraTrap > 0 && cameraTrap < 999) {
+      if (cameraTrap > 0 && cameraTrap < 1000) {
         app.currentNote.get('related_camera_traps').push(cameraTrap);
         // clearing out any duplicates
         app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));

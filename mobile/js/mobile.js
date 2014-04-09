@@ -624,15 +624,21 @@
         });
 
         newGroup.display_name = jQuery('.create-new-group-name').val();
-        // Get value of new group name, to lowercase and strip whitespace
-        newGroup.groupname = jQuery('.create-new-group-name').val().replace(/\s/g, '').toLowerCase();
-        newGroup.tags = [runId];
-        // newGroup.set('created_at', new Date());
 
-        // newGroup.save().done(function(){
-        //   console.log('groups saved');
-        // });
-        createOrUpdateGroup(newGroup);
+        if (newGroup.display_name.length > 3 && newGroup.users.length >= 1) {
+          // Get value of new group name, to lowercase and strip whitespace
+          newGroup.groupname = jQuery('.create-new-group-name').val().replace(/\s/g, '').toLowerCase();
+          newGroup.tags = [runId];
+          // newGroup.set('created_at', new Date());
+
+          // newGroup.save().done(function(){
+          //   console.log('groups saved');
+          // });
+          createOrUpdateGroup(newGroup);
+        } else {
+          console.warn('Group name must be more than 3 characters and must contain 1 or more members.');
+          jQuery().toastmessage('showErrorToast', "Group name must be more than 3 characters and must contain 1 or more members.");
+        }
       });
     });
   };

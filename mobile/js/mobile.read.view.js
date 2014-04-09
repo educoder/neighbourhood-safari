@@ -76,7 +76,8 @@
       // show modal
       jQuery('.filter-notes-modal').modal('show');
 
-      // populating the tags dropdowns from the tags collection
+      // clear and then populate the tags dropdowns from the tags collection
+      jQuery('.filter-tags-dropdown').html('<option value=""></option>');
       app.tags.each(function(tag) {
         var tagName = tag.get('name');
         jQuery('.filter-tags-dropdown').append('<option value=' + '"' + tagName + '"' +'>'+ tagName +'</option>');

@@ -334,7 +334,6 @@
       }
     });
 
-    // Refresh and repull data - this may go eventually
     jQuery('.read-button').click(function() {
       if (app.username) {
         jQuery('.nav-pills li').removeClass('active'); // unmark all nav items

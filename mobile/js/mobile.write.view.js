@@ -225,6 +225,12 @@
           photoHTML += _.template(jQuery(view.photoTemplate).text(), {'url':o.image_url});
         });
         jQuery('.photos-container').html(photoHTML);
+        // reset previously selected notes as selected (will be skipped if no currentNote.get('photos') is empty)
+        _.each(app.currentNote.get('photos'), function(p) {
+          var src = '[src="'+p+'"]';
+          jQuery('img'+src).addClass('selected');
+          //jQuery('.photo').attr('src',p).addClass('selected');
+        });
         jQuery('.photo-picker').modal('show');
       } else {
         jQuery().toastmessage('showErrorToast', "Sorry, you do not have a backpack yet");
@@ -243,7 +249,7 @@
       // set that array into the currentNote
       app.currentNote.set('photos', photosAr);
       jQuery('.photo-picker').modal('hide');
-      jQuery().toastmessage('showSuccessToast', "Photos attached to note");
+      jQuery().toastmessage('showSuccessToast', "Attached photos updated");
     },
 
     showTagPicker: function(ev) {
@@ -283,7 +289,7 @@
       // set that array into the currentNote
       app.currentNote.set('tags', tagsAr);
       jQuery('.tag-picker').modal('hide');
-      jQuery().toastmessage('showSuccessToast', "Tags attached to note");
+      jQuery().toastmessage('showSuccessToast', "Attached tags updated");
     },
 
     cancelNote: function() {
@@ -377,16 +383,18 @@
         app.currentNote.set('map_region', Number(jQuery('.map-region-dropdown').val()));
       }
       app.currentNote.set('published', true);
-
       app.currentNote.save();
-      // clearing up
-      // this.$el.find('.note-body').val('');
+
       // turn off auto save
       window.clearTimeout(app.autoSaveTimer);
       app.currentNote = null;
       jQuery('.note-taking-toggle').slideUp();
 
       jQuery('#show-note-container').removeClass('hidden');
+      jQuery('.nav-pills li').removeClass('active'); // unmark all nav items
+      jQuery(this).addClass('active');
+      app.hideAllRows();
+      jQuery('#read-screen').removeClass('hidden');
 
       jQuery().toastmessage('showSuccessToast', "Note submitted");
     },

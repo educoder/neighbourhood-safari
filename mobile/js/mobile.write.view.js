@@ -259,17 +259,23 @@
 
       // make sure there is a tag collection
       if (app.tags) {
-        var tags = app.currentNote.get('tags');
+        var myTags = app.currentNote.get('tags');
+        var tagNameArray = [];
         app.tags.each(function(tag) {
+          tagNameArray.push(tag.get('name'));
+        });
+        var alphaTags = _.sortBy(tagNameArray, function (name) {return name});
+
+        _.each(alphaTags, function(tagStr) {
           // check if this note already has this tag
-          var matchTag = _.find(tags, function(t) { return t === tag.get('name'); });
+          var matchTag = _.find(myTags, function(t) { return t === tagStr; });
 
           var selectedFlag = "";
           if (matchTag) {
             selectedFlag = "selected";
           }
           // add the selector class if tag is already attached to note
-          tagsHTML += _.template(jQuery(view.tagTemplate).text(), {'tagName':tag.get('name'), 'selectedClass':selectedFlag});
+          tagsHTML += _.template(jQuery(view.tagTemplate).text(), {'tagName':tagStr, 'selectedClass':selectedFlag});
         });
         jQuery('.tags-container').html(tagsHTML);
         jQuery('.tag-picker').modal('show');

@@ -297,7 +297,6 @@
     return promise;
   };
 
-
   var tryPullUsersData = function() {
     if (app.runId) {
       app.rollcall.usersWithTags([app.runId])
@@ -308,7 +307,6 @@
       .fail(function() { console.error("Error pulling users data..."); });
     }
   };
-
 
   var idToTimestamp = function(id) {
     var timestamp = id.substring(0,8);

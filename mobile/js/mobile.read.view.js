@@ -68,7 +68,7 @@
     events: {
       'click .filter-notes': 'showFilterModal',
       'click .clear-notes': 'clearFilter',
-      'click .list-item': 'showNoteDetails',
+      'click li.list-item': 'showNoteDetails',
       'click .apply-filter': 'applyFilters',
     },
 
@@ -115,7 +115,8 @@
       jQuery('.filter-notes-modal').modal('hide');
       // css up the filter button (maybe more make more heavy css)
       jQuery('.clear-notes').addClass('activated');
-
+      // Clear note details
+      jQuery('.note-details').html('');
       view.render();
     },
 
@@ -140,6 +141,9 @@
       // The html contents passed into the view
       var htmlContents = null;
 
+
+      jQuery('li.active-list-item').removeClass('active-list-item');
+      var currentListItem = jQuery(event.currentTarget).addClass('active-list-item');
       // fetch model ID from DOM
       var modelId = jQuery(event.currentTarget).data('id');
 
@@ -193,6 +197,7 @@
                       }
 
       var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
+
       view.$el.find('.note-details').html(noteDetail);
     },
 

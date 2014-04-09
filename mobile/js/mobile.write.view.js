@@ -225,6 +225,12 @@
           photoHTML += _.template(jQuery(view.photoTemplate).text(), {'url':o.image_url});
         });
         jQuery('.photos-container').html(photoHTML);
+        // reset previously selected notes as selected (will be skipped if no currentNote.get('photos') is empty)
+        _.each(app.currentNote.get('photos'), function(p) {
+          var src = '[src="'+p+'"]';
+          jQuery('img'+src).addClass('selected');
+          //jQuery('.photo').attr('src',p).addClass('selected');
+        });
         jQuery('.photo-picker').modal('show');
       } else {
         jQuery().toastmessage('showErrorToast', "Sorry, you do not have a backpack yet");

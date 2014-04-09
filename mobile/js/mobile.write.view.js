@@ -200,13 +200,26 @@
 
     addCameraTrapNumbers: function(ev) {
       ev.preventDefault();
+
       var cameraTrap = Number(jQuery('.related-camera-traps-input').val());
       jQuery('.related-camera-traps-input').val("");
       // TODO: maybe check based on the safari counter in the collection that gugo makes instead of arbitrary 999
       if (cameraTrap > 0 && cameraTrap < 1000) {
-        app.currentNote.get('related_camera_traps').push(cameraTrap);
-        // clearing out any duplicates
-        app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
+        // the related-camera-traps-input class *for this note* (modal not injected into DOM, so limited scope allows us to check like this)
+        if (jQuery('.related-camera-traps-input').hasClass('photo-set-related-camera-traps')) {
+          // this note type can only have one related camera trap
+          app.currentNote.set('related_camera_traps', []);
+          app.currentNote.get('related_camera_traps').push(cameraTrap);
+        } else if (jQuery('.related-camera-traps-input').hasClass('planning-related-camera-traps')) {
+          // this note type can only have many related camera trap
+          app.currentNote.get('related_camera_traps').push(cameraTrap);
+          // clearing out any duplicates
+          app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
+        } else {
+          console.error('This should never happen error - Unknown note type in write view')
+        }
+
+
         jQuery('.related-camera-traps').text(app.currentNote.get('related_camera_traps'));
       } else {
         jQuery().toastmessage('showErrorToast', "Invalid camera trap number");
@@ -259,7 +272,9 @@
 
       // make sure there is a tag collection
       if (app.tags) {
+        // this note's tags
         var myTags = app.currentNote.get('tags');
+        // sort the tags collection in alpha (maybe move this to mobile.js?)
         var tagNameArray = [];
         app.tags.each(function(tag) {
           tagNameArray.push(tag.get('name'));

@@ -1,18 +1,21 @@
-/*                               */
-/*        LEGEND                 */
-/*                               */
-/*        1.0 Variables          */
-/*        2.0 Landscape          */
-/*         2.1 Helper            */
-/*         2.2 Write Screen      */
-/*         2.3 Read Screen       */
-/*        3.0 Portrait           */
-/*                               */
+/*                                   */
+/*        LEGEND                     */
+/*                                   */
+/*        1.0 Global Variables       */
+/*        2.0 Landscape/Base Styles  */
+/*         2.1 Helpers               */
+/*         2.2 Write Screen          */
+/*         2.3 Read Screen           */
+/*        3.0 Media Queries          */
+/*         3.1 Portrait              */
+/*         3.2 Small Screen          */
+/*         3.3 Misc fixes            */
+/*                                   */
 
 
-/*               */
-/* 1.0 Variables */
-/*               */
+/*                      */
+/* 1.0 Global Variables */
+/*                      */
 
 $planning-color: rgb(57, 181, 74);
 $photo-set-color: rgb(252, 169, 30);
@@ -25,7 +28,6 @@ $tag-color: rgb(187, 182, 181);
 /* 2.0 Landscape Orientation */
 /*                           */
 @media all {
-
   body {
     font-family: "Roboto", sans-serif;
   }
@@ -103,6 +105,8 @@ $tag-color: rgb(187, 182, 181);
     user-select: text;
     color: #333;
     width: 98%;
+    padding: 10px;
+    resize: vertical;
   }
   .photo {
     width: 12em;
@@ -119,6 +123,9 @@ $tag-color: rgb(187, 182, 181);
     border-radius: 0.6em;
     margin: 0.3em;
     display: inline-block;
+  }
+  #filter-note-types-container .tag {
+    color: white;
   }
   .selected {
     opacity: 0.4;
@@ -211,23 +218,22 @@ $tag-color: rgb(187, 182, 181);
   /*                  */
 
   /* TODO shouldn't the rest be wrapped in here too? */
-  #notes-screen-input {
+  #notes-screen-input, #read-screen {
 
     .note-type-picker {
-      .planning {
+      .planning, .photo-set, .cross-cutting, .open {
         background-image: none;
+      }
+      .planning {
         background-color: $planning-color;
       }
       .photo-set {
-        background-image: none;
         background-color: $photo-set-color;
       }
       .cross-cutting {
-        background-image: none;
         background-color: $cross-cutting-color;
       }
       .open {
-        background-image: none;
         background-color: $open-color;
       }
     }
@@ -274,6 +280,7 @@ $tag-color: rgb(187, 182, 181);
     }
     hr {
       height: 7px;
+      border-radius: 10px;
       border: 0;
     }
     .input-field-group {
@@ -294,7 +301,7 @@ $tag-color: rgb(187, 182, 181);
       color: white;
     }
     /* think about a total container for note entry of about 60% (instead of this) */
-    .camera-trap-region-dropdown {
+    .map-region-dropdown {
       width: 60%;
     }
     .tag-btn {
@@ -425,6 +432,10 @@ $tag-color: rgb(187, 182, 181);
     margin-bottom: 20px;
   }
 
+  #filter-note-types-container {
+    margin-bottom: 15px;
+  }
+
   .note-entry-field {
     width: 99%;
     margin-top: -11px;
@@ -444,7 +455,6 @@ $tag-color: rgb(187, 182, 181);
     .span12 {
       border-bottom: 1px solid #eee;
     }
-
     .span4 {
       margin-left: 0;
       li.planning, li.cross_cutting, li.open, li.photo_set {
@@ -475,7 +485,6 @@ $tag-color: rgb(187, 182, 181);
         }
       }
     }
-
     .span8 {
         margin-left: 0;
       .note-details-container {
@@ -489,7 +498,7 @@ $tag-color: rgb(187, 182, 181);
         padding-right: 2%;
         margin-top:0;
         border-radius: 0 10px 10px 0;
-        border-bottom: 2px solid #7E7E7E;
+        border-bottom: 2px solid #7e7e7e;
       }
       .open-note-details h3 {
         background-color: $open-color;
@@ -510,8 +519,26 @@ $tag-color: rgb(187, 182, 181);
     }
     .list-item {
       margin-left: 2%;
+      border-bottom: 1px solid #eee;
+    }
+    .list-item:last-child {
+      border-bottom: none;
     }
   } /* end .span8 */
+  .filter-notes-modal {
+    .planning {
+      background-color: $planning-color;
+    }
+    .cross-cutting {
+      background-color: $cross-cutting-color;
+    }
+    .open {
+      background-color: $open-color;
+    }
+    .photo-set {
+      background-color: $photo-set-color;
+    }
+  }
 }   /* end orientation landscape */
 
 
@@ -530,7 +557,66 @@ $tag-color: rgb(187, 182, 181);
   }
 }*/
 
-// Remove padding from top from below nav
+
+// 3.1 Portrait (Max width 767px and below)
+
+@media (max-width: 767px)
+{
+  #list-screen {
+
+    .span12 {
+      border-bottom: none;
+      .pull-right {
+        padding-top: 5px;
+      }
+    }
+
+    .span4 {
+      height: 300px;
+      border-bottom: none;
+      border-right: none;
+      border-top: 1px solid #eee;
+      margin: 3% 0 3% 0;
+    }
+
+    .span8.note-details {
+      .note-details-container {
+        h3 {
+          width: 95%;
+          border-radius: 10px;
+          font-size: 20px;
+          line-height: 35px;
+        }
+      }
+    }
+  }
+  #notes-screen-input {
+    .note-type-title {
+      margin-left: -25px;
+      margin-bottom: 5%;
+    }
+  }
+}
+
+// 3.2 Small Screen/Phone and below specific styles
+@media (max-width: 485px) {
+  #list-screen {
+    .span12 {
+      .pull-right {
+        float: left !important;
+        margin-left: 1%;
+        margin: 1% 0 1% 1%;
+        padding: 0 0 5px 0;
+        button {
+          margin: 0 5px 0 0;
+          display: inline-block !important;
+        }
+      }
+    }
+  }
+}
+
+// 3.3 Misc screen width specific fixes
 @media (max-width: 980px) {
   .row-fluid {
     padding-top: 0px;

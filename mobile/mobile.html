@@ -130,7 +130,7 @@
             <div class="note-type-title"><h3>Photo Set Note</h3></div>
             <div class="form-group">
                 <div class="input-field-group">
-                    <select class="camera-trap-region-dropdown">
+                    <select class="map-region-dropdown">
                         <option value="0">Select the region for your camera trap</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -179,7 +179,7 @@
                 </div>
                 <br/>
                 <div class="input-field-group">
-                    <select class="camera-trap-region-dropdown">
+                    <select class="map-region-dropdown">
                         <option value="0">Select the region of your camera trap</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -309,8 +309,8 @@
                 <div class="span12">
                     <h3 class="note-number-total pull-left">Notes</h3>
                     <div class="pull-right">
-                        <button class='btn-large btn-primary filter-notes'>Filters Notes</button>
-                        <button class='btn-large btn-warning clear-notes'>Clear Filters</button>
+                        <button class='btn-large btn-primary filter-notes'>Filter Notes</button>
+                        <button class='btn-large btn-danger clear-notes'>Clear Filters</button>
                     </div>
                 </div>
                     <div class="span4 scrollable-y">
@@ -322,78 +322,57 @@
                     <div class="span8 note-details">
                         <!-- photo-set-note template inserted here  -->
                     </div>
-            </div>
-        </div>
-
-
-        <div class="modal hide fade clear-notes-modal" tabindex="-1" role="dialog" aria-labelledby="clear-notes" aria-hidden="true">
-            <div class="modal-header">
-                <h3>Clear Notes</h3>
-            </div>
-
-            <div class="modal-body">
-                <form>
-                    <button class="btn-primary">Apply Filters</button>
-                </form>
-            </div>
-        </div>
-
-
-    <!--                  -->
-    <!-- LIST VIEW MODALS -->
-    <!--                  -->
-
 
     <!--                    -->
     <!-- Filter Notes Modal -->
     <!--                    -->
-        <div class="modal hide fade filter-notes-modal" tabindex="-1" role="dialog" aria-labelledby="filter-notes" aria-hidden="true">
-            <div class="modal-header">
-                <h3>Filter Notes</h3>
-            </div>
 
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <div class="row-fuild">
-                            <button class="btn btn-primary">Planning Note</button>
-                            <button class="btn btn-primary">Photo Set Note</button>
-                            <button class="btn btn-primary">Cross-cutting Note</button>
-                            <button class="btn btn-primary">Open Note</button>
-                        </div>
+                <div class="modal hide fade filter-notes-modal" tabindex="-1" role="dialog" aria-labelledby="filter-notes" aria-hidden="true">
+                    <div class="modal-header">
+                        <h3>Filter Notes</h3>
                     </div>
-                    <div class="form-group">
-                        <label for="">Related Safari</label>
-                        <select class="span8" name="" id="">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Map Region</label>
-                        <select class="span8" name="" id="">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Tags</label>
-                        <select class="span8" name="" id="">
-                            <option value=""></option>
-                        </select>
-                        <select class="span8" name="" id="">
-                            <option value=""></option>
-                        </select>
-                        <select class="span8" name="" id="">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary">Apply Filters</button>
-                </form>
-            </div>
-        </div> <!-- end filter notes  modal -->
 
-    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div id="filter-note-types-container" class="span12">
+                                <div class="tag cross-cutting" data-type="cross_cutting">Cross Cutting</div>
+                                <div class="tag open" data-type="open">Open</div>
+                                <div class="tag photo-set" data-type="photo_set">Photo Set</div>
+                                <div class="tag planning" data-type="planning">Planning</div>
+                                <!-- <button class="btn btn-primary btn-small planning" value="planning">Planning Note</button>
+                                <button class="btn btn-primary btn-small photo-set" value="photo_set">Photo Set Note</button>
+                                <button class="btn btn-primary btn-small cross-cutting" value="cross_cutting">Cross-cutting Note</button>
+                                <button class="btn btn-primary btn-small open" value="open">Open Note</button> -->
+                            </div>
+                            <div class="form-group">
+                                <label>Map Region</label>
+                                <select class="span12" id="filter-map-region">
+                                    <option value="0">All</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tags</label>
+                                <select class="filter-tags-dropdown span12">
+                                    <option value=""></option>
+                                </select>
+                                <select class="filter-tags-dropdown span12">
+                                    <option value=""></option>
+                                </select>
+                                <select class="filter-tags-dropdown span12">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary apply-filter">Apply Filters</button>
+                        </form>
+                    </div>
+                </div> <!-- end filter notes  modal -->
 
-
+            </div> <!-- end #list-screen -->
+        </div> <!-- end view-container -->
+    </div> <!-- end #read-screen -->
 
 
     <!--                  -->
@@ -401,22 +380,26 @@
     <!--                  -->
 
     <div id="write-screen" class="row-fluid">
-        <div class="span12 view-container bs-docs-sidebar">
+        <div class="view-container bs-docs-sidebar">
 
             <!-- Write View looks at the notes-screen-input element -->
-            <div id="notes-screen-input" class="span12 input-box-wrapper">
+            <div id="notes-screen-input" class="span12">
 
                 <div id="show-note-container" class="span12">
                     <!-- <button class="resume-note-btn btn btn-large btn-primary">Resume Note</button> -->
-                    <div class="pull-right">
-                        <div class="btn-group resume-note-btn-group">
-                            <button class="resume-note-btn btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Resume Note</button>
-                            <ul class="dropdown-menu">
-                                <!-- dropdown menu links filled via template in view -->
-                            </ul>
+
+                        <h3 class="pull-left">How do you want to contribute?</h3>
+                        <div class="pull-right">
+                            <div class="btn-group resume-note-btn-group">
+                                <button class="resume-note-btn btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Resume Note</button>
+                                <ul class="dropdown-menu">
+                                    <!-- dropdown menu links filled via template in view -->
+                                </ul>
+
+                            </div>
+                            <button class="new-note-btn btn btn-large btn-primary" data-toggle="popover">New Note</button>
                         </div>
-                        <button class="new-note-btn btn btn-large btn-primary" data-toggle="popover">New Note</button>
-                    </div>
+
                 </div>
 
                 <div class="note-taking-toggle">

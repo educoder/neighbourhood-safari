@@ -67,10 +67,10 @@
       'click .share-note-btn'    : 'publishNote',
       'click .add-related-camera-traps-btn': 'addCameraTrapNumbers',
       'click .camera-btn'        : 'showPhotoPicker',
-      'click .photo'             : 'setSelected',
+      'click .photo'             : 'toggleSelected',
       'click .photo-picker button': 'addPhotos',
       'click .tag-btn'            : 'showTagPicker',
-      'click .tag'                : 'setSelected',
+      'click .tag'                : 'toggleSelected',
       'click .tag-picker button'  : 'addTags',
       //'click .note-body'         : 'createOrRestoreNote',
       'keyup :input': function(ev) {
@@ -154,6 +154,7 @@
         created_at: new Date(),
         type: note_type,
         body: {},
+        map_region: 0,
         photos: [],
         tags: [],
         related_camera_traps: [],
@@ -193,8 +194,8 @@
       jQuery('#show-note-container').addClass('hidden');
     },
 
-    setSelected: function(ev) {
-      jQuery(ev.target).addClass('selected');
+    toggleSelected: function(ev) {
+      jQuery(ev.target).toggleClass('selected');
     },
 
     addCameraTrapNumbers: function(ev) {
@@ -372,10 +373,12 @@
       });
 
       // app.currentNote.set('body', this.$el.find('.note-body').val());
+      if (jQuery('.map-region-dropdown').val()) {
+        app.currentNote.set('map_region', Number(jQuery('.map-region-dropdown').val()));
+      }
       app.currentNote.set('published', true);
 
       app.currentNote.save();
-
       // clearing up
       // this.$el.find('.note-body').val('');
       // turn off auto save
@@ -384,6 +387,8 @@
       jQuery('.note-taking-toggle').slideUp();
 
       jQuery('#show-note-container').removeClass('hidden');
+
+      jQuery().toastmessage('showSuccessToast', "Note submitted");
     },
 
     render: function () {

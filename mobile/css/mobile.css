@@ -1,16 +1,19 @@
-/*                               */
-/*        LEGEND                 */
-/*                               */
-/*        1.0 Variables          */
-/*        2.0 Landscape          */
-/*         2.1 Helper            */
-/*         2.2 Write Screen      */
-/*         2.3 Read Screen       */
-/*        3.0 Portrait           */
-/*                               */
-/*               */
-/* 1.0 Variables */
-/*               */
+/*                                   */
+/*        LEGEND                     */
+/*                                   */
+/*        1.0 Global Variables       */
+/*        2.0 Landscape/Base Styles  */
+/*         2.1 Helpers               */
+/*         2.2 Write Screen          */
+/*         2.3 Read Screen           */
+/*        3.0 Media Queries          */
+/*         3.1 Portrait              */
+/*         3.2 Small Screen          */
+/*         3.3 Misc fixes            */
+/*                                   */
+/*                      */
+/* 1.0 Global Variables */
+/*                      */
 /*                           */
 /* 2.0 Landscape Orientation */
 /*                           */
@@ -77,7 +80,9 @@
     -webkit-user-select: text;
     user-select: text;
     color: #333;
-    width: 98%; }
+    width: 98%;
+    padding: 10px;
+    resize: vertical; }
 
   .photo {
     width: 12em;
@@ -95,6 +100,9 @@
     border-radius: 0.6em;
     margin: 0.3em;
     display: inline-block; }
+
+  #filter-note-types-container .tag {
+    color: white; }
 
   .selected {
     opacity: 0.4; }
@@ -174,25 +182,23 @@
   /* 2.2 Write Screen */
   /*                  */
   /* TODO shouldn't the rest be wrapped in here too? */
-  #notes-screen-input .note-type-picker .planning {
-    background-image: none;
+  #notes-screen-input .note-type-picker .planning, #notes-screen-input .note-type-picker .photo-set, #notes-screen-input .note-type-picker .cross-cutting, #notes-screen-input .note-type-picker .open, #read-screen .note-type-picker .planning, #read-screen .note-type-picker .photo-set, #read-screen .note-type-picker .cross-cutting, #read-screen .note-type-picker .open {
+    background-image: none; }
+  #notes-screen-input .note-type-picker .planning, #read-screen .note-type-picker .planning {
     background-color: #39b54a; }
-  #notes-screen-input .note-type-picker .photo-set {
-    background-image: none;
+  #notes-screen-input .note-type-picker .photo-set, #read-screen .note-type-picker .photo-set {
     background-color: #fca91e; }
-  #notes-screen-input .note-type-picker .cross-cutting {
-    background-image: none;
+  #notes-screen-input .note-type-picker .cross-cutting, #read-screen .note-type-picker .cross-cutting {
     background-color: #9282f3; }
-  #notes-screen-input .note-type-picker .open {
-    background-image: none;
+  #notes-screen-input .note-type-picker .open, #read-screen .note-type-picker .open {
     background-color: #cd16ac; }
-  #notes-screen-input li.planning a {
+  #notes-screen-input li.planning a, #read-screen li.planning a {
     color: #39b54a; }
-  #notes-screen-input li.cross_cutting a {
+  #notes-screen-input li.cross_cutting a, #read-screen li.cross_cutting a {
     color: #9282f3; }
-  #notes-screen-input li.open a {
+  #notes-screen-input li.open a, #read-screen li.open a {
     color: #cd16ac; }
-  #notes-screen-input li.photo_set a {
+  #notes-screen-input li.photo_set a, #read-screen li.photo_set a {
     color: #fca91e; }
 
   .note-input {
@@ -211,6 +217,7 @@
       font-weight: 900; }
     .note-input hr {
       height: 7px;
+      border-radius: 10px;
       border: 0; }
     .note-input .input-field-group {
       margin-bottom: 1em; }
@@ -226,7 +233,7 @@
       margin-right: 0.1em; }
     .note-input .add-related-camera-traps-btn {
       color: white; }
-    .note-input .camera-trap-region-dropdown {
+    .note-input .map-region-dropdown {
       width: 60%; }
     .note-input .tag-btn {
       width: 1em;
@@ -328,6 +335,9 @@
     font-size: 30px;
     margin-bottom: 20px; }
 
+  #filter-note-types-container {
+    margin-bottom: 15px; }
+
   .note-entry-field {
     width: 99%;
     margin-top: -11px; }
@@ -369,7 +379,7 @@
       padding-right: 2%;
       margin-top: 0;
       border-radius: 0 10px 10px 0;
-      border-bottom: 2px solid #7E7E7E; }
+      border-bottom: 2px solid #7e7e7e; }
     #list-screen .span8 .open-note-details h3 {
       background-color: #cd16ac; }
     #list-screen .span8 .planning-note-details h3 {
@@ -382,9 +392,20 @@
     max-height: 588px;
     border-right: 1px solid #eee; }
   #list-screen .list-item {
-    margin-left: 2%; }
+    margin-left: 2%;
+    border-bottom: 1px solid #eee; }
+  #list-screen .list-item:last-child {
+    border-bottom: none; }
 
-  /* end .span8 */ }
+  /* end .span8 */
+  .filter-notes-modal .planning {
+    background-color: #39b54a; }
+  .filter-notes-modal .cross-cutting {
+    background-color: #9282f3; }
+  .filter-notes-modal .open {
+    background-color: #cd16ac; }
+  .filter-notes-modal .photo-set {
+    background-color: #fca91e; } }
 /* end orientation landscape */
 /*                 */
 /*  3.0 Portrait   */
@@ -399,6 +420,35 @@
     margin-top: 25%;
   }
 }*/
+@media (max-width: 767px) {
+  #list-screen .span12 {
+    border-bottom: none; }
+    #list-screen .span12 .pull-right {
+      padding-top: 5px; }
+  #list-screen .span4 {
+    height: 300px;
+    border-bottom: none;
+    border-right: none;
+    border-top: 1px solid #eee;
+    margin: 3% 0 3% 0; }
+  #list-screen .span8.note-details .note-details-container h3 {
+    width: 95%;
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 35px; }
+
+  #notes-screen-input .note-type-title {
+    margin-left: -25px;
+    margin-bottom: 5%; } }
+@media (max-width: 485px) {
+  #list-screen .span12 .pull-right {
+    float: left !important;
+    margin-left: 1%;
+    margin: 1% 0 1% 1%;
+    padding: 0 0 5px 0; }
+    #list-screen .span12 .pull-right button {
+      margin: 0 5px 0 0;
+      display: inline-block !important; } }
 @media (max-width: 980px) {
   .row-fluid {
     padding-top: 0px; }

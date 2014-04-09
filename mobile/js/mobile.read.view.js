@@ -7,12 +7,15 @@
   this.Skeletor.Mobile = this.Skeletor.Mobile || {};
   var app = this.Skeletor.Mobile;
   app.View = this.Skeletor.Mobile.View || {};
+  // filterObj is used for conditions to filter the notes collection
+  var filterObj = {};
 
   /**
     Read View
   **/
   app.View.ReadView = Backbone.View.extend({
 
+    // Templates
     noteListTemplate: "#notes-list-template",
     openNoteDetailTemplate: "#open-note-detail-template",
     planningNoteDetailTemplate: "#planning-note-detail-template",
@@ -48,29 +51,89 @@
         }
       });
 
+      jQuery('.tag').on('click', function(ev) {
+        jQuery(ev.target).toggleClass('selected');
+      });
+
+      // Is this the cause of the multiple renders? I think soo.....
+      // jQuery('.apply-filter').on('click', function() {
+      //   view.applyFilters();
+      // });
+
       view.render();
 
       return view;
     },
 
     events: {
-      'click .filter-notes': 'filterNotes',
-      'click .clear-notes': 'clearNotes',
+      'click .filter-notes': 'showFilterModal',
+      'click .clear-notes': 'clearFilter',
       'click .list-item': 'showNoteDetails',
+      'click .apply-filter': 'applyFilters',
     },
 
-    filterNotes: function() {
+    showFilterModal: function() {
+      // show modal
       jQuery('.filter-notes-modal').modal('show');
+
+      // populating the tags dropdowns from the tags collection
+      app.tags.each(function(tag) {
+        var tagName = tag.get('name');
+        jQuery('.filter-tags-dropdown').append('<option value=' + '"' + tagName + '"' +'>'+ tagName +'</option>');
+      });
     },
 
-    clearNotes: function() {
-      // Trigger some sort of query
-      alert('Clearing Fitlers');
+    applyFilters: function() {
+      var view = this;
+      filterObj = {
+        published: true,
+        types: [],
+        tags: [],
+        map_region: 0
+      };
+
+      // Populate taggedNotes on click and hide modal
+
+      // get all elements with .selected class and add to filterObj
+      _.each(jQuery('#filter-note-types-container .selected'), function(element, index) {
+        filterObj.types.push(jQuery(element).data().type);
+      });
+
+      // Get map region val and add to map region filterObj
+      filterObj.map_region = Number(jQuery('#filter-map-region').val());
+
+      // Tag custom tags
+      _.each(jQuery('.filter-tags-dropdown'), function(dropdown) {
+        var tag = jQuery(dropdown).val();
+        if (tag !== "") {
+          filterObj.tags.push(tag);
+        }
+      });
+
+      // unique them
+      filterObj.tags = _.uniq(filterObj.tags);
+
+      // hide modal
+      jQuery('.filter-notes-modal').modal('hide');
+
+      view.render();
+    },
+
+    clearFilter: function() {
+      var view = this;
+      filterObj = {};
+
+      jQuery('#filter-note-types-container .selected').removeClass('selected');
+      view.render();
+
+      jQuery().toastmessage('showSuccessToast', "Filters have been cleared");
     },
 
     showNoteDetails: function(event) {
       var view = this;
+      // Type of template used
       var templateType = null;
+      // The html contents passed into the view
       var htmlContents = null;
 
       // fetch model ID from DOM
@@ -78,9 +141,12 @@
 
       // set model from collection
       var clickedModel = view.collection.get(modelId);
+
+      // If note is untitled
       if (clickedModel.get('body').title === '') {
         clickedModel.get('body').title = 'Untitled Note';
       }
+
       // set templateType and htmlContents
       if (clickedModel.get('type') === 'open') {
         templateType = view.openNoteDetailTemplate;
@@ -132,12 +198,24 @@
 
       // find the list where items are rendered into
       var list = this.$el.find('.note-list');
+      list.html('');
 
-      // Only want to show published notes at some point
-      var publishedNotes = view.collection.where({published: true}).reverse();
-      // var publishedNotes = view.collection.where({type: 'open'});
-      // publishedNotes.reverse();
-      var totalNumPubNotes = publishedNotes.length;
+      function filterer(note) {
+        return note.get('published') === true &&
+          // if map_region is undefined, 0 or equal to current note
+          (!filterObj.map_region || filterObj.map_region === '0' || filterObj.map_region === note.get('map_region')) &&
+          _.contains(filterObj.types, note.get('type')) &&
+          _.intersection(note.get('tags'), filterObj.tags).length === filterObj.tags.length;
+      }
+
+      var filteredNotes = null;
+      if (jQuery.isEmptyObject(filterObj)) {
+        filteredNotes = view.collection.where({published: true}).reverse();
+      } else {
+        filteredNotes = view.collection.filter(filterer).reverse();
+      }
+
+      var totalNumPubNotes = filteredNotes.length;
 
       // adding total number of notes to H3
       if (totalNumPubNotes === 1) {
@@ -146,7 +224,7 @@
          jQuery('.note-number-total').html(totalNumPubNotes + ' Notes');
       }
 
-      _.each(publishedNotes, function(note){
+      _.each(filteredNotes, function(note){
         var me_or_others = 'others';
         // add class 'me' or 'other' to note
         if (note.get('author') === app.username) {

@@ -249,7 +249,7 @@
       // set that array into the currentNote
       app.currentNote.set('photos', photosAr);
       jQuery('.photo-picker').modal('hide');
-      jQuery().toastmessage('showSuccessToast', "Photos attached to note");
+      jQuery().toastmessage('showSuccessToast', "Attached photos updated");
     },
 
     showTagPicker: function(ev) {
@@ -289,7 +289,7 @@
       // set that array into the currentNote
       app.currentNote.set('tags', tagsAr);
       jQuery('.tag-picker').modal('hide');
-      jQuery().toastmessage('showSuccessToast', "Tags attached to note");
+      jQuery().toastmessage('showSuccessToast', "Attached tags updated");
     },
 
     cancelNote: function() {
@@ -383,16 +383,18 @@
         app.currentNote.set('map_region', Number(jQuery('.map-region-dropdown').val()));
       }
       app.currentNote.set('published', true);
-
       app.currentNote.save();
-      // clearing up
-      // this.$el.find('.note-body').val('');
+
       // turn off auto save
       window.clearTimeout(app.autoSaveTimer);
       app.currentNote = null;
       jQuery('.note-taking-toggle').slideUp();
 
       jQuery('#show-note-container').removeClass('hidden');
+      jQuery('.nav-pills li').removeClass('active'); // unmark all nav items
+      jQuery(this).addClass('active');
+      app.hideAllRows();
+      jQuery('#read-screen').removeClass('hidden');
 
       jQuery().toastmessage('showSuccessToast', "Note submitted");
     },

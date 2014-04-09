@@ -48,9 +48,9 @@ $tag-color: rgb(187, 182, 181);
     color: #333;
   }
 
-  /*.btn-primary {
-    background: rgb(31, 136, 214) !important;
-  }*/
+  .btn-primary {
+    background: rgb(31, 136, 214);
+  }
 
   /*                      */
   /*  2.1 Helper Styles   */
@@ -588,8 +588,6 @@ $tag-color: rgb(187, 182, 181);
         h3 {
           width: 95%;
           border-radius: 10px;
-          font-size: 20px;
-          line-height: 35px;
         }
       }
     }

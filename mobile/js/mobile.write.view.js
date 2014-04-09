@@ -216,7 +216,7 @@
           // clearing out any duplicates
           app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
         } else {
-          console.error('This should never happen error - Unknown note type in write view')
+          console.error('This should never happen error - unknown note type in write view');
         }
 
 
@@ -279,7 +279,7 @@
         app.tags.each(function(tag) {
           tagNameArray.push(tag.get('name'));
         });
-        var alphaTags = _.sortBy(tagNameArray, function (name) {return name});
+        var alphaTags = _.sortBy(tagNameArray, function (name) {return name; });
 
         _.each(alphaTags, function(tagStr) {
           // check if this note already has this tag
@@ -388,7 +388,32 @@
 
     publishNote: function() {
       var view = this;
-      console.log('want me to do stuff, teach me');
+
+      // checking for required fields
+      var type = app.currentNote.get('type');
+      if (type === "planning") {
+        if (jQuery('.note-hypothesis').val() === "" || jQuery('.note-title').val() === "" || jQuery('.map-region-dropdown').val() === "0") {
+          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in hypothesis, title, and select a map region");
+          return;
+        }
+      } else if (type === "photo_set") {
+        if (jQuery('.note-description').val() === "" || jQuery('.note-explanation').val() === "" || jQuery('.note-question').val() === "" || jQuery('.note-title').val() === "" || jQuery('.map-region-dropdown').val() === "0" || jQuery('.related-camera-traps').text() === "") {
+          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in description, explanation, questions, title, camera trap number, and select a map region");
+          return;
+        }
+      } else if (type === "cross_cutting") {
+        if (jQuery('.note-explanation').val() === "" || jQuery('.note-title').val() === "") {
+          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in explanation, and title");
+          return;
+        }
+      } else if (type === "open") {
+        if (jQuery('.note-description').val() === "" || jQuery('.note-title').val() === "") {
+          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in description, and title");
+          return;
+        }
+      } else {
+        console.error('This should never happen error - unknown note type when publishing');
+      }
 
       // go over all input fields, store information, and clear up
       var inputFields = view.$el.find('textarea');

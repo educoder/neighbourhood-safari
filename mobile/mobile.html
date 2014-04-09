@@ -380,22 +380,26 @@
     <!--                  -->
 
     <div id="write-screen" class="row-fluid">
-        <div class="span12 view-container bs-docs-sidebar">
+        <div class="view-container bs-docs-sidebar">
 
             <!-- Write View looks at the notes-screen-input element -->
-            <div id="notes-screen-input" class="span12 input-box-wrapper">
+            <div id="notes-screen-input" class="span12">
 
                 <div id="show-note-container" class="span12">
                     <!-- <button class="resume-note-btn btn btn-large btn-primary">Resume Note</button> -->
-                    <div class="pull-right">
-                        <div class="btn-group resume-note-btn-group">
-                            <button class="resume-note-btn btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Resume Note</button>
-                            <ul class="dropdown-menu">
-                                <!-- dropdown menu links filled via template in view -->
-                            </ul>
+
+                        <h3 class="pull-left">How do you want to contribute?</h3>
+                        <div class="pull-right">
+                            <div class="btn-group resume-note-btn-group">
+                                <button class="resume-note-btn btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Resume Note</button>
+                                <ul class="dropdown-menu">
+                                    <!-- dropdown menu links filled via template in view -->
+                                </ul>
+
+                            </div>
+                            <button class="new-note-btn btn btn-large btn-primary" data-toggle="popover">New Note</button>
                         </div>
-                        <button class="new-note-btn btn btn-large btn-primary" data-toggle="popover">New Note</button>
-                    </div>
+
                 </div>
 
                 <div class="note-taking-toggle">

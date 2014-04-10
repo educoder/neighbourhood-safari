@@ -363,8 +363,7 @@
       max-height: 588px;
       border-right: 1px solid #eee; }
       #list-screen .span4 li.active-list-item {
-        border-left: 5px solid #e3e3e3;
-        padding-left: -50px; }
+        border-left: 5px solid #e3e3e3; }
       #list-screen .span4 li a:hover {
         background-color: white; }
       #list-screen .span4 li.planning, #list-screen .span4 li.cross_cutting, #list-screen .span4 li.open, #list-screen .span4 li.photo_set {

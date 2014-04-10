@@ -200,13 +200,26 @@
 
     addCameraTrapNumbers: function(ev) {
       ev.preventDefault();
+
       var cameraTrap = Number(jQuery('.related-camera-traps-input').val());
       jQuery('.related-camera-traps-input').val("");
       // TODO: maybe check based on the safari counter in the collection that gugo makes instead of arbitrary 999
       if (cameraTrap > 0 && cameraTrap < 1000) {
-        app.currentNote.get('related_camera_traps').push(cameraTrap);
-        // clearing out any duplicates
-        app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
+        // the related-camera-traps-input class *for this note* (modal not injected into DOM, so limited scope allows us to check like this)
+        if (jQuery('.related-camera-traps-input').hasClass('photo-set-related-camera-traps')) {
+          // this note type can only have one related camera trap
+          app.currentNote.set('related_camera_traps', []);
+          app.currentNote.get('related_camera_traps').push(cameraTrap);
+        } else if (jQuery('.related-camera-traps-input').hasClass('planning-related-camera-traps')) {
+          // this note type can only have many related camera trap
+          app.currentNote.get('related_camera_traps').push(cameraTrap);
+          // clearing out any duplicates
+          app.currentNote.set('related_camera_traps', _.uniq(app.currentNote.get('related_camera_traps')));
+        } else {
+          console.error('This should never happen error - unknown note type in write view');
+        }
+
+
         jQuery('.related-camera-traps').text(app.currentNote.get('related_camera_traps'));
       } else {
         jQuery().toastmessage('showErrorToast', "Invalid camera trap number");
@@ -259,17 +272,25 @@
 
       // make sure there is a tag collection
       if (app.tags) {
-        var tags = app.currentNote.get('tags');
+        // this note's tags
+        var myTags = app.currentNote.get('tags');
+        // sort the tags collection in alpha (maybe move this to mobile.js?)
+        var tagNameArray = [];
         app.tags.each(function(tag) {
+          tagNameArray.push(tag.get('name'));
+        });
+        var alphaTags = _.sortBy(tagNameArray, function (name) {return name; });
+
+        _.each(alphaTags, function(tagStr) {
           // check if this note already has this tag
-          var matchTag = _.find(tags, function(t) { return t === tag.get('name'); });
+          var matchTag = _.find(myTags, function(t) { return t === tagStr; });
 
           var selectedFlag = "";
           if (matchTag) {
             selectedFlag = "selected";
           }
           // add the selector class if tag is already attached to note
-          tagsHTML += _.template(jQuery(view.tagTemplate).text(), {'tagName':tag.get('name'), 'selectedClass':selectedFlag});
+          tagsHTML += _.template(jQuery(view.tagTemplate).text(), {'tagName':tagStr, 'selectedClass':selectedFlag});
         });
         jQuery('.tags-container').html(tagsHTML);
         jQuery('.tag-picker').modal('show');
@@ -367,7 +388,32 @@
 
     publishNote: function() {
       var view = this;
-      console.log('want me to do stuff, teach me');
+
+      // checking for required fields
+      var type = app.currentNote.get('type');
+      if (type === "planning") {
+        if (jQuery('.note-hypothesis').val() === "" || jQuery('.note-title').val() === "" || jQuery('.map-region-dropdown').val() === "0") {
+          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in hypothesis, title, and select a map region");
+          return;
+        }
+      } else if (type === "photo_set") {
+        if (jQuery('.note-description').val() === "" || jQuery('.note-explanation').val() === "" || jQuery('.note-question').val() === "" || jQuery('.note-title').val() === "" || jQuery('.map-region-dropdown').val() === "0" || jQuery('.related-camera-traps').text() === "") {
+          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in description, explanation, questions, title, camera trap number, and select a map region");
+          return;
+        }
+      } else if (type === "cross_cutting") {
+        if (jQuery('.note-explanation').val() === "" || jQuery('.note-title').val() === "") {
+          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in explanation, and title");
+          return;
+        }
+      } else if (type === "open") {
+        if (jQuery('.note-description').val() === "" || jQuery('.note-title').val() === "") {
+          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in description, and title");
+          return;
+        }
+      } else {
+        console.error('This should never happen error - unknown note type when publishing');
+      }
 
       // go over all input fields, store information, and clear up
       var inputFields = view.$el.find('textarea');

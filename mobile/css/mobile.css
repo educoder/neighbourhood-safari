@@ -258,7 +258,7 @@
     min-width: 350px;
     border-radius: 0 0 10px 0;
     border-bottom: 2px solid #7e7e7e;
-    margin: -14px 0 25px -5px;
+    margin: -14px 0 25px -3%;
     padding: 10px 0; }
     .planning-note-input .note-type-title h3,
     .cross-cutting-note-input .note-type-title h3,
@@ -342,6 +342,7 @@
     margin-bottom: 15px; }
 
   /* for the clear-filter button animation */
+  /* ref: http://www.sitepoint.com/build-a-better-button-in-css3/ */
   @-webkit-keyframes pulsate {
     0% {
       color: #ddd;
@@ -375,6 +376,7 @@
     -webkit-animation: pulsate 1.2s linear infinite;
     animation: pulsate 1.2s linear infinite; }
 
+  /* back to reality */
   .note-entry-field {
     width: 99%;
     margin-top: -11px; }
@@ -384,6 +386,10 @@
 
   .input-box-wrapper {
     padding: 5px; }
+
+  .field-title {
+    margin-left: 1em;
+    font-weight: 700; }
 
   /*             */
   /* List Screen */
@@ -504,5 +510,5 @@
   .cross-cutting-note-input .note-type-title,
   .open-note-input .note-type-title,
   .photo-set-note-input .note-type-title {
-    margin: -25px 0 10px -5px; } }
+    margin: -20px 0 10px -10px; } }
 /* TESTING GROUNDS */

@@ -330,7 +330,7 @@ $tag-color: rgb(187, 182, 181);
     min-width: 350px;
     border-radius: 0 0 10px 0;
     border-bottom: 2px solid #7E7E7E;
-    margin: -14px 0 25px -5px;
+    margin: -14px 0 25px -3%;
     padding: 10px 0;
     h3 {
       display: inline-block;
@@ -441,6 +441,7 @@ $tag-color: rgb(187, 182, 181);
   }
 
   /* for the clear-filter button animation */
+  /* ref: http://www.sitepoint.com/build-a-better-button-in-css3/ */
   @-webkit-keyframes pulsate
   {
       0%   { color: #ddd; text-shadow: 0 -1px 0 #000; }
@@ -474,6 +475,11 @@ $tag-color: rgb(187, 182, 181);
 
   .input-box-wrapper {
     padding: 5px;
+  }
+
+  .field-title {
+    margin-left: 1em;
+    font-weight: 700;
   }
 
   /*             */
@@ -676,7 +682,7 @@ $tag-color: rgb(187, 182, 181);
   .cross-cutting-note-input .note-type-title,
   .open-note-input .note-type-title,
   .photo-set-note-input .note-type-title {
-  margin: -25px 0 10px -5px;
+  margin: -20px 0 10px -10px;
   }
 }
 

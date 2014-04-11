@@ -139,32 +139,39 @@
 
               jQuery('.username-display a').text(app.runId+' - '+group.get('display_name'));
 
+              app.pausable = true;
+
               // hideLogin();
               showUsername();
 
               app.setup();
           } else {
-            console.log("Check if this is a teacher");
-            // TEACHER screen code
+            console.log("We didn't find a group that matches the runId and name...");
+            console.log("...trying to see if this is a teacher...");
+
             // here we should detect that username is a user that is a teacher and
             // enable an additional screen
-            app.rollcall.user(app.currentUser)
+            app.rollcall.user(app.username)
             .done( function(user) {
               if (user && user.isTeacher()) {
                 // enable teacher stuff
-                console.log('got ourselves a teacher here :)');
+                console.log('...got ourselves a teacher here :)');
                 app.pausable = false;
-                jQuery('.teacher-button').hidden('false');
+                jQuery('.teacher-button').show();
+
+                showUsername();
+
+                app.setup();
               } else {
                 // nothing to do really
-                console.log('user is no teacher or a group');
-                app.pausable = true;
+                console.log('...user is no teacher or a group so we call logoutUser()');
+
+                // fill modal dialog with user login buttons
+                logoutUser();
               }
             });
 
-            console.log("Either run is wrong or run has no groups. Wrong URL or Cookie? Show login");
-            // fill modal dialog with user login buttons
-            logoutUser();
+
           }
         });
       } else {
@@ -250,23 +257,6 @@
       jQuery('#read-screen').removeClass('hidden');
       jQuery('.nav-pills .read-button').addClass('active'); // highlight notes selection in nav bar
 
-
-      // TEACHER screen code
-      // here we should detect that username is a user that is a teacher and
-      // enable an additional screen
-      app.rollcall.user(app.currentUser)
-      .done( function(user) {
-        if (user && user.isTeacher()) {
-          // enable teacher stuff
-          console.log('got ourselves a teacher here :)');
-          app.pausable = false;
-          jQuery('.teacher-button').hidden('false');
-        } else {
-          // nothing to do really
-          console.log('user is no teacher or a group');
-          app.pausable = true;
-        }
-      });
 
       // TODO: ADD ME BACK IN FOR PROD
       // jQuery('.navbar').addClass('hidden');

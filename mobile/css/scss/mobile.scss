@@ -332,7 +332,7 @@ $tag-color: rgb(187, 182, 181);
     border-bottom: 2px solid #7E7E7E;
     margin: -14px 0 25px -3%;
     padding: 10px 0;
-    h3 {
+    h3{
       display: inline-block;
       margin: 0 10px 0 10px;
       padding-left: 32px;
@@ -557,8 +557,34 @@ $tag-color: rgb(187, 182, 181);
     .span8 {
         margin-left: 0;
       .note-details-container {
-        h3, h6, p {
+        h3, h4, h5, h6, p {
           padding-left: 20px;
+        }
+        #read-screen-tags-wrapper {
+          .tags-container {
+            padding-left: 20px;
+          }
+        }
+
+        #read-screen-photo-wrapper {
+          height: 200px;
+          ul {
+            white-space: nowrap;
+            overflow-x: auto;
+            li {
+              margin: 15px;
+              border-right: 1px solid #e3e3e3;
+              display: inline-block;
+              float: none;
+              img {
+
+              }
+            }
+          }
+          .note-details-photo {
+            width: 200px;
+            height: 150px;
+          }
         }
       }
       .open-note-details h3, .planning-note-details h3, .cross-cutting-note-details h3, .photo-note-details h3 {

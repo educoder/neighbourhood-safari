@@ -21,6 +21,7 @@
     planningNoteDetailTemplate: "#planning-note-detail-template",
     cuttingNoteDetailTemplate: "#cross-note-detail-template",
     photoNoteDetailTemplate: '#photo-note-detail-template',
+    displayAllNotePhotos: '#all-note-photos',
 
     initialize: function () {
       var view = this;
@@ -54,6 +55,8 @@
       jQuery('.tag').on('click', function(ev) {
         jQuery(ev.target).toggleClass('selected');
       });
+
+      jQuery('a.gallery').colorbox();
 
       // Is this the cause of the multiple renders? I think soo.....
       // jQuery('.apply-filter').on('click', function() {
@@ -143,6 +146,7 @@
       var htmlContents = null;
 
 
+
       jQuery('li.active-list-item').removeClass('active-list-item');
       var currentListItem = jQuery(event.currentTarget).addClass('active-list-item');
       // fetch model ID from DOM
@@ -150,6 +154,29 @@
 
       // set model from collection
       var clickedModel = view.collection.get(modelId);
+      var photoSet = clickedModel.get('photos');
+      var tagsSet = clickedModel.get('tags');
+
+      // Setting up array of image list
+
+      var photoHTML = '';
+      var noteTagsHTML = '';
+
+      // create photoSet template to be injected into template
+      if (photoSet.length !== 0) {
+        _.each(photoSet, function(p){
+          photoHTML += "<li><a class='gallery' href='"+ p +"'><img class='note-details-photo' src='" + p + "'/></li></a>";
+        });
+        jQuery('#read-screen-photo-wrapper').html(photoHTML);
+      }
+
+      // create tagsSet template to be injected into template
+      if (tagsSet.length !== 0) {
+        _.each(tagsSet, function(t){
+          noteTagsHTML += "<div class='tag'>" + t + "</div>";
+        });
+        jQuery('#read-screen-tags-wrapper').html(noteTagsHTML);
+      }
 
       // If note is untitled
       if (clickedModel.get('body').title === '') {
@@ -164,7 +191,9 @@
                          'description': clickedModel.get('body').description,
                          'author': clickedModel.get('author'),
                          'body': clickedModel.get('body').open,
-                         'created_at': clickedModel.get('created_at')
+                         'created_at': clickedModel.get('created_at'),
+                         'photos': photoHTML,
+                         'tags': noteTagsHTML
                         };
       } else if (clickedModel.get('type') === 'photo_set') {
         templateType = view.photoNoteDetailTemplate;
@@ -174,7 +203,9 @@
                          'explanation': clickedModel.get('body').explanation,
                          'question': clickedModel.get('body').question,
                          'title': clickedModel.get('body').title,
-                         'created_at': clickedModel.get('created_at')
+                         'created_at': clickedModel.get('created_at'),
+                         'photos': photoHTML,
+                         'tags': noteTagsHTML
                         };
       } else if (clickedModel.get('type') === 'cross_cutting') {
         templateType = view.cuttingNoteDetailTemplate;
@@ -183,7 +214,9 @@
                          'title': clickedModel.get('body').title,
                          'description': clickedModel.get('body').description,
                          'explanation': clickedModel.get('body').explanation,
-                         'created_at': clickedModel.get('created_at')
+                         'created_at': clickedModel.get('created_at'),
+                         'photos': photoHTML,
+                         'tags': noteTagsHTML
                         };
       } else if (clickedModel.get('type') === 'planning') {
         templateType = view.planningNoteDetailTemplate;
@@ -193,7 +226,9 @@
                          'description': clickedModel.get('body').description,
                          'evidence': clickedModel.get('body').evidence,
                          'title': clickedModel.get('body').title,
-                         'created_at': clickedModel.get('created_at')
+                         'created_at': clickedModel.get('created_at'),
+                         'photos': photoHTML,
+                         'tags': noteTagsHTML
                         };
                       }
 

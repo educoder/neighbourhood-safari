@@ -434,8 +434,23 @@
         padding-top: 2px; }
     #list-screen .span8 {
       margin-left: 0; }
-      #list-screen .span8 .note-details-container h3, #list-screen .span8 .note-details-container h6, #list-screen .span8 .note-details-container p {
+      #list-screen .span8 .note-details-container h3, #list-screen .span8 .note-details-container h4, #list-screen .span8 .note-details-container h5, #list-screen .span8 .note-details-container h6, #list-screen .span8 .note-details-container p {
         padding-left: 20px; }
+      #list-screen .span8 .note-details-container #read-screen-tags-wrapper .tags-container {
+        padding-left: 20px; }
+      #list-screen .span8 .note-details-container #read-screen-photo-wrapper {
+        height: 200px; }
+        #list-screen .span8 .note-details-container #read-screen-photo-wrapper ul {
+          white-space: nowrap;
+          overflow-x: auto; }
+          #list-screen .span8 .note-details-container #read-screen-photo-wrapper ul li {
+            margin: 15px;
+            border-right: 1px solid #e3e3e3;
+            display: inline-block;
+            float: none; }
+        #list-screen .span8 .note-details-container #read-screen-photo-wrapper .note-details-photo {
+          width: 200px;
+          height: 150px; }
       #list-screen .span8 .open-note-details h3, #list-screen .span8 .planning-note-details h3, #list-screen .span8 .cross-cutting-note-details h3, #list-screen .span8 .photo-note-details h3 {
         color: #fff;
         display: inline-block;

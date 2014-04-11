@@ -58,10 +58,11 @@
             </div>
             <hr>
             <div id="read-screen-photo-wrapper">
-                <ul class="inline">
+                <ul>
                     <%= photos %>
                 </ul>
             </div>
+            <span class="field-title">Description</span><p><%= description %></p>
         </div>
     </script>
 
@@ -85,6 +86,9 @@
                     <%= photos %>
                 </ul>
             </div>
+            <span class="field-title">Description</span><p><%= description %></p>
+            <span class="field-title">Question</span><p><%= question %></p>
+            <span class="field-title">Explanation</span><p><%= explanation %></p>
         </div>
     </script>
 
@@ -103,10 +107,12 @@
             </div>
             <hr>
             <div id="read-screen-photo-wrapper">
-                <ul class="inline">
+                <ul>
                     <%= photos %>
                 </ul>
             </div>
+            <span class="field-title">Description</span><p><%= description %></p>
+            <span class="field-title">Explanation</span><p><%= explanation %></p>
         </div>
     </script>
 
@@ -126,10 +132,13 @@
             </div>
             <hr>
             <div id="read-screen-photo-wrapper">
-                <ul class="inline">
+                <ul>
                     <%= photos %>
                 </ul>
             </div>
+            <span class="field-title">Hypothesis</span><p><%= hypothesis %></p>
+            <span class="field-title">Description</span><p><%= description %></p>
+            <span class="field-title">Evidence</span><p><%= evidence %></p>
         </div>
     </script>
 
@@ -338,6 +347,7 @@
                     <ul class="nav nav-pills">
                         <li class="read-button"><a href="#">Read</a></li>
                         <li class="write-button"><a href="#">Write</a></li>
+                        <li class="teacher-button" style="display: none;"><a href="#">Teacher</a></li>
                     </ul>
                     <ul class="nav pull-right">
                         <li class="active username-display"><a></a></li>
@@ -530,6 +540,21 @@
     </div>
 
     <!-- END Write Screen -->
+    <div id="teacher-screen" class="row-fluid">
+        <div class="view-container bs-docs-sidebar">
+            <div>
+                <textarea class="new-tag row-fuild" name="new-tag" rows="2" placeholder="Insert new tag name"></textarea>
+            </div>
+            <div>
+                <button class="add-new-tag btn btn-large btn-primary">Add tag</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Screen -->
+
+    <!-- END Teacher Screen -->
+
 
     <!--                -->
     <!--     MODALS     -->

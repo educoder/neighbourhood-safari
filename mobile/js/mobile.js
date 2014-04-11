@@ -31,6 +31,7 @@
   app.tags = null;
   app.backpacks = null;
   app.username = null;
+  app.pausable = false;
   app.runState = null;
   app.userState = null;
   app.numOfStudents = 0;
@@ -95,7 +96,7 @@
 
       if (app.config.login_picker === "user") {
         // make sure the app.users collection is always filled
-        app.rollcall.usersWithTags([app.runId])
+        app.rollcall.usersWithRuns([app.runId])
         .done(function (usersInRun) {
           console.log(usersInRun);
 
@@ -129,7 +130,7 @@
         });
       } else if (app.config.login_picker === "group") {
         // make sure the app.users collection is always filled
-        app.rollcall.groups({"tags":{"$all": [app.runId]}, "groupname": app.username})
+        app.rollcall.groups({"runs":{"$all": [app.runId]}, "groupname": app.username})
         .done(function (groupRunMatch) {
           console.log(groupRunMatch);
 
@@ -143,6 +144,24 @@
 
               app.setup();
           } else {
+            console.log("Check if this is a teacher");
+            // TEACHER screen code
+            // here we should detect that username is a user that is a teacher and
+            // enable an additional screen
+            app.rollcall.user(app.currentUser)
+            .done( function(user) {
+              if (user && user.isTeacher()) {
+                // enable teacher stuff
+                console.log('got ourselves a teacher here :)');
+                app.pausable = false;
+                jQuery('.teacher-button').hidden('false');
+              } else {
+                // nothing to do really
+                console.log('user is no teacher or a group');
+                app.pausable = true;
+              }
+            });
+
             console.log("Either run is wrong or run has no groups. Wrong URL or Cookie? Show login");
             // fill modal dialog with user login buttons
             logoutUser();
@@ -232,6 +251,23 @@
       jQuery('.nav-pills .read-button').addClass('active'); // highlight notes selection in nav bar
 
 
+      // TEACHER screen code
+      // here we should detect that username is a user that is a teacher and
+      // enable an additional screen
+      app.rollcall.user(app.currentUser)
+      .done( function(user) {
+        if (user && user.isTeacher()) {
+          // enable teacher stuff
+          console.log('got ourselves a teacher here :)');
+          app.pausable = false;
+          jQuery('.teacher-button').hidden('false');
+        } else {
+          // nothing to do really
+          console.log('user is no teacher or a group');
+          app.pausable = true;
+        }
+      });
+
       // TODO: ADD ME BACK IN FOR PROD
       // jQuery('.navbar').addClass('hidden');
 
@@ -299,7 +335,7 @@
 
   var tryPullUsersData = function() {
     if (app.runId) {
-      app.rollcall.usersWithTags([app.runId])
+      app.rollcall.usersWithRuns([app.runId])
       .done(function (availableUsers) {
         console.log("Users data pulled!");
         app.users = availableUsers;
@@ -339,6 +375,16 @@
 
         app.hideAllRows();
         jQuery('#read-screen').removeClass('hidden');
+      }
+    });
+
+    jQuery('.teacher-button').click(function() {
+      if (app.username) {
+        jQuery('.nav-pills li').removeClass('active'); // unmark all nav items
+        jQuery(this).addClass('active');
+
+        app.hideAllRows();
+        jQuery('#teacher-screen').removeClass('hidden');
       }
     });
 
@@ -498,7 +544,7 @@
     jQuery('#login-picker .modal-header h3').text('Please login with your squirrel ID');
 
     // retrieve all users that have runId
-    app.rollcall.usersWithTags([runId])
+    app.rollcall.usersWithRuns([runId])
     .done(function (availableUsers) {
       jQuery('.login-buttons').html(''); //clear the house
       console.log(availableUsers);
@@ -541,7 +587,7 @@
     jQuery('#login-picker .modal-footer').css("display", '');
 
     // retrieve all users that have runId
-    app.rollcall.groupsWithTags([runId])
+    app.rollcall.groupsWithRuns([runId])
     .done(function (availableGroups) {
       jQuery('.login-buttons').html(''); //clear the house
       console.log(availableGroups);
@@ -584,7 +630,7 @@
     // jQuery('#login-picker .modal-footer').css("display", '');
 
     // retrieve all users that have runId
-    app.rollcall.usersWithTags([runId])
+    app.rollcall.usersWithRuns([runId])
     .done(function (availableUsers) {
       jQuery('.login-buttons').html(''); //clear the house
       console.log(availableUsers);
@@ -628,7 +674,7 @@
         if (newGroup.display_name.length > 3 && newGroup.users.length >= 1) {
           // Get value of new group name, to lowercase and strip whitespace
           newGroup.groupname = jQuery('.create-new-group-name').val().replace(/\s/g, '').toLowerCase();
-          newGroup.tags = [runId];
+          newGroup.runs = [runId];
           // newGroup.set('created_at', new Date());
 
           // newGroup.save().done(function(){

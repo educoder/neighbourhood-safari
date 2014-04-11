@@ -330,7 +330,7 @@ $tag-color: rgb(187, 182, 181);
     min-width: 350px;
     border-radius: 0 0 10px 0;
     border-bottom: 2px solid #7E7E7E;
-    margin: -14px 0 25px -5px;
+    margin: -14px 0 25px -3%;
     padding: 10px 0;
     h3{
       display: inline-block;
@@ -440,6 +440,31 @@ $tag-color: rgb(187, 182, 181);
     margin-bottom: 15px;
   }
 
+  /* for the clear-filter button animation */
+  /* ref: http://www.sitepoint.com/build-a-better-button-in-css3/ */
+  @-webkit-keyframes pulsate
+  {
+      0%   { color: #ddd; text-shadow: 0 -1px 0 #000; }
+      50%  { color: #fff; text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff; }
+      100% { color: #ddd; text-shadow: 0 -1px 0 #000; }
+  }
+
+  @keyframes pulsate
+  {
+      0%   { color: #ddd; text-shadow: 0 -1px 0 #000; }
+      50%  { color: #fff; text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff; }
+      100% { color: #ddd; text-shadow: 0 -1px 0 #000; }
+  }
+
+  .activated {
+  /*  -webkit-box-shadow: 4px 3px 3px #EB987F;
+    -moz-box-shadow: 4px 3px 3px #EB987F;
+    box-shadow: 4px 3px 3px #EB987F;*/
+    -webkit-animation: pulsate 1.2s linear infinite;
+      animation: pulsate 1.2s linear infinite;
+  }
+  /* back to reality */
+
   .note-entry-field {
     width: 99%;
     margin-top: -11px;
@@ -450,6 +475,11 @@ $tag-color: rgb(187, 182, 181);
 
   .input-box-wrapper {
     padding: 5px;
+  }
+
+  .field-title {
+    margin-left: 1em;
+    font-weight: 700;
   }
 
   /*             */
@@ -678,27 +708,10 @@ $tag-color: rgb(187, 182, 181);
   .cross-cutting-note-input .note-type-title,
   .open-note-input .note-type-title,
   .photo-set-note-input .note-type-title {
-  margin: -25px 0 10px -5px;
+  margin: -20px 0 10px -10px;
   }
 }
 
 
 /* TESTING GROUNDS */
-.activated {
-  -webkit-box-shadow: 4px 3px 3px #EB987F;
-  -moz-box-shadow: 4px 3px 3px #EB987F;
-  box-shadow: 4px 3px 3px #EB987F;
-}
 
-/*.gps_ring {
-    border: 3px solid #999;
-    -webkit-border-radius: 30px;
-    -webkit-animation: pulsate 1s ease-out;
-    -webkit-animation-iteration-count: infinite;
-    opacity: 0.0
-}
-@-webkit-keyframes pulsate {
-    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
-    50% {opacity: 1.0;}
-    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
-}*/

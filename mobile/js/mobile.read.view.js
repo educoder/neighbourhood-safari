@@ -56,15 +56,11 @@
         jQuery(ev.target).toggleClass('selected');
       });
 
-      jQuery('a.gallery').colorbox();
-
       // Is this the cause of the multiple renders? I think soo.....
       // jQuery('.apply-filter').on('click', function() {
       //   view.applyFilters();
       // });
-
       view.render();
-
       return view;
     },
 
@@ -233,8 +229,10 @@
                       }
 
       var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
-
       view.$el.find('.note-details').html(noteDetail);
+      jQuery('a.gallery').colorbox({
+        width: '450px'
+      });
     },
 
     render: function () {

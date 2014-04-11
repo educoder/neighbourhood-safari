@@ -50,7 +50,7 @@
             <h6>Open Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
             <hr>
-            <p>Description:&nbsp;<%= description %></p>
+            <span class="field-title">Description</span><p><%= description %></p>
             <div id="read-screen-tags-wrapper">
                 <div class="tags-container">
                     <%= tags %>
@@ -62,7 +62,6 @@
                     <%= photos %>
                 </ul>
             </div>
-            <span class="field-title">Description</span><p><%= description %></p>
         </div>
     </script>
 
@@ -72,9 +71,9 @@
             <h6>Photo-Set Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
             <hr>
-            <p>Description:&nbsp;<%= description %></p>
-            <p>Question:&nbsp;<%= question %></p>
-            <p>Explanation:&nbsp;<%= explanation %></p>
+            <span class="field-title">Description</span><p><%= description %></p>
+            <span class="field-title">Question</span><p><%= question %></p>
+            <span class="field-title">Explanation</span><p><%= explanation %></p>
             <div id="read-screen-tags-wrapper">
                 <div class="tags-container">
                     <%= tags %>
@@ -86,9 +85,6 @@
                     <%= photos %>
                 </ul>
             </div>
-            <span class="field-title">Description</span><p><%= description %></p>
-            <span class="field-title">Question</span><p><%= question %></p>
-            <span class="field-title">Explanation</span><p><%= explanation %></p>
         </div>
     </script>
 
@@ -98,8 +94,8 @@
             <h6>Cross Cutting Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
             <hr>
-            <p>Description:&nbsp; <%= description %></p>
-            <p>Explanation:&nbsp; <%= explanation %></p>
+            <span class="field-title">Description</span><p><%= description %></p>
+            <span class="field-title">Explanation</span><p><%= explanation %></p>
             <div id="read-screen-tags-wrapper">
                 <div class="tags-container">
                     <%= tags %>
@@ -111,8 +107,6 @@
                     <%= photos %>
                 </ul>
             </div>
-            <span class="field-title">Description</span><p><%= description %></p>
-            <span class="field-title">Explanation</span><p><%= explanation %></p>
         </div>
     </script>
 
@@ -122,9 +116,9 @@
             <h6>Planning Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
             <hr>
-            <p>Hypothesis:&nbsp;<%= hypothesis %></p>
-            <p>Description:&nbsp;<%= description %></p>
-            <p>Evidence:&nbsp;<%= evidence %></p>
+            <span class="field-title">Hypothesis</span><p><%= hypothesis %></p>
+            <span class="field-title">Description</span><p><%= description %></p>
+            <span class="field-title">Evidence</span><p><%= evidence %></p>
             <div id="read-screen-tags-wrapper">
                 <div class="tags-container">
                     <%= tags %>
@@ -136,9 +130,6 @@
                     <%= photos %>
                 </ul>
             </div>
-            <span class="field-title">Hypothesis</span><p><%= hypothesis %></p>
-            <span class="field-title">Description</span><p><%= description %></p>
-            <span class="field-title">Evidence</span><p><%= evidence %></p>
         </div>
     </script>
 

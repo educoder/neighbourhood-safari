@@ -317,7 +317,7 @@ rollcall.groupExists('leprachaun')
 
   Rollcall.prototype.groupsWithRuns = function(runs) {
     runs = runs || [];
-    var selector = {"tags":{"$all": runs}};
+    var selector = {"runs":{"$all": runs}};
 
     return this.groups(selector);
   };

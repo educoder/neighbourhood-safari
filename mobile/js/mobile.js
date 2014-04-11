@@ -44,6 +44,7 @@
 
   app.writeView = null;
   app.readView = null;
+  app.teacherView = null;
   // app.loginButtonsView = null;
 
   app.keyCount = 0;
@@ -237,6 +238,13 @@
         app.readView = new app.View.ReadView({
           el: '#list-screen',
           collection: Skeletor.Model.awake.notes
+        });
+      }
+
+      if (app.teacherView === null) {
+        app.teacherView = new app.View.TeacherView({
+          el: '#teacher-screen',
+          collection: Skeletor.Model.awake.tags
         });
       }
 

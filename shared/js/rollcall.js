@@ -175,6 +175,17 @@ rollcall.groupExists('leprachaun')
         this.set('tags', _.without(tags, tag));
       },
 
+      addRun: function (run) {
+        var runs = _.clone(this.get('runs'));
+        runs.push(run);
+        this.set('runs', _.uniq(runs));
+      },
+
+      removeRun: function (run) {
+        var runs = this.get('runs');
+        this.set('runs', _.without(runs, run));
+      },
+
       isTeacher: function() {
         if (this.get('user_role') === 'teacher') {
           return true;
@@ -243,6 +254,13 @@ rollcall.groupExists('leprachaun')
     return this.users(selector);
   };
 
+  Rollcall.prototype.usersWithRuns = function(runs) {
+    runs = runs || [];
+    var selector = {"runs":{"$all": runs}};
+
+    return this.users(selector);
+  };
+
   Rollcall.prototype.user = function(username) {
     return this.users({"username": username})
     .then(function (users) {
@@ -293,6 +311,13 @@ rollcall.groupExists('leprachaun')
   Rollcall.prototype.groupsWithTags = function(tags) {
     tags = tags || [];
     var selector = {"tags":{"$all": tags}};
+
+    return this.groups(selector);
+  };
+
+  Rollcall.prototype.groupsWithRuns = function(runs) {
+    runs = runs || [];
+    var selector = {"tags":{"$all": runs}};
 
     return this.groups(selector);
   };

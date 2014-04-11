@@ -234,6 +234,14 @@
 
       // make sure they have a backpack
       if (myBackpack) {
+        // var sortedList = _.sortBy(myBackpack.get('content'), function(p) {
+        //   return -p.get('created_at');
+        // });
+
+        // _.each(sortedList, function(o) {
+        //   photoHTML += _.template(jQuery(view.photoTemplate).text(), {'url':o.image_url});
+        // });
+
         _.each(myBackpack.get('content'), function(o) {
           photoHTML += _.template(jQuery(view.photoTemplate).text(), {'url':o.image_url});
         });

@@ -11,6 +11,9 @@
     <link href="../libs/bootstrap-responsive-2.3.2.min.css" rel="stylesheet">
     <link href="css/mobile.css" rel="stylesheet">
     <link href="../libs/jquery.toastmessage.css" rel="stylesheet">
+    <!-- colorbox plugin -->
+    <link href="../libs/colorbox.css" rel="stylesheet" >
+
 
     <script type="text/javascript" src="../libs/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../libs/bootstrap-2.3.2.min.js"></script>
@@ -22,6 +25,8 @@
     <script type="text/javascript" src="../node_modules/backbone.drowsy.encorelab/wakeful.js"></script>
 
     <script type="text/javascript" src="../libs/jquery.toastmessage.js"></script>
+    <!-- colorbox plugin -->
+    <script type="text/javascript" src="../libs/jquery.colorbox-min.js"></script>
     <script type="text/javascript" src="../libs/jquery.cookie.js"></script>
     <script type="text/javascript" src="../libs/purl.js"></script>
 
@@ -46,6 +51,17 @@
             <p><em><%= author %></em></p>
             <hr>
             <p>Description:&nbsp;<%= description %></p>
+            <div id="read-screen-tags-wrapper">
+                <div class="tags-container">
+                    <%= tags %>
+                </div>
+            </div>
+            <hr>
+            <div id="read-screen-photo-wrapper">
+                <ul class="inline">
+                    <%= photos %>
+                </ul>
+            </div>
         </div>
     </script>
 
@@ -58,6 +74,17 @@
             <p>Description:&nbsp;<%= description %></p>
             <p>Question:&nbsp;<%= question %></p>
             <p>Explanation:&nbsp;<%= explanation %></p>
+            <div id="read-screen-tags-wrapper">
+                <div class="tags-container">
+                    <%= tags %>
+                </div>
+            </div>
+            <hr>
+            <div id="read-screen-photo-wrapper">
+                <ul>
+                    <%= photos %>
+                </ul>
+            </div>
         </div>
     </script>
 
@@ -69,6 +96,17 @@
             <hr>
             <p>Description:&nbsp; <%= description %></p>
             <p>Explanation:&nbsp; <%= explanation %></p>
+            <div id="read-screen-tags-wrapper">
+                <div class="tags-container">
+                    <%= tags %>
+                </div>
+            </div>
+            <hr>
+            <div id="read-screen-photo-wrapper">
+                <ul class="inline">
+                    <%= photos %>
+                </ul>
+            </div>
         </div>
     </script>
 
@@ -81,6 +119,17 @@
             <p>Hypothesis:&nbsp;<%= hypothesis %></p>
             <p>Description:&nbsp;<%= description %></p>
             <p>Evidence:&nbsp;<%= evidence %></p>
+            <div id="read-screen-tags-wrapper">
+                <div class="tags-container">
+                    <%= tags %>
+                </div>
+            </div>
+            <hr>
+            <div id="read-screen-photo-wrapper">
+                <ul class="inline">
+                    <%= photos %>
+                </ul>
+            </div>
         </div>
     </script>
 

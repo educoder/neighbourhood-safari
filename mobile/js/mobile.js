@@ -252,7 +252,7 @@
 
       if (app.teacherView === null) {
         app.teacherView = new app.View.TeacherView({
-          el: '#teacher-screen',
+          el: '.teacher-tag-management',
           collection: app.tags
         });
       }

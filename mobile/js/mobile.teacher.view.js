@@ -21,6 +21,13 @@
       var view = this;
       console.log('Initializing TeacherView...', view.el);
 
+      view.collection.on('add', function(n) {
+        view.render();
+      });
+
+      view.collection.on('change update', function(n) {
+        view.render();
+      });
 
       view.render();
       return view;
@@ -86,6 +93,7 @@
 
       // var tagList = jQuery('.tag-list');
       var tagList = view.$el.find('.tag-list');
+      tagList.html('');
 
       view.collection.each(function(tag) {
         var tagListItem = _.template(jQuery(view.tagListTemplate).text(), {'tagName': tag.get('name')});

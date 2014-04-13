@@ -67,6 +67,14 @@
 
     app.handleLogin();
 
+    // TODO: ADD ME BACK IN FOR PROD - this is the click listener for the pretty start screen
+    jQuery('.navbar').addClass('hidden');
+
+    jQuery('#start-screen').click(function() {
+      jQuery('#start-screen').remove();
+      jQuery('.navbar').removeClass('hidden');
+    });
+
   };
 
   app.handleLogin = function () {
@@ -219,6 +227,7 @@
   };
 
   app.ready = function() {
+    console.log('Got there');
     jQuery.when(tryPullAll()).done(function(stateData, configurationData, recentBoutData, activityDropdownData) {
       console.log('tryPullAll and Patchgraph.init() finished so we do the rest of ready()');
 
@@ -271,15 +280,6 @@
       // show notes-screen - is this the default? TODO: check with design team where the first pedagogical step should be
       jQuery('#read-screen').removeClass('hidden');
       jQuery('.nav-pills .read-button').addClass('active'); // highlight notes selection in nav bar
-
-
-      // TODO: ADD ME BACK IN FOR PROD
-      // jQuery('.navbar').addClass('hidden');
-
-      // jQuery('#start-screen').click(function() {
-      //   jQuery('#start-screen').remove();
-      //   jQuery('.navbar').removeClass('hidden');
-      // });
     });
   };
 

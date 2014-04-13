@@ -1,5 +1,5 @@
 /*jshint debug:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, undef:true, curly:true, browser: true, devel: true, jquery:true, strict:false */
-/*global Backbone, _, jQuery, Sail */
+/*global Backbone, _, jQuery, Sail, Skeletor */
 
 (function() {
   "use strict";
@@ -28,6 +28,7 @@
 
     events: {
       'click .add-new-tag': 'addNewTag',
+      'keydown': 'checkKeyPress',
     },
 
     addNewTag: function(ev) {
@@ -38,13 +39,45 @@
       var tagname = view.$el.find('.new-tag').val();
 
       if (tagname.length > 0) {
-        // add tag here
+        // tag to lower case
+        tagname = tagname.toLowerCase().trim();
         // also check if already exists ...
-        console.log (tagname);
-        return tagname;
+        var existingTag = view.collection.where({"name": tagname});
+        if (existingTag.length === 0) {
+          // create new tag :)
+          var date = new Date();
+          var t = {
+            'name': tagname,
+            'created_at': date,
+            'modified_at': date
+          };
+
+          var newTag = new Skeletor.Model.Tag(t);
+          newTag.wake(app.config.wakeful.url);
+          newTag.save();
+          view.collection.add(newTag);
+
+          view.$el.find('.new-tag').val('');
+
+          return true;
+        } else {
+          var msg = "Tag with name '"+tagname+"' already exists!";
+          jQuery().toastmessage('showErrorToast', msg);
+          return false;
+        }
       } else {
         // show toast to enter something
-        return '';
+        jQuery().toastmessage('showErrorToast', "Please input a name for the tag you want to create");
+        return false;
+      }
+    },
+
+    checkKeyPress: function(e) {
+      var view = this;
+
+      if(e.keyCode === 13 && jQuery(e.target).hasClass('new-tag')){
+        view.addNewTag(e);
+        // alert('you pressed enter ^_^');
       }
     },
 

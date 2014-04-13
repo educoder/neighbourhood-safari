@@ -383,6 +383,8 @@
 
         app.hideAllRows();
         jQuery('#teacher-screen').removeClass('hidden');
+
+        jQuery('.new-tag').focus();
       }
     });
 

@@ -68,12 +68,12 @@
     app.handleLogin();
 
     // TODO: ADD ME BACK IN FOR PROD - this is the click listener for the pretty start screen
-    jQuery('.navbar').addClass('hidden');
+    // jQuery('.navbar').addClass('hidden');
 
-    jQuery('#start-screen').click(function() {
-      jQuery('#start-screen').remove();
-      jQuery('.navbar').removeClass('hidden');
-    });
+    // jQuery('#start-screen').click(function() {
+    //   jQuery('#start-screen').remove();
+    //   jQuery('.navbar').removeClass('hidden');
+    // });
 
   };
 

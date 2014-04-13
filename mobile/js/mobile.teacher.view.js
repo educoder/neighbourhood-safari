@@ -13,9 +13,9 @@
     Teacher View
   **/
   app.View.TeacherView = Backbone.View.extend({
-
     // Templates
     // templateName: "#id-of-template-element",
+    tagListTemplate: "#teacher-tag-list-template",
 
     initialize: function () {
       var view = this;
@@ -83,6 +83,15 @@
 
     render: function () {
       var view = this;
+
+      // var tagList = jQuery('.tag-list');
+      var tagList = view.$el.find('.tag-list');
+
+      view.collection.each(function(tag) {
+        var tagListItem = _.template(jQuery(view.tagListTemplate).text(), {'tagName': tag.get('name')});
+        tagList.append (tagListItem);
+      });
+
       console.log("Rendering TeacherView");
     }
   });

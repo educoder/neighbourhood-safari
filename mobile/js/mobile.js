@@ -241,16 +241,23 @@
         });
       }
 
-      if (app.teacherView === null) {
-        app.teacherView = new app.View.TeacherView({
-          el: '#teacher-screen',
-          collection: Skeletor.Model.awake.tags
-        });
-      }
-
       // these collections are not attached to a view
       app.tags = Skeletor.Model.awake.tags;
       app.backpacks = Skeletor.Model.awake.backpacks;
+
+      app.tags.comparator = function(model) {
+        return model.get('name');
+      };
+      app.tags.sort();
+
+      if (app.teacherView === null) {
+        app.teacherView = new app.View.TeacherView({
+          el: '#teacher-screen',
+          collection: app.tags
+        });
+      }
+
+
 
       setProjectName(app.config.project_name);
 

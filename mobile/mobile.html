@@ -310,6 +310,12 @@
         <div class="tag <%= selectedClass %>"><%= tagName %></div>
     </script>
 
+    <!--                           -->
+    <!--  TEACHER SCREEN TEMPLATE  -->
+    <!--                         -->
+    <script id="teacher-tag-list-template" type="text/template">
+        <li class="tag"><%= tagName %></li>
+    </script>
 
 </head>
 <body>
@@ -543,8 +549,8 @@
                 </div>
             </div>
             <div class="span8">
-                <ul>
-                    <li>hi</li>
+                <ul class="tag-list">
+                    <!-- filled by template in view -->
                 </ul>
             </div>
         </div>

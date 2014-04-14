@@ -162,6 +162,8 @@ $tag-color: rgb(187, 182, 181);
   .tags-modal-body {
     text-align: center;
     padding: 2%;
+    height: 300px;
+    overflow: scroll;
   }
   .tag-picker {
     width: 60%;
@@ -715,4 +717,3 @@ $tag-color: rgb(187, 182, 181);
 
 
 /* TESTING GROUNDS */
-

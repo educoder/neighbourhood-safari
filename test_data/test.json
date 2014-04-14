@@ -1,0 +1,21 @@
+[
+{"username": "ales","display_name": "Abby","runs": ["test"],"user_role": "student"},
+{"username": "adam","display_name": "Adam","runs": ["test"],"user_role": "student"},
+{"username": "alanister","display_name": "Alastair","runs": ["test"],"user_role": "student"},
+{"username": "allana","display_name": "Allie","runs": ["test"],"user_role": "student"},
+{"username": "ert","display_name": "Bert","runs": ["test"],"user_role": "student"},
+{"username": "charlie","display_name": "Charlotte","runs": ["test"],"user_role": "student"},
+{"username": "django","display_name": "Daeja","runs": ["test"],"user_role": "student"},
+{"username": "ester","display_name": "Elliot","runs": ["test"],"user_role": "student"},
+{"username": "thomas","display_name": "Trevor","runs": ["test"],"user_role": "student"},
+{
+    "username": "test",
+    "display_name": "Test (T)",
+    "tags": [
+        "test"
+    ],
+    "user_role": "teacher",
+    "created_at": "2014-04-11T14:36:49.201Z",
+    "modified_at": "2014-04-11T14:36:49.201Z"
+}
+]

@@ -13,9 +13,13 @@ results
 
 npm-debug.log
 node_modules
-test-data
-test_data
 
 .DS_Store
 config.json
 .sass-cache
+
+test_data/7BL.json
+test_data/7DM.json
+test_data/7MS.json
+test_data/amanda.json
+test_data/ben.json

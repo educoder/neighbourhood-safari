@@ -137,7 +137,9 @@
 
   .tags-modal-body {
     text-align: center;
-    padding: 2%; }
+    padding: 2%;
+    height: 300px;
+    overflow: scroll; }
 
   .tag-picker {
     width: 60%; }

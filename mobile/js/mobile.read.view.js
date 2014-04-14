@@ -245,6 +245,14 @@
       var list = this.$el.find('.note-list');
       list.html('');
 
+      // k, this nonsense is here because for a filter with no selected types is actually a filter with all selected types. A litle hacky, but it works
+      if (filterObj.types && filterObj.types.length === 0) {
+        filterObj.types.push("open");
+        filterObj.types.push("planning");
+        filterObj.types.push("photo_set");
+        filterObj.types.push("cross_cutting");
+      }
+
       function filterer(note) {
         return note.get('published') === true &&
           // if map_region is undefined, 0 or equal to current note

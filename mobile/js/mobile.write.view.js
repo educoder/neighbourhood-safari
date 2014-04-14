@@ -401,22 +401,22 @@
       var type = app.currentNote.get('type');
       if (type === "planning") {
         if (jQuery('.note-hypothesis').val() === "" || jQuery('.note-title').val() === "" || jQuery('.map-region-dropdown').val() === "0") {
-          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in hypothesis, title, and select a map region");
+          jQuery().toastmessage('showErrorToast', "One or more required fields is incomplete");
           return;
         }
       } else if (type === "photo_set") {
         if (jQuery('.note-description').val() === "" || jQuery('.note-explanation').val() === "" || jQuery('.note-question').val() === "" || jQuery('.note-title').val() === "" || jQuery('.map-region-dropdown').val() === "0" || jQuery('.related-camera-traps').text() === "") {
-          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in description, explanation, questions, title, camera trap number, and select a map region");
+          jQuery().toastmessage('showErrorToast', "One or more required fields is incomplete");
           return;
         }
       } else if (type === "cross_cutting") {
         if (jQuery('.note-explanation').val() === "" || jQuery('.note-title').val() === "") {
-          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in explanation, and title");
+          jQuery().toastmessage('showErrorToast', "One or more required fields is incomplete");
           return;
         }
       } else if (type === "open") {
         if (jQuery('.note-description').val() === "" || jQuery('.note-title').val() === "") {
-          jQuery().toastmessage('showErrorToast', "Missing fields: please fill in description, and title");
+          jQuery().toastmessage('showErrorToast', "One or more required fields is incomplete");
           return;
         }
       } else {

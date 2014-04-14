@@ -83,7 +83,9 @@
       });
     },
 
-    applyFilters: function() {
+    applyFilters: function(ev) {
+      ev.preventDefault();
+
       var view = this;
       filterObj = {
         published: true,

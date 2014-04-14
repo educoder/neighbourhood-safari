@@ -26,7 +26,7 @@
 
   /*disable bootstrap default hover state*/
   .disabled {
-    color: #333 !important;
+    color: #333333 !important;
     text-decoration: none !important; }
 
   input {
@@ -260,7 +260,7 @@
     width: 25%;
     min-width: 350px;
     border-radius: 0 0 10px 0;
-    border-bottom: 2px solid #7E7E7E;
+    border-bottom: 2px solid #7e7e7e;
     margin: -14px 0 25px -3%;
     padding: 10px 0; }
     .planning-note-input .note-type-title h3,
@@ -349,27 +349,29 @@
   @-webkit-keyframes pulsate {
     0% {
       color: #ddd;
-      text-shadow: 0 -1px 0 #000; }
+      text-shadow: 0 -1px 0 black; }
 
     50% {
       color: #fff;
-      text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff; }
+      text-shadow: 0 -1px 0 #444444, 0 0 5px #ffffdd, 0 0 8px white; }
 
     100% {
       color: #ddd;
-      text-shadow: 0 -1px 0 #000; } }
+      text-shadow: 0 -1px 0 black; } }
+
   @keyframes pulsate {
     0% {
       color: #ddd;
-      text-shadow: 0 -1px 0 #000; }
+      text-shadow: 0 -1px 0 black; }
 
     50% {
       color: #fff;
-      text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff; }
+      text-shadow: 0 -1px 0 #444444, 0 0 5px #ffffdd, 0 0 8px white; }
 
     100% {
       color: #ddd;
-      text-shadow: 0 -1px 0 #000; } }
+      text-shadow: 0 -1px 0 black; } }
+
   .activated {
     /*  -webkit-box-shadow: 4px 3px 3px #EB987F;
       -moz-box-shadow: 4px 3px 3px #EB987F;
@@ -398,11 +400,11 @@
   #list-screen {
     /* end .span8 */ }
     #list-screen .span12 {
-      border-bottom: 1px solid #eee; }
+      border-bottom: 1px solid #eeeeee; }
     #list-screen .span4 {
       margin-left: 0;
       max-height: 588px;
-      border-right: 1px solid #eee; }
+      border-right: 1px solid #eeeeee; }
       #list-screen .span4 li.active-list-item {
         border-left: 10px solid #e3e3e3; }
       #list-screen .span4 li a:hover {
@@ -500,7 +502,7 @@
     height: 300px;
     border-bottom: none;
     border-right: none;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #eeeeee;
     margin: 3% 0 3% 0; }
   #list-screen .span8.note-details .note-details-container h3 {
     width: 95%;

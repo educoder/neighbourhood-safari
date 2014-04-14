@@ -1,34 +1,20 @@
 var _ = require('underscore');
 // grab information from user to be more specific
 var argv = require('optimist')
-  .usage('Usage:\n\t$0 <rollcall collection to populate (e.g. users)>')
+  .usage('Usage:\n\t$0 database server(default:drowsy.badger.encorelab.org) port(default: 80)')
   .demand(1)
   .argv;
 
-var RUN = argv._[0];
+var database = argv._[0];
+// var server = argv._[1];
+// var port = argv._[2];
 
 // Via http://isolasoftware.it/2012/05/28/call-rest-api-with-node-js/
 var https = require('http');
 var fs = require('fs');
-var jsonObject;
 
+var jsonObject = fs.readFileSync('./tags.json', 'utf8');
 
-// To add a new COLLECTION please put in an if else that reads the json into jsonObject
-if (RUN === "ben") {
-    jsonObject = fs.readFileSync('./test_data/ben.json', 'utf8');
-} else if (RUN === "amanda") {
-    jsonObject = fs.readFileSync('./test_data/amanda.json', 'utf8');
-} else if (RUN === "7BL") {
-    jsonObject = fs.readFileSync('./test_data/7BL.json', 'utf8');
-} else if (RUN === "7MS") {
-    jsonObject = fs.readFileSync('./test_data/7MS.json', 'utf8');
-} else if (RUN === "7MD") {
-    jsonObject = fs.readFileSync('./test_data/7MD.json', 'utf8');
-} else {
-    console.warn("A unknown collection <"+RUN+"> was choosen.");
-    console.error("Exit with error");
-    process.exit(1);
-}
 
 // prepare the header
 var postheaders = {
@@ -40,7 +26,7 @@ var postheaders = {
 var optionspost = {
     host : 'drowsy.badger.encorelab.org',
     port : 80,
-    path : '/dev-rollcall/users',
+    path : '/'+database+'/tags',
     method : 'POST',
     headers : postheaders
 };

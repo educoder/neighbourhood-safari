@@ -320,6 +320,7 @@ $tag-color: rgb(187, 182, 181);
   }
 
   .photos-container {
+    max-height: 300px;
     overflow-y: scroll;
   }
   .planning-note-input .note-type-title,

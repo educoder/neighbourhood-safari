@@ -89,6 +89,11 @@
     //   app.username = jQuery.cookie('hunger-games_mobile_username');
     // }
 
+    if (jQuery.url().param('showLogout') && jQuery.url().param('showLogout') === 'false') {
+      console.log('received showLogout false so I hide it');
+      jQuery('.logout-user').hide();
+    }
+
     if (jQuery.url().param('runId') && jQuery.url().param('username')) {
       console.log ("URL parameter correct :)");
       app.runId = jQuery.url().param('runId');

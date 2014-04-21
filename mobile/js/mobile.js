@@ -252,7 +252,7 @@
 
       // these collections are not attached to a view
       app.tags = Skeletor.Model.awake.tags;
-      app.backpacks = Skeletor.Model.awake.backpacks;
+      //app.backpacks = Skeletor.Model.awake.backpacks;
 
       app.tags.comparator = function(model) {
         return model.get('name');

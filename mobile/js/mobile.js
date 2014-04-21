@@ -453,10 +453,14 @@
     });
   };
 
-  app.loginGroup = function (groupname) {
+  app.loginGroup = function (groupname, runId) {
     // retrieve group with given username
-    app.rollcall.group(groupname)
-    .done(function (group) {
+    // app.rollcall.group(groupname)
+
+    // retrieve group with groupname and runId
+    app.rollcall.groups({"runs":{"$all": [runId]}, "groupname":groupname})
+    .done(function (groups) {
+      var group = groups.first();
       if (group) {
         console.log(group.toJSON());
 
@@ -621,7 +625,7 @@
       // register click listeners
       jQuery('.login-button').click(function() {
         var clickedGroupName = jQuery(this).val();
-        app.loginGroup(clickedGroupName);
+        app.loginGroup(clickedGroupName, runId);
       });
 
       // show modal dialog
@@ -692,7 +696,7 @@
           // newGroup.save().done(function(){
           //   console.log('groups saved');
           // });
-          createOrUpdateGroup(newGroup);
+          createOrUpdateGroup(newGroup, runId);
         } else {
           console.warn('Group name must be more than 3 characters and must contain 1 or more members.');
           jQuery().toastmessage('showErrorToast', "Group name must be more than 3 characters and must contain 1 or more members.");
@@ -702,28 +706,39 @@
   };
 
 
-  var createOrUpdateGroup = function (groupObject) {
+  var createOrUpdateGroup = function (groupObject, runId) {
     console.log('create group function');
     // does group for users already exist?
-    app.rollcall.groupExists(groupObject.groupname)
-    .done(function(exists){
-      if (exists) {
+    // app.rollcall.groupExists(groupObject.groupname)
+    // I think we need to check for groupname and runId
+    app.rollcall.groups({"runs":{"$all": [runId]}, "groupname":groupObject.groupname})
+    .done(function(gs){
+      if (gs.models.length > 0) {
         // update group
-        app.rollcall.group(groupObject.groupname)
-        .done(function (group) {
-          console.log('Update group: '+group);
-          _.map(groupObject, function(val, key) {
-            group.set(key, val);
-          });
-          group.save().done(function(g){
-            app.loginGroup(g.groupname);
-          });
+        var group = gs.first();
+        console.log('Update group: '+group);
+        _.map(groupObject, function(val, key) {
+          group.set(key, val);
         });
+        group.save().done(function(g){
+          app.loginGroup(g.groupname, runId);
+        });
+
+        // app.rollcall.group(groupObject.groupname)
+        // .done(function (group) {
+        //   console.log('Update group: '+group);
+        //   _.map(groupObject, function(val, key) {
+        //     group.set(key, val);
+        //   });
+        //   group.save().done(function(g){
+        //     app.loginGroup(g.groupname);
+        //   });
+        // });
       } else {
         groupObject.created_at = new Date();
         var newGroup = new app.rollcall.Group(groupObject);
         newGroup.save().done(function(g){
-          app.loginGroup(g.groupname);
+          app.loginGroup(g.groupname, runId);
         });
       }
     });

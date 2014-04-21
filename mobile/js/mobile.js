@@ -683,7 +683,7 @@
 
         newGroup.display_name = jQuery('.create-new-group-name').val();
 
-        if (newGroup.display_name.length > 3 && newGroup.users.length >= 1) {
+        if (newGroup.display_name.length > 1 && newGroup.users.length >= 1) {
           // Get value of new group name, to lowercase and strip whitespace
           newGroup.groupname = jQuery('.create-new-group-name').val().replace(/\s/g, '').toLowerCase();
           newGroup.runs = [runId];

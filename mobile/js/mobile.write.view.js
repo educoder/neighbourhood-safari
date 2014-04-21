@@ -229,6 +229,7 @@
     showPhotoPicker: function() {
       var view = this;
       // iterate over this group's photo collection
+      Model.awake.backpacks.fetch();
       var myBackpack = Model.awake.backpacks.findWhere({"owner":app.username});
       var photoHTML = "";
 

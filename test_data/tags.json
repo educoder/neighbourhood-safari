@@ -1,12 +1,16 @@
 [
-	{"name":"bait"},
-	{"name":"birds"},
-	{"name":"cats"},
-	{"name":"day"},
-	{"name":"dogs"},
-	{"name":"feeding"},
-	{"name":"night"},
-	{"name":"pathways"},
-	{"name":"raccoons"},
-	{"name":"squirrels"}
+	{"name":"Squirrels"},
+	{"name":"Birds"},
+	{"name":"Opossum"},
+	{"name":"Raccoons"},
+	{"name":"Rats"},
+	{"name":"Rabbits"},
+	{"name":"Cats"},
+	{"name":"Cameras"},
+	{"name":"Predation"},
+	{"name":"Foraging"},
+	{"name":"Habitats"},
+	{"name":"Weather"},
+	{"name":"Location"},
+	{"name":"Time of day"}
 ]

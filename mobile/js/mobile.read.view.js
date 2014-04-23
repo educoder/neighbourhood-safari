@@ -233,7 +233,7 @@
       var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
       view.$el.find('.note-details').html(noteDetail);
       jQuery('a.gallery').colorbox({
-        width: '650px'
+        width: '90%'
       });
     },
 

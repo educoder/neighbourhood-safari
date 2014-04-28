@@ -71,6 +71,7 @@
       'click .apply-filter': 'applyFilters',
       'click .add-tags': 'addTags',
       'click .submit-tags': 'submitTags',
+      'click .tag': 'toggleSelected',
     },
 
     showFilterModal: function() {
@@ -272,8 +273,34 @@
     submitTags: function(e) {
       e.preventDefault();
 
+      var selectedNoteID = jQuery('.note-details-container').data('id');
+      var currentNote = this.collection.get(selectedNoteID);
+      var tagArray = [];
+      var selectedTags = jQuery('.selected');
+
+      // add .selected elements to tag array
+      _.each(selectedTags, function(el) {
+
+        // Try using the debugger, check to see what result you get back on that jQuery(el).html()
+        tagArray.push(jQuery(el).html());
+
+      });
+
+      // Get the existing tags from the model
+      var existingTags = currentNote.get('tags');
+      // Merge the new tags with the old ones
+      var mergedTags = _.union(existingTags, tagArray);
+
+      // Persist the merged tags the server
+      currentNote.set('tags', mergedTags);
+      currentNote.save();
+
       jQuery('.add-tags-modal').modal('hide');
       jQuery().toastmessage('showSuccessToast', "Tags successfully added.");
+    },
+
+    toggleSelected: function(ev) {
+      jQuery(ev.target).toggleClass('selected');
     },
 
     render: function () {

@@ -318,6 +318,7 @@
       });
       // set that array into the currentNote
       app.currentNote.set('tags', tagsAr);
+
       jQuery('.tag-picker').modal('hide');
       jQuery().toastmessage('showSuccessToast', "Attached tags updated");
     },

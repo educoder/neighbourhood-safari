@@ -12,5 +12,8 @@
 	{"name":"Habitats"},
 	{"name":"Weather"},
 	{"name":"Location"},
-	{"name":"Time of day"}
+	{"name":"Time of day"},
+	{"name":"Foxes"},
+	{"name":"Coyotes"},
+	{"name":"Deer"}
 ]

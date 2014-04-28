@@ -259,7 +259,7 @@
       }
     },
 
-    // TODO: move me to mobile.js?
+    // todo: move me to mobile.js?
     addPhotos: function() {
       // clear out all photos previous attached to the note
       app.currentNote.set('photos',[]);
@@ -318,6 +318,7 @@
       });
       // set that array into the currentNote
       app.currentNote.set('tags', tagsAr);
+
       jQuery('.tag-picker').modal('hide');
       jQuery().toastmessage('showSuccessToast', "Attached tags updated");
     },

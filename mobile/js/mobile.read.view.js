@@ -69,6 +69,9 @@
       'click .clear-notes': 'clearFilter',
       'click li.list-item': 'showNoteDetails',
       'click .apply-filter': 'applyFilters',
+      'click .add-tags': 'addTags',
+      'click .submit-tags': 'submitTags',
+      'click .tag': 'toggleSelected',
     },
 
     showFilterModal: function() {
@@ -191,7 +194,8 @@
                          'body': clickedModel.get('body').open,
                          'created_at': clickedModel.get('created_at'),
                          'photos': photoHTML,
-                         'tags': noteTagsHTML
+                         'tags': noteTagsHTML,
+                         'id': clickedModel.get('_id')
                         };
       } else if (clickedModel.get('type') === 'photo_set') {
         templateType = view.photoNoteDetailTemplate;
@@ -203,7 +207,8 @@
                          'title': clickedModel.get('body').title,
                          'created_at': clickedModel.get('created_at'),
                          'photos': photoHTML,
-                         'tags': noteTagsHTML
+                         'tags': noteTagsHTML,
+                         'id': clickedModel.get('_id')
                         };
       } else if (clickedModel.get('type') === 'cross_cutting') {
         templateType = view.cuttingNoteDetailTemplate;
@@ -214,7 +219,8 @@
                          'explanation': clickedModel.get('body').explanation,
                          'created_at': clickedModel.get('created_at'),
                          'photos': photoHTML,
-                         'tags': noteTagsHTML
+                         'tags': noteTagsHTML,
+                         'id': clickedModel.get('_id')
                         };
       } else if (clickedModel.get('type') === 'planning') {
         templateType = view.planningNoteDetailTemplate;
@@ -226,18 +232,75 @@
                          'title': clickedModel.get('body').title,
                          'created_at': clickedModel.get('created_at'),
                          'photos': photoHTML,
-                         'tags': noteTagsHTML
+                         'tags': noteTagsHTML,
+                         'id': clickedModel.get('_id')
                         };
                       }
 
       var noteDetail = _.template(jQuery(templateType).text(), htmlContents);
       view.$el.find('.note-details').html(noteDetail);
       jQuery('a.gallery').colorbox({
-        // width: '68%',
         maxHeight: '90%',
         scalePhotos: true,
         transition: 'elastic'
       });
+    },
+
+    addTags: function(e) {
+      e.preventDefault();
+      var selectedNoteID = jQuery('.note-details-container').data('id');
+      var currentNote = this.collection.get(selectedNoteID);
+      var currentTags = currentNote.get('tags');
+      var allTags = [];
+      var addTagHTML = '';
+
+      app.tags.each(function(tag) {
+        allTags.push(tag.get('name'));
+      });
+
+      allTags = _.difference(allTags, currentTags);
+
+      // Inject tags not added into modal
+      if (allTags.length !== 0) {
+        _.each(allTags, function(content){
+          addTagHTML += "<div class='tag'>" + content + "</div>";
+        });
+        jQuery('.modal-tags-container').html(addTagHTML);
+      }
+      jQuery('.add-tags-modal').modal('show');
+    },
+
+    submitTags: function(e) {
+      e.preventDefault();
+
+      var selectedNoteID = jQuery('.note-details-container').data('id');
+      var currentNote = this.collection.get(selectedNoteID);
+      var tagArray = [];
+      var selectedTags = jQuery('.selected');
+
+      // add .selected elements to tag array
+      _.each(selectedTags, function(el) {
+
+        // Try using the debugger, check to see what result you get back on that jQuery(el).html()
+        tagArray.push(jQuery(el).html());
+
+      });
+
+      // Get the existing tags from the model
+      var existingTags = currentNote.get('tags');
+      // Merge the new tags with the old ones
+      var mergedTags = _.union(existingTags, tagArray);
+
+      // Persist the merged tags the server
+      currentNote.set('tags', mergedTags);
+      currentNote.save();
+
+      jQuery('.add-tags-modal').modal('hide');
+      jQuery().toastmessage('showSuccessToast', "Tags successfully added.");
+    },
+
+    toggleSelected: function(ev) {
+      jQuery(ev.target).toggleClass('selected');
     },
 
     render: function () {

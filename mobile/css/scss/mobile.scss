@@ -566,6 +566,9 @@ $tag-color: rgb(187, 182, 181);
         #read-screen-tags-wrapper {
           .tags-container {
             padding-left: 20px;
+            .add-tags {
+              margin: 10px 0 0 4px;
+            }
           }
         }
 

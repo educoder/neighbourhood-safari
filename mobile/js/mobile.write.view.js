@@ -259,7 +259,7 @@
       }
     },
 
-    // TODO: move me to mobile.js?
+    // todo: move me to mobile.js?
     addPhotos: function() {
       // clear out all photos previous attached to the note
       app.currentNote.set('photos',[]);

@@ -439,6 +439,8 @@
         padding-left: 20px; }
       #list-screen .span8 .note-details-container #read-screen-tags-wrapper .tags-container {
         padding-left: 20px; }
+        #list-screen .span8 .note-details-container #read-screen-tags-wrapper .tags-container .add-tags {
+          margin: 10px 0 0 4px; }
       #list-screen .span8 .note-details-container #read-screen-photo-wrapper {
         height: 200px; }
         #list-screen .span8 .note-details-container #read-screen-photo-wrapper ul {

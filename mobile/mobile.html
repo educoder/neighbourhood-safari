@@ -46,7 +46,7 @@
     <!--                        -->
 
     <script id="open-note-detail-template" type="text/template">
-        <div class="note-details-container open-note-details">
+        <div class="note-details-container open-note-details" data-id="<%= id %>">
             <h3><%= title %></h3>
             <h6>Open Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -54,8 +54,11 @@
             <span class="field-title">Description</span><p><%= description %></p>
             <div id="read-screen-tags-wrapper">
                 <div class="tags-container">
-                    <%= tags %>
+                  <%= tags %>
+                  <br>
+                  <button class="btn btn-sm btn-success add-tags left">Add Tags</button>
                 </div>
+
             </div>
             <hr>
             <div id="read-screen-photo-wrapper">
@@ -67,7 +70,7 @@
     </script>
 
     <script id="photo-note-detail-template" type="text/template">
-        <div class="note-details-container photo-note-details">
+        <div class="note-details-container photo-note-details" data-id="<%= id %>">
             <h3><%= title %></h3>
             <h6>Photo-Set Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -78,6 +81,8 @@
             <div id="read-screen-tags-wrapper">
                 <div class="tags-container">
                     <%= tags %>
+                    <br>
+                    <button class="btn btn-sm btn-success add-tags">Add Tags</button>
                 </div>
             </div>
             <hr>
@@ -90,7 +95,7 @@
     </script>
 
     <script id="cross-note-detail-template" type="text/template">
-        <div class="note-details-container cross-cutting-note-details">
+        <div class="note-details-container cross-cutting-note-details" data-id="<%= id %>">
             <h3><%= title %></h3>
             <h6>Cross Cutting Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -100,6 +105,8 @@
             <div id="read-screen-tags-wrapper">
                 <div class="tags-container">
                     <%= tags %>
+                    <br>
+                    <button class="btn btn-sm btn-success add-tags">Add Tags</button>
                 </div>
             </div>
             <hr>
@@ -112,7 +119,7 @@
     </script>
 
     <script id="planning-note-detail-template" type="text/template">
-        <div class="note-details-container planning-note-details">
+        <div class="note-details-container planning-note-details" data-id="<%= id %>">
             <h3><%= title %></h3>
             <h6>Planning Note - published at <span class="small"><%= created_at %></span></h6>
             <p><em><%= author %></em></p>
@@ -123,7 +130,10 @@
             <div id="read-screen-tags-wrapper">
                 <div class="tags-container">
                     <%= tags %>
+                    <br>
+                    <button class="btn btn-sm btn-success add-tags">Add Tags</button>
                 </div>
+
             </div>
             <hr>
             <div id="read-screen-photo-wrapper">
@@ -221,7 +231,7 @@
             <div class="form-group">
                 <div class="input-field-group">
                     <%
-                    // TODO: check. Should you only be able to add one camera trap here?
+                    // todo: check. Should you only be able to add one camera trap here?
                     %>
                     <span>Identify your camera trap number</span><input type="number" class="related-camera-traps-input photo-set-related-camera-traps"></input><button class="add-related-camera-traps-btn">Add</button>
                     <div>
@@ -427,6 +437,27 @@
                         </form>
                     </div>
                 </div> <!-- end filter notes  modal -->
+
+                <!--                  -->
+                <!-- Add tags modal   -->
+                <!--                  -->
+                <div class="modal hide fade add-tags-modal" tabindex="-1" role="dialog" aria-labelledby="add-tag" aria-hidden="true" class="span12">
+                    <div class="modal-header">
+                        <h3>Add Tags</h3>
+                    </div>
+
+                    <div class="modal-body">
+                      <p>
+                        Select tags you would like to add to this note.
+                      </p>
+                      <hr>
+                      <div class="modal-tags-container">
+
+                      </div>
+                      <hr>
+                      <button class="btn btn-success btn-large submit-tags">Submit</button>
+                    </div>
+                </div>
 
             </div> <!-- end #list-screen -->
         </div> <!-- end view-container -->

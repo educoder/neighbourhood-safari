@@ -47,7 +47,8 @@
 
       if (tagname.length > 0) {
         // tag to lower case
-        tagname = tagname.toLowerCase().trim();
+        // tagname = tagname.toLowerCase().trim();
+        tagname = tagname.trim();
         // also check if already exists ...
         var existingTag = view.collection.where({"name": tagname});
         if (existingTag.length === 0) {

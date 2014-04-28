@@ -257,7 +257,7 @@
         allTags.push(tag.get('name'));
       });
 
-      var allTags = _.difference(allTags, currentTags);
+      allTags = _.difference(allTags, currentTags);
 
       // Inject tags not added into modal
       if (allTags.length !== 0) {

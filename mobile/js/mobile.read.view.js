@@ -54,14 +54,10 @@
         }
       });
 
-      jQuery('.tag').on('click', function(ev) {
-        jQuery(ev.target).toggleClass('selected');
-      });
-
-      // Is this the cause of the multiple renders? I think soo.....
-      // jQuery('.apply-filter').on('click', function() {
-      //   view.applyFilters();
+      // jQuery('.tag').on('click', function(ev) {
+      //   jQuery(ev.target).toggleClass('selected');
       // });
+
       view.render();
       return view;
     },
@@ -152,9 +148,9 @@
     showNoteDetails: function(modelId) {
       var view = this;
       // Type of template used
-      var templateType = null;
+      var templateType = '';
       // The html contents passed into the view
-      var htmlContents = null;
+      var htmlContents = '';
 
       // remove indentation from all elements
       jQuery('li.active-list-item').removeClass('active-list-item');
@@ -174,7 +170,7 @@
       var noteTagsHTML = '';
 
       // create photoSet template to be injected into template
-      if (photoSet.length !== 0) {
+      if (photoSet && photoSet.length !== 0) {
         _.each(photoSet, function(p){
           photoHTML += "<li><a class='gallery' href='"+ p +"'><img class='note-details-photo' src='" + p + "'/></li></a>";
         });
@@ -182,7 +178,7 @@
       }
 
       // create tagsSet template to be injected into template
-      if (tagsSet.length !== 0) {
+      if (tagsSet && tagsSet.length !== 0) {
         _.each(tagsSet, function(t){
           noteTagsHTML += "<div class='tag'>" + t + "</div>";
         });
@@ -286,7 +282,8 @@
       var selectedNoteID = jQuery('.note-details-container').data('id');
       var currentNote = this.collection.get(selectedNoteID);
       var tagArray = [];
-      var selectedTags = jQuery('.selected');
+      // select only tags from add-tags-modal
+      var selectedTags = jQuery('.modal-tags-container > .selected');
 
       // add .selected elements to tag array
       _.each(selectedTags, function(el) {

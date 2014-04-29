@@ -30,6 +30,8 @@
       view.collection.on('change', function(n) {
         if (n.get('published')) {
           view.render();
+
+          view.showNoteDetails(n.id);
         }
       });
 
@@ -67,7 +69,7 @@
     events: {
       'click .filter-notes': 'showFilterModal',
       'click .clear-notes': 'clearFilter',
-      'click li.list-item': 'showNoteDetails',
+      'click li.list-item': 'showNoteDetailsOnClick',
       'click .apply-filter': 'applyFilters',
       'click .add-tags': 'addTags',
       'click .submit-tags': 'submitTags',
@@ -139,19 +141,27 @@
       }
     },
 
-    showNoteDetails: function(event) {
+    showNoteDetailsOnClick: function(event) {
+      var view = this;
+
+      // fetch model ID from DOM
+      var modelId = jQuery(event.currentTarget).data('id');
+      view.showNoteDetails(modelId);
+    },
+
+    showNoteDetails: function(modelId) {
       var view = this;
       // Type of template used
       var templateType = null;
       // The html contents passed into the view
       var htmlContents = null;
 
-
-
+      // remove indentation from all elements
       jQuery('li.active-list-item').removeClass('active-list-item');
-      var currentListItem = jQuery(event.currentTarget).addClass('active-list-item');
-      // fetch model ID from DOM
-      var modelId = jQuery(event.currentTarget).data('id');
+      // add indentation to click element
+      // jQuery(event.currentTarget).addClass('active-list-item');
+      var currentTarget = view.$el.find('[data-id="' + modelId + '"]');
+      currentTarget.addClass('active-list-item');
 
       // set model from collection
       var clickedModel = view.collection.get(modelId);

@@ -30,6 +30,8 @@
       view.collection.on('change', function(n) {
         if (n.get('published')) {
           view.render();
+
+          view.showNoteDetails(n.id);
         }
       });
 
@@ -52,14 +54,10 @@
         }
       });
 
-      jQuery('.tag').on('click', function(ev) {
-        jQuery(ev.target).toggleClass('selected');
-      });
-
-      // Is this the cause of the multiple renders? I think soo.....
-      // jQuery('.apply-filter').on('click', function() {
-      //   view.applyFilters();
+      // jQuery('.tag').on('click', function(ev) {
+      //   jQuery(ev.target).toggleClass('selected');
       // });
+
       view.render();
       return view;
     },
@@ -67,7 +65,7 @@
     events: {
       'click .filter-notes': 'showFilterModal',
       'click .clear-notes': 'clearFilter',
-      'click li.list-item': 'showNoteDetails',
+      'click li.list-item': 'showNoteDetailsOnClick',
       'click .apply-filter': 'applyFilters',
       'click .add-tags': 'addTags',
       'click .submit-tags': 'submitTags',
@@ -139,19 +137,27 @@
       }
     },
 
-    showNoteDetails: function(event) {
+    showNoteDetailsOnClick: function(event) {
       var view = this;
-      // Type of template used
-      var templateType = null;
-      // The html contents passed into the view
-      var htmlContents = null;
 
-
-
-      jQuery('li.active-list-item').removeClass('active-list-item');
-      var currentListItem = jQuery(event.currentTarget).addClass('active-list-item');
       // fetch model ID from DOM
       var modelId = jQuery(event.currentTarget).data('id');
+      view.showNoteDetails(modelId);
+    },
+
+    showNoteDetails: function(modelId) {
+      var view = this;
+      // Type of template used
+      var templateType = '';
+      // The html contents passed into the view
+      var htmlContents = '';
+
+      // remove indentation from all elements
+      jQuery('li.active-list-item').removeClass('active-list-item');
+      // add indentation to click element
+      // jQuery(event.currentTarget).addClass('active-list-item');
+      var currentTarget = view.$el.find('[data-id="' + modelId + '"]');
+      currentTarget.addClass('active-list-item');
 
       // set model from collection
       var clickedModel = view.collection.get(modelId);
@@ -164,7 +170,7 @@
       var noteTagsHTML = '';
 
       // create photoSet template to be injected into template
-      if (photoSet.length !== 0) {
+      if (photoSet && photoSet.length !== 0) {
         _.each(photoSet, function(p){
           photoHTML += "<li><a class='gallery' href='"+ p +"'><img class='note-details-photo' src='" + p + "'/></li></a>";
         });
@@ -172,7 +178,7 @@
       }
 
       // create tagsSet template to be injected into template
-      if (tagsSet.length !== 0) {
+      if (tagsSet && tagsSet.length !== 0) {
         _.each(tagsSet, function(t){
           noteTagsHTML += "<div class='tag'>" + t + "</div>";
         });
@@ -276,7 +282,8 @@
       var selectedNoteID = jQuery('.note-details-container').data('id');
       var currentNote = this.collection.get(selectedNoteID);
       var tagArray = [];
-      var selectedTags = jQuery('.selected');
+      // select only tags from add-tags-modal
+      var selectedTags = jQuery('.modal-tags-container > .selected');
 
       // add .selected elements to tag array
       _.each(selectedTags, function(el) {

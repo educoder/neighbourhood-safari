@@ -55,6 +55,17 @@
     app.loadConfig('../config.json');
     app.verifyConfig(app.config, app.requiredConfig);
 
+    // Adding BasicAuth to the XHR header in order to authenticate with drowsy database
+    // this is not really big security but a start
+    var basicAuthHash = btoa(app.config.drowsy.username + ':' + app.config.drowsy.password);
+    Backbone.$.ajaxSetup({
+      beforeSend: function(xhr) {
+        return xhr.setRequestHeader('Authorization',
+            // 'Basic ' + btoa(username + ':' + password));
+            'Basic ' + basicAuthHash);
+      }
+    });
+
     // TODO: should ask at startup
     DATABASE = app.config.drowsy.db;
 

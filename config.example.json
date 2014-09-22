@@ -1,9 +1,11 @@
 {
     "drowsy": {
-        "url": "http://drowsy.badger.encorelab.org",
+        "url": "https://drowsy.badger.encorelab.org",
         "db": "safari",
         "db_dev": "dev-safari",
-        "uic_url": "http://ltg.evl.uic.edu:9292"
+        "uic_url": "http://ltg.evl.uic.edu:9292",
+        "username": "foo",
+        "password": "bar"
     },
     "wakeful": {
         "url": "http://wakeful.badger.encorelab.org:7777/faye"
